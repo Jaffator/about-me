@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jaroslav Lufinka — backend &amp; fullstack engineer</title>
-  <meta name="description" content="Backend a fullstack engineer. Stavím spolehlivé backendy a AI agenty, kteří nad nimi umí pracovat." />
+  <title>Jaroslav Lufinka — Fullstack engineer</title>
+  <meta name="description" content="Fullstack engineer. Stavím webové aplikace od databáze po rozhraní a umím do nich postavit AI systémy, které fungují v produkci." />
   <meta name="theme-color" content="#09090b" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,28 +15,32 @@
 <body>
   <a class="skip" href="#main">Přeskočit na obsah</a>
 
-  <!-- fotka: nízká průhlednost, dvojitá maska => okraje se rozplynou do černé -->
+  <!-- fotka vpravo: společná maska pro fotku i světlo pod kurzorem => okraje mizí do černé -->
   <div class="photo" aria-hidden="true">
-    <div class="photo__img"></div>
-    <div class="photo__img photo__lamp"></div>
+    <div class="photo__fade">
+      <div class="photo__img"></div>
+      <div class="photo__img photo__lamp"></div>
+    </div>
   </div>
 
-  <div class="wrap">
-    <!-- LEVÝ SLOUPEC (na desktopu pevný) -->
-    <header class="side">
-      <div>
-        <h1 class="name">Jaroslav Lufinka</h1>
-        <p class="role">Backend &amp; fullstack engineer</p>
-        <p class="tagline">Stavím spolehlivé backendy — a&nbsp;AI agenty, kteří nad nimi umí pracovat.</p>
+  <!-- agentní systém na pozadí vlevo: orchestrátor → nástroje → ověření (kreslí main.js) -->
+  <svg class="agents" id="agents" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"></svg>
 
-        <nav class="nav" aria-label="Sekce">
-          <a href="#agent"><span class="mono">01</span>Agent naživo</a>
-          <a href="#o-mne"><span class="mono">02</span>O mně</a>
-          <a href="#praxe"><span class="mono">03</span>Praxe</a>
-          <a href="#projekty"><span class="mono">04</span>Projekty</a>
-          <a href="#kontakt"><span class="mono">05</span>Kontakt</a>
-        </nav>
-      </div>
+  <header class="bar">
+    <a href="#top" class="bar__id">JL<span class="acc">.</span></a>
+    <nav class="bar__nav" aria-label="Hlavní navigace">
+      <a href="#o-mne">O mně</a>
+      <a href="#praxe">Praxe</a>
+      <a href="#projekty">Projekty</a>
+      <a href="#kontakt" class="bar__cta">Kontakt</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <p class="hero__kicker mono">Fullstack engineer</p>
+      <h1 class="hero__name">Jaroslav<br />Lufinka</h1>
+      <p class="hero__lede">Stavím webové aplikace od databáze po rozhraní — a&nbsp;umím do nich postavit <span class="acc">AI systémy</span>, které fungují v&nbsp;produkci.</p>
 
       <ul class="social">
         <li><a href="https://github.com/Jaffator" target="_blank" rel="noopener">
@@ -49,103 +53,77 @@
           <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
           E-mail</a></li>
       </ul>
-    </header>
+    </section>
 
-    <!-- PRAVÝ SLOUPEC -->
-    <main id="main" class="content">
+    <section id="o-mne" class="sec" aria-labelledby="h-o-mne">
+      <h2 id="h-o-mne" class="sec__h"><span class="mono">01</span>O mně</h2>
+      <div class="sec__body prose">
+        <p class="big">Osm let produkčního softwaru v&nbsp;automotive R&amp;D, kde spolehlivost nebyla volitelná. Dnes fullstack — a&nbsp;AI tam, kde dává smysl.</p>
+        <p>Na backendu pracuji hlavně s&nbsp;<strong>Node.js, NestJS a&nbsp;PostgreSQL</strong>, na frontendu s&nbsp;<strong>Reactem</strong> a&nbsp;mobil řeším přes Capacitor. Umím postavit i&nbsp;<strong>AI systémy</strong>: asistenty s&nbsp;function callingem nad vlastními daty, RAG a&nbsp;zpracování úloh na pozadí.</p>
+        <p>Baví mě navrhovat systémy a&nbsp;chápat do hloubky, proč fungují tak, jak fungují.</p>
+      </div>
+    </section>
 
-      <section id="agent" class="sec" aria-labelledby="h-agent">
-        <h2 id="h-agent" class="sec__h"><span class="mono">01</span>Agent naživo</h2>
-        <p class="sec__lede">Takhle uvažuje AI asistent, kterého jsem postavil v&nbsp;BikeChecku: přijme zprávu, rozhodne se, zavolá nástroje a&nbsp;odpoví.</p>
-
-        <div class="term" role="img" aria-label="Animovaná ukázka: agent přijímá dotazy, rozhoduje se a volá nástroje jako get_components nebo render_pdf.">
-          <div class="term__bar mono">
-            <span>agent<span class="dim">@</span>bikecheck</span>
-            <span class="term__state" id="state"><i></i><b>idle</b></span>
+    <section id="praxe" class="sec" aria-labelledby="h-praxe">
+      <h2 id="h-praxe" class="sec__h"><span class="mono">02</span>Praxe</h2>
+      <ol class="sec__body list">
+        <li class="item">
+          <span class="item__date mono">2025 — dnes</span>
+          <div>
+            <h3>Independent Software Developer · BikeCheck</h3>
+            <p>Celá platforma sólo, od architektury po nasazení. NestJS s&nbsp;mikroslužbami, Strava OAuth a&nbsp;webhooky, RAG v&nbsp;Pythonu, AI asistent s&nbsp;function callingem, React a&nbsp;Capacitor. Live od 09/2026, 15+ beta uživatelů.</p>
+            <ul class="tags mono"><li>NestJS</li><li>PostgreSQL</li><li>BullMQ</li><li>RAG</li><li>React</li><li>Capacitor</li></ul>
           </div>
-          <ol class="term__log mono" id="log"></ol>
-          <div class="term__input mono"><span class="acc">›</span><span id="typing"></span><span class="caret"></span></div>
-        </div>
-      </section>
+        </li>
+        <li class="item">
+          <span class="item__date mono">2017 — 2025</span>
+          <div>
+            <h3>Software Development Engineer · ZF Group</h3>
+            <p>Řídicí a&nbsp;testovací systémy pro brzdové komponenty na 100+ stanicích — fronty, paralelní zpracování, determinismus. Kalibrační systém pro 30+ inženýrů zkrátil kalibraci z&nbsp;dnů na hodiny.</p>
+            <ul class="tags mono"><li>Python</li><li>LabVIEW</li><li>MySQL</li><li>FPGA</li></ul>
+          </div>
+        </li>
+        <li class="item">
+          <span class="item__date mono">2015 — 2017</span>
+          <div>
+            <h3>R&amp;D Development Engineer · PRECIOSA</h3>
+            <p>Vývoj v&nbsp;R&amp;D. Vzdělání: ČZU Praha, Technická fakulta.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
 
-      <section id="o-mne" class="sec" aria-labelledby="h-o-mne">
-        <h2 id="h-o-mne" class="sec__h"><span class="mono">02</span>O mně</h2>
-        <div class="prose">
-          <p>Osm let jsem psal produkční software v&nbsp;automotive R&amp;D, kde spolehlivost nebyla volitelná. Na datech z&nbsp;mých aplikací stály výsledky testů brzdových systémů.</p>
-          <p>Dnes dělám hlavně <strong>backend v&nbsp;Node.js, NestJS a&nbsp;PostgreSQL</strong>, k&nbsp;tomu React a&nbsp;mobil přes Capacitor. A&nbsp;stále víc <strong>agentní systémy</strong>: LLM s&nbsp;function callingem, RAG a&nbsp;fronty úloh, které v&nbsp;produkci dělají přesně to, co mají.</p>
-          <p>Baví mě navrhovat systémy a&nbsp;chápat do hloubky, proč fungují tak, jak fungují.</p>
-        </div>
-      </section>
+    <section id="projekty" class="sec" aria-labelledby="h-projekty">
+      <h2 id="h-projekty" class="sec__h"><span class="mono">03</span>Projekty</h2>
+      <div class="sec__body projects">
+        <article class="proj">
+          <span class="proj__meta mono">2026 · live</span>
+          <h3><a href="https://bikecheck.cloud" target="_blank" rel="noopener" class="stretch">BikeCheck <span class="arr">↗</span></a></h3>
+          <p>Evidence kol, komponent a&nbsp;servisu. Jízdy ze Stravy opotřebovávají díly, aplikace hlídá servisní intervaly a&nbsp;AI asistent odpovídá nad vlastními daty jezdce.</p>
+          <ul class="tags mono"><li>React 19</li><li>NestJS</li><li>Postgres</li><li>Redis</li><li>AI</li></ul>
+        </article>
+        <article class="proj">
+          <span class="proj__meta mono">2024 · Raspberry Pi</span>
+          <h3><a href="https://github.com/Jaffator/Lufihome" target="_blank" rel="noopener" class="stretch">Lufihome <span class="arr">↗</span></a></h3>
+          <p>Domácí automatizace na Raspberry Pi. Teplotní čidla, ovládání ventilů topení, alarm a&nbsp;webové rozhraní pro celý dům.</p>
+          <ul class="tags mono"><li>Python</li><li>Flask</li><li>SQLAlchemy</li><li>IoT</li></ul>
+        </article>
+      </div>
+    </section>
 
-      <section id="praxe" class="sec" aria-labelledby="h-praxe">
-        <h2 id="h-praxe" class="sec__h"><span class="mono">03</span>Praxe</h2>
-        <ol class="list">
-          <li class="item">
-            <span class="item__date mono">2025 — dnes</span>
-            <div class="item__body">
-              <h3>Independent Software Developer · <a href="https://bikecheck.cloud" target="_blank" rel="noopener">BikeCheck ↗</a></h3>
-              <p>Celá platforma sólo — od architektury po nasazení. Modulární monolit v&nbsp;NestJS s&nbsp;mikroslužbami, Strava OAuth a&nbsp;webhooky, RAG v&nbsp;Pythonu, AI asistent s&nbsp;function callingem, React a&nbsp;Capacitor. Live od 09/2026, 15+ beta uživatelů.</p>
-              <ul class="tags mono"><li>NestJS</li><li>PostgreSQL</li><li>BullMQ</li><li>RAG</li><li>React</li><li>Capacitor</li></ul>
-            </div>
-          </li>
-          <li class="item">
-            <span class="item__date mono">2017 — 2025</span>
-            <div class="item__body">
-              <h3>Software Development Engineer · ZF Group</h3>
-              <p>Řídicí a&nbsp;testovací systémy pro brzdové komponenty na 100+ stanicích — fronty, paralelní zpracování, determinismus. Kalibrační systém pro 30+ inženýrů zkrátil kalibraci z&nbsp;dnů na hodiny. Až 5&nbsp;GB dat denně na stanici.</p>
-              <ul class="tags mono"><li>Python</li><li>LabVIEW</li><li>MySQL</li><li>FPGA</li><li>GitLab</li></ul>
-            </div>
-          </li>
-          <li class="item">
-            <span class="item__date mono">2015 — 2017</span>
-            <div class="item__body">
-              <h3>R&amp;D Development Engineer · PRECIOSA</h3>
-              <p>Vývoj v&nbsp;R&amp;D. Vzdělání: ČZU Praha, Technická fakulta.</p>
-            </div>
-          </li>
-        </ol>
-      </section>
-
-      <section id="projekty" class="sec" aria-labelledby="h-projekty">
-        <h2 id="h-projekty" class="sec__h"><span class="mono">04</span>Projekty</h2>
-        <ol class="list">
-          <li class="item item--link">
-            <span class="item__date mono">2026</span>
-            <div class="item__body">
-              <h3><a href="https://bikecheck.cloud" target="_blank" rel="noopener" class="stretch">BikeCheck <span class="arr">↗</span></a></h3>
-              <p>Evidence kol, komponent a&nbsp;servisu. Jízdy ze Stravy opotřebovávají díly, aplikace hlídá servisní intervaly a&nbsp;AI asistent odpovídá nad vlastními daty.</p>
-              <ul class="tags mono"><li>React 19</li><li>NestJS</li><li>Postgres</li><li>Redis</li><li>Hetzner</li></ul>
-            </div>
-          </li>
-          <li class="item item--link">
-            <span class="item__date mono">2025</span>
-            <div class="item__body">
-              <h3><a href="https://github.com/Jaffator/cv-generator" target="_blank" rel="noopener" class="stretch">CV generator <span class="arr">↗</span></a></h3>
-              <p>Webová aplikace na sestavení životopisu.</p>
-              <ul class="tags mono"><li>React</li><li>TypeScript</li></ul>
-            </div>
-          </li>
-          <li class="item item--link">
-            <span class="item__date mono">2025</span>
-            <div class="item__body">
-              <h3><a href="https://github.com/Jaffator/SimplyWeather" target="_blank" rel="noopener" class="stretch">SimplyWeather <span class="arr">↗</span></a></h3>
-              <p>Jednoduchá a&nbsp;čistá předpověď počasí.</p>
-              <ul class="tags mono"><li>TypeScript</li><li>REST API</li></ul>
-            </div>
-          </li>
-        </ol>
-        <a class="more mono" href="https://github.com/Jaffator" target="_blank" rel="noopener">Všechny repozitáře na GitHubu ↗</a>
-      </section>
-
-      <section id="kontakt" class="sec" aria-labelledby="h-kontakt">
-        <h2 id="h-kontakt" class="sec__h"><span class="mono">05</span>Kontakt</h2>
-        <p class="sec__lede">Hledám backendovou roli s&nbsp;přesahem do fullstacku. Ozvěte se.</p>
+    <section id="kontakt" class="sec" aria-labelledby="h-kontakt">
+      <h2 id="h-kontakt" class="sec__h"><span class="mono">04</span>Kontakt</h2>
+      <div class="sec__body">
+        <p class="big">Máte projekt nebo pozici? Napište mi.</p>
         <a class="mail" href="mailto:jardalufi@gmail.com">jardalufi@gmail.com <span aria-hidden="true">→</span></a>
-      </section>
+      </div>
+    </section>
+  </main>
 
-      <footer class="foot mono">© <span id="y">2026</span> Jaroslav Lufinka · ručně psané HTML, CSS a JS</footer>
-    </main>
-  </div>
+  <footer class="foot mono">
+    <span>© <span id="y">2026</span> Jaroslav Lufinka</span>
+    <span>ručně psané HTML, CSS a JS</span>
+  </footer>
 
   <script src="main.js" defer></script>
 </body>
