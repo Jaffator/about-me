@@ -119,7 +119,7 @@
 // Reveal: prvky kontaktu najíždějí v pořadí čtení (zbytek stránky objevuje main.js).
 (() => {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const els = [...document.querySelectorAll("#kontakt .shout, #kontakt .ask, #kontakt .copy, #kontakt .profiles, .about__big, .stats > div, .about__cols, .case, .work--sub")];
+  const els = [...document.querySelectorAll("#kontakt .shout, #kontakt .ask, #kontakt .copy, #kontakt .profiles, .about__big, .me__txt, .me__ph, .pj, .tl > li, .st__col, .hob > li")];
   els.forEach((el, i) => { el.classList.add("rv"); el.style.setProperty("--d", ((i % 3) * 0.1).toFixed(2) + "s"); });
   const io = new IntersectionObserver((entries) => entries.forEach((e) => {
     if (!e.isIntersecting) return;
