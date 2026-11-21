@@ -223,3 +223,109 @@ body.is-scrolled .bar { background: rgba(2, 2, 2, .8); border-bottom-color: var(
 
 /* šipka v tlačítku e-mailu ve stejné barvě jako text */
 .mail .i { color: #000; background: currentColor; }
+
+/* ═════════ přestavba obsahu (osnova: o mně → projekty → praxe → stack → mimo práci → kontakt) ═════════ */
+.i--down { --i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/bold/arrow-down-bold.svg); }
+.sec { scroll-margin-top: 64px; }
+
+/* místa k doplnění: viditelně označená, ať se omylem nepublikují */
+.todo {
+  display: inline; padding: 1px 6px; border-radius: 6px;
+  outline: 1px dashed var(--accent); outline-offset: 1px;
+  background: rgba(195, 235, 104, .08); color: var(--accent);
+  font: 500 .82em/1.5 var(--mono); letter-spacing: 0;
+}
+
+/* O mně: text vlevo, druhá fotka vpravo */
+.me { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.me__txt p { margin: 0 0 20px; max-width: 58ch; font-size: clamp(17px, 1.35vw, 19px); line-height: 1.65; }
+.me__txt p:last-child { margin-bottom: 0; }
+.me__txt strong { color: var(--fg); font-weight: 500; }
+.me__ph {
+  position: relative; margin: 0; aspect-ratio: 4 / 5; overflow: hidden;
+  display: grid; place-items: center; text-align: center;
+  border: 1px dashed var(--line-2); border-radius: 32px; background: var(--bg-2);
+}
+.me__ph .todo { outline: 0; background: none; line-height: 1.8; }
+.me__ph code { font: inherit; color: var(--muted); }
+.me__ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.me__ph:has(img) { border-style: solid; border-color: var(--line); }
+
+/* Projekty: karta = hlavička + čtyři řádky (problém, co jsem udělal, stack, výsledek) */
+.pj { border: 1px solid var(--line); border-radius: 32px; background: var(--bg-2); padding: clamp(24px, 3vw, 36px); }
+.pj--main { padding: 0; overflow: hidden; background: #080808; }
+.pj--main .case__stage { border: 0; border-bottom: 1px solid var(--line); border-radius: 0; }
+.pj--main .pj__body {
+  display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(24px, 4vw, 64px);
+  padding: clamp(28px, 3.4vw, 44px);
+}
+.pj__head { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 24px; }
+.pj--main .pj__head { margin: 0; }
+.pj__meta { font-size: 12px; color: var(--dim); }
+.pj h3 { margin: 0; color: var(--fg); font-size: clamp(26px, 2.6vw, 36px); font-weight: 520; letter-spacing: -.025em; line-height: 1.05; }
+.pj__link {
+  display: inline-flex; align-items: center; gap: .35em; margin-top: 4px; padding: 8px 14px; border-radius: 999px;
+  background: var(--bg-3); color: var(--fg); font-size: 14px; font-weight: 500; transition: background-color .2s;
+}
+.pj__link:hover { background: #242424; }
+.pj__link .i { color: var(--accent); }
+.pj__link--off { background: none; padding-inline: 0; color: var(--dim); font-size: 12px; }
+.pj__rows { margin: 0; }
+.pj__rows div { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
+.pj__rows div:first-child { border-top: 0; padding-top: 0; }
+.pj__rows dt { padding-top: 3px; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--dim); }
+.pj__rows dd { margin: 0; font-size: 16px; line-height: 1.55; color: var(--muted); }
+.pj__rows dd b { color: var(--fg); font-weight: 500; }
+.pj__rows .tags { margin: 0; }
+.pj__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.pj__grid .pj__rows div { grid-template-columns: 112px minmax(0, 1fr); }
+@media (hover: hover) { .pj--main:hover .case__desk { transform: translateY(-6px); } .pj--main:hover .case__phone { transform: translateY(-14px); } }
+
+/* Praxe: časová osa vodorovně, tečka na lince, nejnovější v limetce */
+.tl { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 clamp(16px, 2.4vw, 32px); }
+.tl li { position: relative; padding-top: 32px; border-top: 1px solid var(--line-2); }
+.tl li::before {
+  content: ""; position: absolute; left: 0; top: -5px; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--bg); border: 1px solid var(--muted);
+}
+.tl li:last-child::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px rgba(195, 235, 104, .14); }
+.tl__yr { margin: 0 0 14px; font-size: 12px; color: var(--dim); }
+.tl__yr--now { color: var(--accent); }
+.tl h3 { margin: 0; color: var(--fg); font-size: clamp(20px, 1.8vw, 24px); font-weight: 520; letter-spacing: -.02em; }
+.tl__role { margin: 4px 0 12px; font-size: 14px; color: var(--text); }
+.tl p:last-child { margin: 0; font-size: 15px; line-height: 1.5; }
+.tl b { color: var(--fg); font-weight: 500; }
+
+/* Stack: dvě karty, čipy s logy */
+.st { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 16px; }
+.st__col { padding: clamp(24px, 3vw, 36px); border: 1px solid var(--line); border-radius: 32px; background: var(--bg-2); }
+.st__col h3 { margin: 0 0 20px; font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
+.st__col--learn { background: #080808; border-style: dashed; border-color: var(--line-2); }
+.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.chips li { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; background: var(--bg-3); color: var(--fg); font-size: 15px; font-weight: 500; }
+.chips li.todo { background: rgba(195, 235, 104, .08); color: var(--accent); font-size: 13px; }
+.chips .ic { width: 15px; height: 15px; background: var(--text); -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+
+/* Mimo práci: tři karty s ikonou */
+.hob { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.hob li { padding: clamp(24px, 3vw, 36px); border: 1px solid var(--line); border-radius: 32px; background: var(--bg-2); }
+.hob .i { width: 28px; height: 28px; color: var(--accent); }
+.hob h3 { margin: 20px 0 8px; color: var(--fg); font-size: 22px; font-weight: 520; letter-spacing: -.02em; }
+.hob p { margin: 0; font-size: 16px; line-height: 1.55; }
+
+/* Kontakt: CV jako třetí odkaz */
+.profiles { flex-wrap: wrap; gap: 12px 28px; }
+
+@media (max-width: 900px) {
+  .me, .pj--main .pj__body, .pj__grid, .st { grid-template-columns: minmax(0, 1fr); }
+  .me__ph { aspect-ratio: 4 / 3; }
+  .tl { grid-template-columns: minmax(0, 1fr); gap: 0; border-left: 1px solid var(--line-2); margin-left: 4px; }
+  .tl li { border-top: 0; padding: 0 0 32px 24px; }
+  .tl li:last-child { padding-bottom: 0; }
+  .tl li::before { left: -5px; top: 4px; }
+  .hob { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .pj, .st__col, .hob li, .me__ph { border-radius: 24px; }
+  .pj__rows div, .pj__grid .pj__rows div { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+}

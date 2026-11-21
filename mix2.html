@@ -14,7 +14,7 @@
   <link rel="preload" as="image" href="assets/portrait.webp" />
   <link rel="stylesheet" href="styles.css?v=10" />
   <link rel="stylesheet" href="mix.css?v=42" />
-  <link rel="stylesheet" href="mix2.css?v=5" />
+  <link rel="stylesheet" href="mix2.css?v=7" />
 </head>
 <body>
   <a class="skip" href="#main">Přeskočit na obsah</a>
@@ -34,8 +34,9 @@
     <nav class="bar__nav" aria-label="Hlavní navigace">
       <span class="bar__pill" aria-hidden="true"></span>
       <a href="#o-mne">O mně</a>
-      <a href="#praxe">Praxe</a>
       <a href="#projekty">Projekty</a>
+      <a href="#praxe">Praxe</a>
+      <a href="#stack">Stack</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
   </header>
@@ -74,108 +75,176 @@
       <div class="band__track"><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nodedotjs.svg)"></b>Node.js</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nestjs.svg)"></b>NestJS</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/postgresql.svg)"></b>PostgreSQL</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/react.svg)"></b>React</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/typescript.svg)"></b>TypeScript</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/files-fill.svg)"></b>RAG</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/function-fill.svg)"></b>Function calling</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/robot-fill.svg)"></b>Build AI agents</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/clipboard-text-fill.svg)"></b>AI spec-driven dev</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/githubactions.svg)"></b>GitHub Actions</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/docker.svg)"></b>Docker</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nodedotjs.svg)"></b>Node.js</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nestjs.svg)"></b>NestJS</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/postgresql.svg)"></b>PostgreSQL</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/react.svg)"></b>React</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/typescript.svg)"></b>TypeScript</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/files-fill.svg)"></b>RAG</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/function-fill.svg)"></b>Function calling</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/robot-fill.svg)"></b>Build AI agents</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/clipboard-text-fill.svg)"></b>AI spec-driven dev</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/githubactions.svg)"></b>GitHub Actions</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/docker.svg)"></b>Docker</span><i>/</i></div>
     </div>
 
-    <!-- jediný světlý blok na stránce, záměrný zlom; čísla z praxe jako řada, ať se dají přečíst letmo -->
+    <!-- 2 · O mně: tři krátké odstavce a druhá fotka -->
     <section id="o-mne" class="sec sec--stack" aria-labelledby="h-o-mne">
       <p class="lbl mono"><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/user.svg)" aria-hidden="true"></span>O mně</p>
-      <h2 id="h-o-mne" class="sec__h">Osm let produkčního softwaru v&nbsp;automotive R&amp;D. <span>Dnes fullstack a&nbsp;AI tam, kde dává smysl.</span></h2>
-      <dl class="stats">
-        <div><dt>8 let</dt><dd>softwaru pro automotive R&amp;D v&nbsp;ZF</dd></div>
-        <div><dt>100+</dt><dd>testovacích stanic na mém softwaru</dd></div>
-        <div><dt>30+</dt><dd>inženýrů používá můj kalibrační systém</dd></div>
-        <div><dt>15+</dt><dd>beta uživatelů BikeCheck</dd></div>
-      </dl>
-      <div class="about__cols">
-        <p>Na backendu pracuji hlavně s&nbsp;<strong>Node.js, NestJS a&nbsp;PostgreSQL</strong>, na frontendu s&nbsp;<strong>Reactem</strong> a&nbsp;mobil řeším přes Capacitor. Umím postavit i&nbsp;<strong class="hl">AI systémy</strong>: asistenty s&nbsp;function callingem nad vlastními daty, RAG a&nbsp;zpracování úloh na pozadí.</p>
-        <p>Baví mě navrhovat systémy a&nbsp;chápat do hloubky, proč fungují tak, jak fungují.</p>
+      <h2 id="h-o-mne" class="sec__h">Osm let v&nbsp;automotive R&amp;D. <span>Dnes fullstack a&nbsp;AI tam, kde dává smysl.</span></h2>
+      <div class="me">
+        <div class="me__txt m2-rv">
+          <p>Osm let jsem v&nbsp;ZF stavěl řídicí a&nbsp;testovací software pro brzdové komponenty. Běžel na <strong>100+ stanicích</strong> a&nbsp;spolehlivost tam nebyla volitelná.</p>
+          <p><span class="todo">Doplnit: proč jsi přešel z&nbsp;automotive R&amp;D na fullstack a&nbsp;AI (1–2 věty).</span></p>
+          <p>Dnes stavím webové aplikace od databáze po rozhraní, hlavně v&nbsp;<strong>Node.js, NestJS, Reactu a&nbsp;PostgreSQL</strong>, a&nbsp;do nich <strong class="hl">AI systémy</strong>: asistenty s&nbsp;function callingem, RAG a&nbsp;úlohy na pozadí. Baví mě navrhovat systémy a&nbsp;chápat do hloubky, proč fungují tak, jak fungují.</p>
+        </div>
+        <!-- druhá fotka: stačí uložit assets/photo-2.webp, dokud chybí, je vidět zástupný rámeček -->
+        <figure class="me__ph m2-rv">
+          <span class="todo">Druhá fotka: v&nbsp;dílně nebo na kole<br /><code>assets/photo-2.webp</code></span>
+          <img src="assets/photo-2.webp" alt="Jaroslav Lufinka v dílně" loading="lazy" onerror="this.remove()" />
+        </figure>
       </div>
     </section>
 
-    <section id="praxe" class="sec sec--stack" aria-labelledby="h-praxe">
-      <p class="lbl mono"><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/briefcase.svg)" aria-hidden="true"></span>Praxe</p>
-      <h2 id="h-praxe" class="sec__h">Od řídicích systémů po AI asistenty. <span>Software, na který se lidé spoléhají každý den.</span></h2>
-      <!-- každá role jako široký řádek: roky | role a firma | co jsem dělal; čísla zvýrazněná, ať se dají přečíst letmo -->
-      <ol class="jobs">
-        <li class="item job">
-          <p class="job__yr mono">2025 – dnes</p>
-          <div class="job__head">
-            <h3>Independent Software Developer</h3>
-            <p class="job__co">BikeCheck</p>
-          </div>
-          <div class="job__body">
-            <p>Celá platforma sólo, od architektury po nasazení. NestJS s&nbsp;mikroslužbami, Strava OAuth a&nbsp;webhooky, RAG v&nbsp;Pythonu, AI asistent s&nbsp;function callingem, React a&nbsp;Capacitor. V&nbsp;provozu od září 2026 s&nbsp;<b>15+ beta uživateli</b>.</p>
-            <ul class="tags mono"><li>NestJS</li><li>PostgreSQL</li><li>BullMQ</li><li>RAG</li><li>React</li><li>Capacitor</li></ul>
-          </div>
-        </li>
-        <li class="item job">
-          <p class="job__yr mono">2017 – 2025</p>
-          <div class="job__head">
-            <h3>Software Development Engineer</h3>
-            <p class="job__co">ZF Group</p>
-          </div>
-          <div class="job__body">
-            <p>Řídicí a&nbsp;testovací systémy pro brzdové komponenty na <b>100+ stanicích</b>: fronty, paralelní zpracování, determinismus. Kalibrační systém pro <b>30+ inženýrů</b> zkrátil kalibraci <b>z&nbsp;dnů na hodiny</b>.</p>
-            <ul class="tags mono"><li>Python</li><li>LabVIEW</li><li>MySQL</li><li>FPGA</li></ul>
-          </div>
-        </li>
-        <li class="item job">
-          <p class="job__yr mono">2015 – 2017</p>
-          <div class="job__head">
-            <h3>R&amp;D Development Engineer</h3>
-            <p class="job__co">Preciosa</p>
-          </div>
-          <div class="job__body">
-            <p>Vývoj v&nbsp;R&amp;D. Vzdělání: ČZU Praha, Technická fakulta.</p>
-          </div>
-        </li>
-      </ol>
-    </section>
-
+    <!-- 3 · Projekty: nejdůležitější sekce; u každého problém, co jsem udělal, stack, výsledek a odkaz -->
     <section id="projekty" class="sec sec--stack" aria-labelledby="h-projekty">
       <p class="lbl mono"><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/cube.svg)" aria-hidden="true"></span>Projekty</p>
-      <h2 id="h-projekty" class="sec__h">Vlastní projekty v&nbsp;provozu. <span>Od architektury po nasazení.</span></h2>
-      <!-- BikeCheck jako případová studie: desktop i telefon v jedné kompozici, pod tím tři funkce -->
-      <article class="case">
+      <h2 id="h-projekty" class="sec__h">Projekty v&nbsp;provozu. <span>Problém, řešení, výsledek.</span></h2>
+
+      <article class="pj pj--main m2-rv">
         <div class="case__stage" aria-hidden="true">
           <img class="case__desk" src="https://raw.githubusercontent.com/Jaffator/bikecheck-app/main/docs/screenshots/desktop-home.png" alt="" width="1440" height="900" loading="lazy" />
           <img class="case__phone" src="https://raw.githubusercontent.com/Jaffator/bikecheck-app/main/docs/screenshots/phone-home.png" alt="" width="780" height="1688" loading="lazy" />
         </div>
-        <div class="case__info">
-          <div class="case__head">
-            <span class="work__meta mono"><i class="case__live" aria-hidden="true"></i>2026, v provozu</span>
-            <h3><a href="https://bikecheck.cloud" target="_blank" rel="noopener" class="stretch">BikeCheck <span class="i i--ne" aria-hidden="true"></span></a></h3>
-            <p>Evidence kol, komponent a&nbsp;servisu. Jízdy ze Stravy opotřebovávají díly a&nbsp;AI asistent odpovídá nad daty jezdce.</p>
-            <ul class="tags mono"><li>React 19</li><li>NestJS</li><li>Postgres</li><li>Redis</li></ul>
-          </div>
-          <ul class="case__feats">
-            <li><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/arrows-clockwise.svg)" aria-hidden="true"></span><b>Strava sync</b><span>OAuth a&nbsp;webhooky, jízdy se propíšou do opotřebení dílů.</span></li>
-            <li><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/sparkle.svg)" aria-hidden="true"></span><b>AI asistent</b><span>RAG a&nbsp;function calling nad daty konkrétního jezdce.</span></li>
-            <li><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/device-mobile.svg)" aria-hidden="true"></span><b>Web i&nbsp;mobil</b><span>React a&nbsp;Capacitor, jedna kódová základna.</span></li>
-          </ul>
+        <div class="pj__body">
+          <header class="pj__head">
+            <span class="pj__meta mono"><i class="case__live" aria-hidden="true"></i>2026 · v provozu</span>
+            <h3>BikeCheck</h3>
+            <a class="pj__link" href="https://bikecheck.cloud" target="_blank" rel="noopener">bikecheck.cloud <span class="i i--ne" aria-hidden="true"></span></a>
+          </header>
+          <dl class="pj__rows">
+            <div><dt class="mono">Problém</dt><dd>Cyklista nemá přehled, kdy který díl kola dosluhuje a&nbsp;kdy na servis.</dd></div>
+            <div><dt class="mono">Co jsem udělal</dt><dd>Celou platformu sólo: Strava OAuth a&nbsp;webhooky propisují jízdy do opotřebení dílů, AI asistent s&nbsp;RAG a&nbsp;function callingem odpovídá nad daty jezdce.</dd></div>
+            <div><dt class="mono">Stack</dt><dd><ul class="tags mono"><li>NestJS</li><li>PostgreSQL</li><li>Redis</li><li>BullMQ</li><li>Python RAG</li><li>React 19</li><li>Capacitor</li></ul></dd></div>
+            <div><dt class="mono">Výsledek</dt><dd><b>V&nbsp;provozu od září 2026, 15+ beta uživatelů.</b> Web i&nbsp;mobil z&nbsp;jedné kódové základny.</dd></div>
+          </dl>
         </div>
       </article>
-      <article class="work work--sub">
-        <span class="i work__ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/house-line.svg)" aria-hidden="true"></span>
-        <div class="work__head">
-          <span class="work__meta mono">2024, Raspberry Pi</span>
-          <h3><a href="https://github.com/Jaffator/Lufihome" target="_blank" rel="noopener" class="stretch">Lufihome <span class="i i--ne" aria-hidden="true"></span></a></h3>
-        </div>
-        <div class="work__body">
-          <p>Domácí automatizace na Raspberry Pi. Teplotní čidla, ovládání ventilů topení, alarm a&nbsp;webové rozhraní.</p>
-          <ul class="tags mono"><li>Python</li><li>Flask</li><li>SQLAlchemy</li></ul>
-        </div>
-      </article>
+
+      <div class="pj__grid">
+        <article class="pj m2-rv">
+          <header class="pj__head">
+            <span class="pj__meta mono">ZF Group · interní nástroj</span>
+            <h3>Kalibrační systém</h3>
+            <span class="pj__link pj__link--off mono">Interní, bez veřejného odkazu</span>
+          </header>
+          <dl class="pj__rows">
+            <div><dt class="mono">Problém</dt><dd>Kalibrace testovacích stanic trvala dny.</dd></div>
+            <div><dt class="mono">Co jsem udělal</dt><dd>Kalibrační systém pro inženýry, kteří obsluhují testovací stanice brzdových komponent.</dd></div>
+            <div><dt class="mono">Stack</dt><dd><ul class="tags mono"><li>Python</li><li>LabVIEW</li><li>MySQL</li></ul></dd></div>
+            <div><dt class="mono">Výsledek</dt><dd><b>Kalibrace z&nbsp;dnů na hodiny, používá ho ~20 inženýrů.</b></dd></div>
+          </dl>
+        </article>
+        <article class="pj m2-rv">
+          <header class="pj__head">
+            <span class="pj__meta mono">2024 · Raspberry Pi</span>
+            <h3>Lufihome</h3>
+            <a class="pj__link" href="https://github.com/Jaffator/Lufihome" target="_blank" rel="noopener">GitHub <span class="i i--ne" aria-hidden="true"></span></a>
+          </header>
+          <dl class="pj__rows">
+            <div><dt class="mono">Problém</dt><dd>Topení a&nbsp;zabezpečení domu bez přehledu a&nbsp;ovládání na dálku.</dd></div>
+            <div><dt class="mono">Co jsem udělal</dt><dd>Domácí automatizaci na Raspberry Pi: teplotní čidla, ovládání ventilů topení, alarm a&nbsp;webové rozhraní.</dd></div>
+            <div><dt class="mono">Stack</dt><dd><ul class="tags mono"><li>Python</li><li>Flask</li><li>SQLAlchemy</li><li>Raspberry Pi</li></ul></dd></div>
+            <div><dt class="mono">Výsledek</dt><dd><span class="todo">Doplnit: výsledek (jak dlouho běží, co ušetřil).</span></dd></div>
+          </dl>
+        </article>
+      </div>
     </section>
 
+    <!-- 4 · Praxe: stručná časová osa, role + roky + jedna věta výsledku -->
+    <section id="praxe" class="sec sec--stack" aria-labelledby="h-praxe">
+      <p class="lbl mono"><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/briefcase.svg)" aria-hidden="true"></span>Praxe</p>
+      <h2 id="h-praxe" class="sec__h">Praxe. <span>Od R&amp;D po vlastní produkt.</span></h2>
+      <ol class="tl">
+        <li class="m2-rv">
+          <p class="tl__yr mono"><span class="todo">20?? – 20??</span></p>
+          <h3>DKL Tech</h3>
+          <p class="tl__role"><span class="todo">Doplnit roli</span></p>
+          <p><span class="todo">Doplnit jednu větu výsledku.</span></p>
+        </li>
+        <li class="m2-rv">
+          <p class="tl__yr mono">2015 – 2017</p>
+          <h3>Preciosa</h3>
+          <p class="tl__role">R&amp;D Development Engineer</p>
+          <p>Vývoj v&nbsp;R&amp;D. <span class="todo">Doplnit výsledek.</span></p>
+        </li>
+        <li class="m2-rv">
+          <p class="tl__yr mono">2017 – 2025</p>
+          <h3>ZF Group</h3>
+          <p class="tl__role">Software Development Engineer</p>
+          <p>Software pro <b>100+ testovacích stanic</b>, kalibrace zkrácená z&nbsp;dnů na hodiny.</p>
+        </li>
+        <li class="m2-rv">
+          <p class="tl__yr mono tl__yr--now">2025 – dnes</p>
+          <h3>BikeCheck</h3>
+          <p class="tl__role">Independent Software Developer</p>
+          <p>Celá platforma sólo, v&nbsp;provozu s&nbsp;<b>15+ beta uživateli</b>.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 5 · Stack: co používám denně a co se učím (ticker je pod úvodem) -->
+    <section id="stack" class="sec sec--stack" aria-labelledby="h-stack">
+      <p class="lbl mono"><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/stack.svg)" aria-hidden="true"></span>Stack</p>
+      <h2 id="h-stack" class="sec__h">Nástroje. <span>Co používám denně a&nbsp;co se učím.</span></h2>
+      <div class="st">
+        <div class="st__col m2-rv">
+          <h3 class="mono">Používám denně</h3>
+          <ul class="chips">
+            <li><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/typescript.svg)"></b>TypeScript</li>
+            <li><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nodedotjs.svg)"></b>Node.js</li>
+            <li><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nestjs.svg)"></b>NestJS</li>
+            <li><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/react.svg)"></b>React</li>
+            <li><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/postgresql.svg)"></b>PostgreSQL</li>
+            <li><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/redis.svg)"></b>Redis</li>
+            <li><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/python.svg)"></b>Python</li>
+            <li><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/docker.svg)"></b>Docker</li>
+            <li><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/githubactions.svg)"></b>GitHub Actions</li>
+          </ul>
+        </div>
+        <div class="st__col st__col--learn m2-rv">
+          <h3 class="mono">Učím se</h3>
+          <ul class="chips">
+            <li class="todo">Doplnit, co se učíš</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 · Osobní část: kolo, hory, svařování -->
+    <section id="mimo" class="sec sec--stack" aria-labelledby="h-mimo">
+      <p class="lbl mono"><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/mountains.svg)" aria-hidden="true"></span>Mimo práci</p>
+      <h2 id="h-mimo" class="sec__h">Mimo kód. <span>Kolo, hory a&nbsp;svářečka.</span></h2>
+      <ul class="hob">
+        <li class="m2-rv">
+          <span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/bicycle.svg)" aria-hidden="true"></span>
+          <h3>Cyklistika</h3>
+          <p>Odtud vznikl BikeCheck. <span class="todo">Doplnit 1–2 věty.</span></p>
+        </li>
+        <li class="m2-rv">
+          <span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/mountains.svg)" aria-hidden="true"></span>
+          <h3>Alpinismus</h3>
+          <p><span class="todo">Doplnit 1–2 věty.</span></p>
+        </li>
+        <li class="m2-rv">
+          <span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/fire.svg)" aria-hidden="true"></span>
+          <h3>Svařování</h3>
+          <p><span class="todo">Doplnit 1–2 věty.</span></p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 7 · Kontakt: e-mail, GitHub, LinkedIn, CV; stejné CTA jako v úvodu -->
     <section id="kontakt" class="sec sec--stack sec--end" aria-labelledby="h-kontakt">
-      <!-- závěr jako limetková karta: jediná plná plocha akcentu na stránce, ať je jasné, co dál -->
-      <div class="reach">
+      <div class="reach m2-rv">
         <p class="lbl mono"><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/paper-plane-tilt.svg)" aria-hidden="true"></span>Kontakt</p>
         <h2 id="h-kontakt" class="sec__h">Napište mi. <span>Máte projekt nebo pozici?</span></h2>
         <div class="mailrow">
           <a class="mail" href="mailto:jardalufi@gmail.com">jardalufi@gmail.com <span class="i i--right" aria-hidden="true"></span></a>
           <button class="copy" type="button" data-copy="jardalufi@gmail.com"><span class="i i--copy" aria-hidden="true"></span><span class="copy__t">Kopírovat</span></button>
         </div>
-        <p class="profiles"><a href="https://github.com/Jaffator" target="_blank" rel="noopener">GitHub <span class="i i--ne" aria-hidden="true"></span></a><a href="https://www.linkedin.com/in/jaroslav-lufinka" target="_blank" rel="noopener">LinkedIn <span class="i i--ne" aria-hidden="true"></span></a></p>
+        <p class="profiles">
+          <a href="https://github.com/Jaffator" target="_blank" rel="noopener">GitHub <span class="i i--ne" aria-hidden="true"></span></a>
+          <a href="https://www.linkedin.com/in/jaroslav-lufinka" target="_blank" rel="noopener">LinkedIn <span class="i i--ne" aria-hidden="true"></span></a>
+          <a href="assets/cv.pdf" download>CV ke stažení (PDF) <span class="i i--down" aria-hidden="true"></span></a>
+        </p>
       </div>
     </section>
   </main>
@@ -187,5 +256,6 @@
 
   <script src="main.js?v=10" defer></script>
   <script src="mix.js?v=13" defer></script>
+  <script src="mix2.js?v=1" defer></script>
 </body>
 </html>
