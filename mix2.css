@@ -1,0 +1,225 @@
+/* Varianta „mix2“: styl inspirovaný mastra.ai, vrstva nad styles.css + mix.css.
+   - písmo: Host Grotesk (volně dostupná náhrada placeného Greed, které používá mastra), váhy kolem 500;
+     popisky Commit Mono (stejné jako mastra; české znaky doplní Geist Mono)
+   - barvy: téměř černá #020202, světlé texty, šedá #939393 pro druhou půlku nadpisů, jeden limetkový akcent
+   - nadpisy sekcí jsou vystředěné a dvoubarevné: tvrzení bíle, doplnění šedě; nad nimi mono štítek s ikonou
+   - tvary: interaktivní prvky jsou pilulky, panely 32–40 px, karty 24 px; žádné zrno, žádný světlý blok */
+
+:root {
+  --bg:      #020202;
+  --bg-2:    #0f0f0f;                       /* karty */
+  --bg-3:    #171717;                       /* čipy, tmavá tlačítka */
+  --fg:      #f0f0f0;
+  --text:    #d9d9d9;
+  --muted:   #939393;                       /* 6.6:1 na --bg */
+  --dim:     #737373;
+  --line:    #1c1c1c;
+  --line-2:  #2b2b2b;
+  --n-a20:   #393939;
+  --accent:     #c3eb68;                   /* limetka jako v mix */
+  --accent-ink: #172008;
+  --sans: "Host Grotesk", system-ui, sans-serif;
+  --mono: "Commit Mono", "Geist Mono", ui-monospace, monospace;
+}
+body { color: var(--muted); font-size: 17px; letter-spacing: .01em; }
+.grain { display: none; }
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+/* fotka: černobílá, tlumená; k monochromní paletě */
+body:has(.hero--mix) .photo__img { filter: grayscale(1) contrast(1.05); opacity: .2; }
+body:has(.hero--mix) .photo__lamp { opacity: .42; }
+
+/* ───────── lišta ───────── */
+body.is-scrolled .bar { background: rgba(2, 2, 2, .8); border-bottom-color: var(--line); }
+.bar__id { font-weight: 600; letter-spacing: -.01em; color: var(--fg); }
+.bar__nav a { font-size: 15px; font-weight: 500; color: var(--muted); }
+.bar__nav a::after { display: none; }
+.bar__nav a:hover, .bar__nav a.is-lit { color: var(--fg); }
+.bar__pill { background: var(--bg-3); box-shadow: inset 0 0 0 1px var(--line-2); }
+.bar__nav:not(.js) a:hover, .bar__nav a:focus-visible { background: var(--bg-3); color: var(--fg); }
+
+/* ───────── tlačítka: světlá pilulka + tmavá pilulka ───────── */
+.btn {
+  min-height: 50px; padding: 0 22px; border-radius: 999px; border: 0;
+  background: var(--bg-3); color: var(--fg); font: 470 17px/1 var(--sans);
+  transition: background-color .2s, transform .15s var(--ease);
+}
+.btn:hover { background: #242424; }
+.btn--primary { background: #cccccc; color: #000; }
+.btn--primary:hover { background: #e6e6e6; }
+
+/* ───────── úvod ───────── */
+/* jméno jako štítek s tečkou „k dispozici“ (jako mastra „New · …“) */
+.mx__kicker {
+  align-self: flex-start; display: inline-block; white-space: nowrap;   /* ne flex: znaky z dekódování jsou samostatné spany */
+  padding: 7px 16px 7px 12px; border: 1px solid var(--line-2); border-radius: 999px; background: #0a0a0a;
+  font: 500 14px/1.2 var(--sans); letter-spacing: .01em; text-transform: none;
+  color: var(--text); -webkit-text-stroke: 0;
+}
+.mx__kicker::before {
+  content: ""; display: inline-block; vertical-align: 1px; margin-right: 10px;
+  width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(195, 235, 104, .14);
+}
+.dc.is-x { color: var(--accent); -webkit-text-stroke-color: var(--accent); }
+.mx__kicker .dc.is-x { -webkit-text-stroke: 0; }
+
+/* nadpis: věta, ne verzálky; druhý řádek v limetce */
+.mx__title {
+  font-family: var(--sans); font-stretch: normal; font-variation-settings: normal;
+  font-weight: 520; text-transform: none; letter-spacing: -.035em; line-height: 1;
+  font-size: clamp(48px, 8.4vw, 136px); color: var(--fg);
+}
+.mx__l { padding-bottom: .12em; }                     /* místo pro dotah g */
+/* výplň (background-clip) kreslí jen v boxu znaku: box se protáhne dolů, aby se vyplnil i dotah g */
+.mx__title .dc { padding-bottom: .22em; margin-bottom: -.22em; }
+.mx__amp { font-family: inherit; font-weight: inherit; letter-spacing: inherit; }
+.mx__title .mx__l { --c: var(--fg); }
+.mx__title .mx__l--acc { --c: var(--accent); }
+.mx__l--acc > span { color: var(--accent); }
+.mx__title.is-dec .mx__l > span { -webkit-text-stroke-width: 1.2px; }
+.hero--mix .hero__lede { color: var(--muted); font-size: clamp(18px, 1.6vw, 22px); line-height: 1.36; max-width: 34ch; }
+.hero--mix .hero__lede .acc { color: var(--accent); }
+.mx__foot { border-top-color: var(--line); }
+.mx__meta { font-size: 13px; }
+.mx__meta div { border-top-color: var(--line); }
+.mx__meta dt { color: var(--dim); letter-spacing: .06em; }
+.mx__meta dd { color: var(--text); }
+
+/* ───────── pás technologií: tichá řada „log“ jako u mastra ───────── */
+.band { padding: 28px 0; border-block: 1px solid var(--line); }
+.band__track {
+  font-family: var(--sans); font-stretch: normal; font-variation-settings: normal;
+  font-weight: 520; text-transform: none; letter-spacing: -.01em;
+  font-size: clamp(20px, 2.2vw, 30px); color: #bdbdbd; gap: 1.1em;
+  animation-duration: 70s;
+}
+.band__track .o { color: #bdbdbd; -webkit-text-stroke: 0; font-weight: 520; }
+.band__track i { display: none; }
+.band__track .ic, .band__track .o .ic { background: #bdbdbd; opacity: 1; }
+@keyframes band { to { transform: translateX(calc(-50% - .55em)); } }
+
+/* ───────── sekce: mono štítek s ikonou + vystředěný dvoubarevný nadpis ───────── */
+.sec { padding-block: clamp(104px, 16vh, 184px); }
+.lbl {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  margin: 0 0 22px; font-size: 13px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text);
+}
+.lbl .i { width: 18px; height: 18px; color: var(--fg); }
+.sec__h,
+.sec--stack > .sec__h {
+  margin: 0 auto clamp(48px, 8vh, 88px); max-width: 24ch; text-align: center; text-wrap: balance;
+  font-family: var(--sans); font-stretch: normal; font-variation-settings: normal;
+  font-weight: 520; text-transform: none; letter-spacing: -.025em; line-height: 1.1;
+  font-size: clamp(30px, 3.8vw, 52px); color: var(--fg);
+}
+.sec__h span { color: var(--muted); }
+
+/* O mně: čísla jako karty, text pod nimi */
+.stats { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; }
+.stats div,
+.stats div + div {
+  padding: 28px 26px 26px; border: 1px solid var(--line); border-radius: 24px; background: var(--bg-2);
+}
+.stats dt {
+  font-family: var(--sans); font-stretch: normal; font-variation-settings: normal;
+  font-weight: 520; letter-spacing: -.035em; text-transform: none;
+  font-size: clamp(38px, 4.2vw, 60px); color: var(--fg);
+}
+.stats div:first-child dt { color: var(--accent); }
+.stats dd { margin-top: 14px; font-size: 15px; color: var(--muted); }
+.about__cols { margin: clamp(56px, 9vh, 96px) auto 0; max-width: 880px; font-size: 18px; line-height: 1.6; color: var(--muted); }
+.about__cols strong { color: var(--fg); font-weight: 500; }
+.hl, .about__cols .hl { background: none; padding: 0; color: var(--accent); }
+
+/* Praxe: role v jednom velkém zaobleném panelu, řádky oddělené linkou */
+.jobs { border: 1px solid var(--line); border-radius: 32px; background: #080808; overflow: hidden; }
+.job { padding: clamp(28px, 3vw, 40px); border-top: 1px solid var(--line); transition: background-color .3s; }
+.job:first-child { border-top: 0; }
+.job::before { display: none; }
+@media (hover: hover) { .job:hover { background: var(--bg-2); } }
+.job__yr {
+  justify-self: start; padding: 5px 11px; border-radius: 999px; background: var(--bg-3);
+  font-size: 12px; color: var(--text);
+}
+.job:first-child .job__yr { color: var(--accent); }
+.job h3 { font-weight: 520; letter-spacing: -.02em; }
+.job__co { color: var(--muted); }
+.job__body p { font-size: 17px; }
+.job__body b { font-weight: 500; }
+
+/* tagy jako malé čipy */
+.tags { gap: 6px; margin-top: 18px; }
+.tags li { padding: 5px 11px; border-radius: 999px; background: var(--bg-3); font-size: 12px; color: var(--text); }
+
+/* Projekty: velký panel s náhledem, pod ním popis a funkce jako karty */
+.case__stage {
+  border-radius: 40px; border-color: var(--line);
+  background: radial-gradient(120% 80% at 50% 0%, #1a1a1a, #0b0b0b 70%);
+}
+.case__desk { border-color: #2a2a2a; border-radius: 14px 14px 0 0; }
+.case__phone { border-color: #1f1f1f; border-radius: 26px; }
+.case__info { padding-top: 40px; }
+.case__live { background: var(--accent); box-shadow: 0 0 0 4px rgba(195, 235, 104, .14); }
+.case h3, .work h3 { font-weight: 520; letter-spacing: -.025em; }
+.case__head p { font-size: 17px; }
+.case__feats { display: grid; gap: 10px; }
+.case__feats li,
+.case__feats li:first-child {
+  padding: 18px 20px; border: 1px solid var(--line); border-radius: 20px; background: var(--bg-2);
+}
+.case__feats .i { color: var(--accent); width: 22px; height: 22px; }
+.case__feats b { font-weight: 500; }
+.work--sub { border-color: var(--line); border-radius: 32px; background: var(--bg-2); }
+.stretch::after { border-radius: 32px; }
+:is(.case, .work):has(.stretch:focus-visible) { border-radius: 32px; }
+
+/* Kontakt: vystředěný panel jako závěrečná výzva mastra; jemná zelená záře zespodu */
+.sec--end {
+  padding-block: 0 clamp(72px, 12vh, 140px);       /* nahoře stačí odsazení předchozí sekce */
+  background: none; color: inherit; box-shadow: none; clip-path: none;
+}
+.reach {
+  color: var(--text); text-align: center;
+  padding: clamp(64px, 11vh, 120px) clamp(20px, 4vw, 48px);
+  border: 1px solid var(--line); border-radius: 40px;
+  background: radial-gradient(70% 90% at 50% 120%, rgba(195, 235, 104, .14), transparent 70%), #080808;
+}
+.reach ::selection { background: var(--accent); color: var(--accent-ink); }
+.reach .sec__h { margin-bottom: clamp(36px, 6vh, 56px); }
+.mailrow { justify-content: center; gap: 12px; }
+.mail {
+  min-height: 50px; padding: 0 24px; background: #cccccc; color: #000;
+  font: 500 17px/1 var(--sans);
+}
+.mail:hover { color: #000; background: #e6e6e6; }
+.copy {
+  min-height: 50px; padding: 0 20px; border: 0; background: var(--bg-3); color: var(--fg);
+  font: 470 15px var(--sans); letter-spacing: 0;
+}
+.copy:hover, .copy.is-done { background: #242424; color: var(--fg); }
+.copy.is-done .i { color: var(--accent); }
+.profiles { justify-content: center; border-top: 0; padding-top: 0; margin-top: 28px; }
+.profiles a { color: var(--muted); }
+.profiles a:hover { color: var(--fg); text-decoration: none; }
+.reach :focus-visible { outline-color: var(--accent); }
+
+.foot { color: var(--dim); }
+.foot__top:hover { color: var(--fg); }
+
+/* ───────── tablet / mobil ───────── */
+@media (max-width: 900px) {
+  .mx__title { font-size: 12vw; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stats div:nth-child(3) { padding-left: 26px; }
+}
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .stats div, .stats div + div, .stats div:nth-child(3) { padding: 20px 18px; border-radius: 20px; }
+  .jobs, .work--sub { border-radius: 24px; }
+  .case__stage, .reach { border-radius: 28px; }
+  .sec--end { padding-block: 0 56px; }
+}
+
+/* šipka v tlačítku e-mailu ve stejné barvě jako text */
+.mail .i { color: #000; background: currentColor; }

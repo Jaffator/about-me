@@ -1,0 +1,387 @@
+/* Varianta „mix“: tmavá stránka s limetkovým akcentem, velká plochá typografie,
+   jediný světlý blok („O mně“) jako záměrný zlom.
+   Navazuje jen na styles.css (tokeny, tlačítka, základ). hloubka.css už se nenačítá.
+
+   Pravidla:
+   - tvary: interaktivní prvky jsou plné pilulky (999px), média mají 12px, nic jiného zaoblené není
+   - jeden akcent (limetka), žádné záře, žádné karty, žádné dekorativní tečky
+   - pohyb má důvod: příjezd nadpisu (hierarchie), reveal (pořadí čtení),
+     stav grafu průchodu (která sekce se čte), marquee jen jedno */
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ikony: Phosphor (bold), barví se maskou, dědí barvu textu */
+.i {
+  --i: none;
+  display: inline-block; flex: none; width: 1em; height: 1em; vertical-align: -.12em;
+  background: currentColor;
+  -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat;
+}
+.i--ne    { --i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/bold/arrow-up-right-bold.svg); width: .85em; height: .85em; }
+.i--right { --i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/bold/arrow-right-bold.svg); }
+.i--up    { --i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/bold/arrow-up-bold.svg); }
+.i--copy  { --i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/bold/copy-bold.svg); }
+.i--check { --i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/bold/check-bold.svg); }
+.btn { gap: 8px; }
+
+/* ───────── fotka: velká na pozadí vpravo, mizí do černé, pod kurzorem se rozjasní ───────── */
+/* fotka patří jen úvodu: není fixní, odroluje spolu s ním */
+body:has(.hero--mix) .photo { position: absolute; width: 64vw; max-width: 1100px; height: 100vh; }
+body:has(.hero--mix).is-scrolled .photo { opacity: 1; }
+body:has(.hero--mix) .photo__img { opacity: .24; }
+body:has(.hero--mix) .photo__lamp { opacity: .52; }
+
+/* statické zrno přes stránku (pevná vrstva bez pointer-events, nic se nepřekresluje) */
+.grain {
+  position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: .06;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ───────── horní lišta ───────── */
+.bar {
+  padding-inline: max(var(--gutter), calc((100% - var(--max)) / 2 + var(--gutter)));
+  border-bottom: 1px solid transparent;
+  transition: background-color .4s var(--ease), border-color .4s var(--ease);
+}
+body.is-scrolled .bar {
+  background: rgba(9, 9, 11, .78);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2);
+  border-bottom-color: var(--line);
+}
+.bar__nav { gap: 6px; position: relative; }
+.bar__nav a { z-index: 1; padding: 8px 14px; border-radius: 999px; transition: color .3s var(--ease); }
+.bar__nav a::after { left: 14px; right: 14px; }
+.bar__nav a:last-child { margin-right: -14px; }   /* text posledního odkazu lícuje s okrajem obsahu */
+.bar__nav a.is-lit { color: var(--accent-ink); }
+.bar__nav a.is-lit::after { opacity: 0; }
+
+/* limetková pilulka plynule přejíždí pod kurzorem mezi položkami (řídí mix.js) */
+.bar__pill {
+  position: absolute; left: 0; top: 0; z-index: 0;
+  width: var(--pw, 0px); height: var(--ph, 0px);
+  transform: translateX(var(--px, 0px)) scale(.6);
+  border-radius: 999px; background: var(--accent); opacity: 0;
+  transition: transform .45s var(--ease), width .45s var(--ease), opacity .3s var(--ease);
+}
+.bar__nav.has-pill .bar__pill { opacity: 1; transform: translateX(var(--px, 0px)) scale(1); }
+.bar__nav:not(.js) a:hover, .bar__nav a:focus-visible { background: var(--accent); color: var(--accent-ink); }
+
+/* mobil: místo grafu pět teček v liště (skutečný stav: která sekce se čte) */
+@media (max-width: 900px) {
+}
+
+/* bez posuvníku prohlížeče: na tmavé stránce působil jako šedá načítací lišta; posouvání funguje dál */
+html { scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }
+
+/* ───────── úvod: nadpis, jedna věta, dvě tlačítka ───────── */
+.hero--mix {
+  display: flex; flex-direction: column; justify-content: flex-start;
+  min-height: calc(100dvh - 112px);              /* pás technologií vykukuje pod úvodem */
+  padding: 96px var(--gutter) 56px;
+}
+.mx { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: clamp(40px, 8vh, 96px); }
+.mx__type { flex: 1; display: flex; flex-direction: column; justify-content: center; }   /* nadpis uprostřed volné plochy */
+.mx__kicker {
+  margin: 0 0 clamp(20px, 3.2vh, 36px);
+  font-family: "Archivo", "Geist", sans-serif; font-stretch: 125%; font-variation-settings: "wdth" 125;
+  font-size: clamp(20px, 2.6vw, 40px); letter-spacing: -.035em; text-transform: uppercase; font-weight: 900; color: transparent; -webkit-text-stroke: 1.2px #f4f4f1;   /* jméno obrysem, role plná */
+}
+/* role plnou barvou, druhý řádek v akcentu */
+.mx__title {
+  font-family: "Archivo", "Geist", sans-serif; font-stretch: 125%; font-variation-settings: "wdth" 125;
+  font-weight: 900; text-transform: uppercase; letter-spacing: -.035em;
+  font-size: clamp(34px, 6vw, 96px); line-height: .96; color: #f4f4f1;
+}
+.mx__l { display: block; overflow: hidden; padding-bottom: .04em; }
+.mx__l > span { display: inline-block; white-space: nowrap; }
+.mx__l--acc > span { color: var(--accent); }
+/* & z Geistu: Archivo ho kreslí jako zalomené S */
+.mx__amp { font-family: "Geist", sans-serif; font-weight: 800; letter-spacing: 0; }
+.mx__foot {
+  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  column-gap: clamp(32px, 5vw, 80px); align-items: end;
+  padding-top: 28px; border-top: 1px solid var(--line);
+}
+.mx__meta { margin: 0; display: grid; gap: 0; font-size: 12px; }
+.mx__meta div { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 16px; padding: 10px 0; border-top: 1px solid var(--line); }
+.mx__meta div:first-child { border-top: 0; }
+.mx__meta dt { color: var(--dim); text-transform: uppercase; letter-spacing: .08em; }
+.mx__meta dd { margin: 0; color: var(--fg); }
+.hero--mix .hero__lede { max-width: 38ch; margin: 0; text-wrap: balance; }
+.hero--mix .hero__lede .acc { background: none; padding: 0; color: var(--accent); }
+.hero--mix .cta { margin-top: 28px; }
+
+/* příjezd: řádky nadpisu vyjedou zpod linky, text se dosune */
+@keyframes mxUp { from { transform: translateY(105%); } }
+@keyframes mxFade { from { opacity: 0; transform: translateY(12px); } }
+.mx__l > span { animation: mxUp 1s var(--ease) both; }
+.mx__l:nth-child(2) > span { animation-delay: .08s; }
+.mx__kicker, .mx__foot { animation: mxFade .9s var(--ease) .45s both; }
+
+/* jméno se „dekóduje“: znaky mají zamčenou šířku (nic neposkakuje),
+   dokud se neusadí, jsou limetkové a náhodné; mix.js */
+.mx__kicker.is-dec { animation: none; cursor: default; }
+.dc { display: inline-block; text-align: center; }
+.dc.is-wait { opacity: 0; }
+.dc.is-x { -webkit-text-stroke-color: var(--accent); }
+
+/* nadpis (mix.js): dekóduje se po znacích jako jméno, pak je jen obrys a zespodu se vyplní barvou.
+   Výplň je pozadí uvnitř písmen (background-clip: text) v souřadnicích celého nadpisu:
+   každý znak zná výšku nadpisu a svou polohu v něm (--th, --oy z mix.js), takže rovná hladina
+   stoupá oběma řádky jedním tahem; stoupání jede po křivce (pomalý rozjezd, měkké dojetí).
+   Bez JS nebo s omezeným pohybem je nadpis rovnou plný (pojistka: objeví se nejpozději po 1,5 s). */
+@property --f { syntax: "<number>"; inherits: true; initial-value: 0; }
+.mx__title:not(.glowt) { animation: mxShow .01s linear 1.5s both; }
+.mx__title:not(.glowt) .mx__l > span { animation: none; }
+@keyframes mxShow { from { opacity: 0; } }
+.mx__title.is-dec { animation: none; --f: 0; transition: --f 1s cubic-bezier(.7, 0, .25, 1); }
+.mx__title.is-fill { --f: 1; }
+.mx__title .mx__l { --c: #f4f4f1; }
+.mx__title .mx__l--acc { --c: var(--accent); }
+.mx__title.is-dec .mx__l > span { color: transparent; -webkit-text-stroke: 1.5px var(--c); }
+.mx__title.is-dec .dc {
+  --lv: calc(var(--th, 1em) * (1 - var(--f)) - var(--oy, 0px));   /* hladina vůči hornímu okraji znaku */
+  background: linear-gradient(var(--c), var(--c)) 0 var(--lv) / 100% 20em no-repeat;   /* od hladiny až dolů */
+  -webkit-background-clip: text; background-clip: text;
+}
+/* ───────── pás technologií (jediný marquee) ───────── */
+.band {
+  position: relative; z-index: 1; padding: 32px 0; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.band__track {
+  display: flex; align-items: center; gap: .55em; width: max-content;
+  font-family: "Archivo", "Geist", sans-serif; font-stretch: 125%; font-variation-settings: "wdth" 125;
+  font-weight: 900; text-transform: uppercase; letter-spacing: -.02em;
+  font-size: clamp(26px, 3.8vw, 56px); line-height: 1; color: var(--fg);
+  animation: band 60s linear infinite;
+}
+.band__track .o { color: transparent; -webkit-text-stroke: 1.5px var(--fg); font-weight: 800; }
+.band__track i { font-style: normal; font-weight: 400; color: var(--accent); font-size: .7em; }
+.band:hover .band__track { animation-play-state: paused; }
+@keyframes band { to { transform: translateX(calc(-50% - .275em)); } }
+.band__track span { display: inline-flex; align-items: center; gap: .32em; }
+.band__track .ic {
+  flex: none; width: .62em; height: .62em; background: #f4f4f1;
+  -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat;
+}
+.band__track .o .ic { opacity: .5; }
+.band__track .ic[style*="phosphor"] { width: .8em; height: .8em; }   /* Phosphor má víc okraje než loga */
+
+/* ───────── sekce ───────── */
+.sec {
+  padding-block: clamp(96px, 14vh, 168px);
+  column-gap: clamp(48px, 7vw, 112px);
+  border-top: 0; scroll-margin-top: 0;
+}
+/* nadpis sekce: pořadové číslo (osnova stránky) + velký široký titulek; všechny sekce stejně */
+.sec__h {
+  position: static; display: block;
+  font-family: "Archivo", "Geist", sans-serif; font-stretch: 125%; font-variation-settings: "wdth" 125;
+  font-weight: 900; text-transform: uppercase; letter-spacing: -.035em; line-height: .9;
+  font-size: clamp(40px, 5.6vw, 84px);
+}
+.sec__n { display: block; margin-bottom: 18px; font: 500 13px/1 var(--mono); letter-spacing: .14em; color: var(--accent); }
+.sec--paper .sec__n { color: var(--fg); }
+/* sekce přes celou šířku obsahu, nadpis nad obsahem */
+.sec--stack { display: block; }
+.sec--stack > .sec__h { position: static; margin-bottom: clamp(36px, 6vh, 72px); }
+.sec--paper { display: block; }
+.sec :is(h2, h3, p, li) { text-wrap: pretty; }
+.sec :is(.about__big, .ask) { text-wrap: balance; }
+.item__date, .work__meta { font-variant-numeric: tabular-nums; }
+
+/* O mně: světlý papír, velké tvrzení přes celou šířku, text ve dvou sloupcích vpravo */
+.sec--paper {
+  --fg: #0c0c0e; --muted: #3b3b41; --dim: #5d5d63; --line: rgba(0, 0, 0, .14);
+  position: relative; color: var(--muted);
+  background: #ededea;
+  box-shadow: 0 0 0 100vmax #ededea; clip-path: inset(0 -100vmax);
+}
+.sec--paper ::selection { background: #0c0c0e; color: #ededea; }
+.about__big {
+  margin: 0; max-width: 26ch; color: var(--fg);
+  font-size: clamp(28px, 4.4vw, 60px); font-weight: 500; line-height: 1.08; letter-spacing: -.035em;
+}
+.about__cols {
+  margin: clamp(48px, 9vh, 104px) 0 0 auto; max-width: 860px;
+  columns: 2 300px; column-gap: clamp(32px, 4vw, 56px);
+  font-size: 17px; line-height: 1.65;
+}
+.about__cols p { margin: 0 0 20px; break-inside: avoid; }
+.about__cols p:last-child { margin-bottom: 0; }
+.hl { background: var(--accent); color: var(--accent-ink); padding: 0 .2em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* O mně: čísla z praxe jako řada; velké číslo, pod ním krátký popis */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: clamp(48px, 8vh, 88px) 0 0; }
+.stats div { padding: 22px 24px 0 0; border-top: 2px solid var(--fg); }
+.stats div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+.stats dt {
+  font-family: "Archivo", "Geist", sans-serif; font-stretch: 125%; font-variation-settings: "wdth" 125;
+  font-weight: 900; letter-spacing: -.04em; line-height: 1; text-transform: uppercase;
+  font-size: clamp(36px, 4.4vw, 64px); color: var(--fg); white-space: nowrap;
+}
+.stats dd { margin: 12px 0 0; max-width: 22ch; font-size: 15px; line-height: 1.4; color: var(--muted); }
+
+/* Praxe: každá role jako široký řádek (roky | role a firma | popis), oddělené linkou */
+.jobs { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
+.job {
+  position: relative; display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); grid-template-rows: auto 1fr;
+  column-gap: clamp(24px, 4vw, 64px); row-gap: 12px; padding: 40px 0; border-top: 1px solid var(--line);
+}
+.job__body { grid-column: 2; grid-row: 1 / span 2; }   /* roky nad rolí vlevo, popis vpravo přes celou výšku */
+.job::before {                                   /* limetková linka nad řádkem po najetí */
+  content: ""; position: absolute; left: 0; top: -1px; width: 100%; height: 1px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease);
+}
+@media (hover: hover) { .job:hover::before { transform: none; } }
+.job__yr { margin: 0; font-size: 13px; color: var(--dim); font-variant-numeric: tabular-nums; }
+.job:first-child .job__yr { color: var(--accent); }
+.job h3 { margin: 0; color: var(--fg); font-size: clamp(22px, 2.1vw, 30px); font-weight: 500; letter-spacing: -.025em; line-height: 1.12; }
+.job__co { margin: 10px 0 0; font-size: 15px; color: var(--accent); }
+.job__body p { margin: 0; font-size: 16px; line-height: 1.6; }
+.job__body b { font-weight: 600; color: var(--fg); }
+
+/* tagy: prostý mono text, bez pilulek a bez podbarvení */
+.tags { gap: 4px 18px; margin-top: 16px; }
+.tags li { padding: 0; border: 0; background: none; border-radius: 0; font-size: 12px; line-height: 1.4; color: var(--dim); }
+
+/* Projekty: BikeCheck jako případová studie, desktop + telefon v jedné kompozici */
+.case, .work { position: relative; }
+.case__stage {
+  position: relative; margin: 0; padding: clamp(24px, 4vw, 56px) clamp(24px, 4vw, 56px) 0;
+  border-radius: 20px; overflow: hidden; border: 1px solid var(--line);
+  background: linear-gradient(180deg, #17171a, #0d0d0f);
+}
+.case__desk {
+  display: block; width: 86%; height: auto; aspect-ratio: 16 / 9.4; object-fit: cover; object-position: top left;
+  border-radius: 10px 10px 0 0; border: 1px solid rgba(255, 255, 255, .1); border-bottom: 0;
+  transition: transform .8s var(--ease);
+}
+.case__phone {
+  position: absolute; right: clamp(24px, 4vw, 56px); bottom: clamp(-60px, -3vw, -24px);
+  width: 21%; height: auto; aspect-ratio: 780 / 1688; object-fit: cover; object-position: top;
+  border-radius: 22px; border: 5px solid #232326;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .8), 0 0 0 1px rgba(255, 255, 255, .08);
+  transition: transform .8s var(--ease);
+}
+.case__info { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(24px, 5vw, 80px); padding-top: 36px; }
+.case__live { display: inline-block; width: 7px; height: 7px; margin-right: 8px; border-radius: 50%; background: var(--accent); vertical-align: 1px; }
+.case h3, .work h3 { margin: 0; color: var(--fg); font-size: clamp(28px, 3vw, 40px); font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }
+.case__head p { margin: 14px 0 0; max-width: 44ch; font-size: 16px; }
+.case__feats { list-style: none; margin: 0; padding: 0; }
+.case__feats li {
+  display: grid; grid-template-columns: 36px minmax(0, 1fr); column-gap: 14px; row-gap: 2px;
+  padding: 18px 0; border-top: 1px solid var(--line);
+}
+.case__feats li:first-child { border-top: 0; padding-top: 4px; }
+.case__feats .i { grid-row: span 2; width: 24px; height: 24px; margin-top: 2px; color: var(--accent); }
+.case__feats b { font-weight: 600; color: var(--fg); font-size: 16px; }
+.case__feats span:not(.i) { font-size: 15px; line-height: 1.45; color: var(--muted); }
+.work__meta { display: block; margin-bottom: 10px; font-size: 12px; color: var(--dim); font-variant-numeric: tabular-nums; }
+
+/* Lufihome: menší karta pod hlavním projektem */
+.work--sub {
+  display: grid; grid-template-columns: 48px minmax(0, 5fr) minmax(0, 6fr); gap: clamp(20px, 3vw, 48px); align-items: start;
+  margin-top: clamp(56px, 9vh, 96px); padding: clamp(24px, 3vw, 36px);
+  border: 1px solid var(--line); border-radius: 20px; background: var(--bg-2);
+  transition: border-color .3s;
+}
+.work__ic { width: 40px; height: 40px; color: var(--fg); }
+.work--sub h3 { font-size: clamp(24px, 2.4vw, 32px); }
+.work p { margin: 0; max-width: 54ch; font-size: 16px; }
+.work .tags, .case .tags { margin-top: 14px; }
+.stretch { display: inline-flex; align-items: center; gap: .3em; }
+.stretch::after { content: ""; position: absolute; inset: 0; border-radius: 20px; }
+.stretch:focus-visible { outline: none; }
+:is(.case, .work):has(.stretch:focus-visible) { outline: 2px solid var(--accent); outline-offset: 10px; border-radius: 20px; }
+:is(.case, .work) h3 .i { color: var(--dim); transition: transform .25s var(--ease), color .25s; }
+@media (hover: hover) {
+  :is(.case, .work):hover h3 .i { color: var(--accent); transform: translate(2px, -2px); }
+  .case:hover .case__desk { transform: translateY(-6px); }
+  .case:hover .case__phone { transform: translateY(-14px); }
+  .work--sub:hover { border-color: var(--n-a20); }
+}
+
+/* Kontakt: limetková plocha přes celou šířku, jediná plná plocha akcentu; text v barvě inkoustu */
+.sec--end {
+  --ink: var(--accent-ink);
+  padding-block: clamp(96px, 16vh, 184px);
+  background: var(--accent); color: var(--ink);
+  box-shadow: 0 0 0 100vmax var(--accent); clip-path: inset(0 -100vmax);
+}
+.reach { --ink: var(--accent-ink); color: var(--ink); }
+.reach ::selection { background: var(--ink); color: var(--accent); }
+.reach__n { margin: 0 0 18px; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; }
+.shout {                                          /* velikostí stejně jako ostatní nadpisy sekcí (.sec__h) */
+  margin: 0 0 20px;
+  font-family: "Archivo", "Geist", sans-serif; font-stretch: 125%; font-variation-settings: "wdth" 125;
+  font-weight: 900; text-transform: uppercase; letter-spacing: -.035em;
+  font-size: clamp(40px, 5.6vw, 84px); line-height: .9; color: var(--ink); text-wrap: balance;
+}
+.shout span { color: transparent; -webkit-text-stroke: 2px var(--ink); }
+.ask { margin: 0 0 clamp(32px, 6vh, 56px); color: var(--ink); font-size: clamp(18px, 1.7vw, 22px); }
+.mailrow { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; }
+.mail {
+  display: inline-flex; align-items: center; gap: .4em; min-height: 56px; padding: 0 28px;
+  border-radius: 999px; background: var(--ink); color: var(--accent);
+  font-size: clamp(17px, 1.9vw, 24px); font-weight: 500; border-bottom: 0;
+  transition: transform .2s var(--ease);
+}
+.mail:hover { transform: translateY(-2px); color: var(--accent); }
+.mail .i { width: .8em; height: .8em; transition: transform .25s var(--ease); }
+.mail:hover .i { transform: translateX(3px); }
+.copy {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px;
+  border-radius: 999px; border: 1.5px solid var(--ink); background: transparent;
+  font: 500 13px var(--mono); letter-spacing: .04em; color: var(--ink); cursor: pointer;
+  transition: background .2s, color .2s, transform .15s var(--ease);
+}
+.copy:hover { background: var(--ink); color: var(--accent); }
+.copy:active { transform: translateY(1px); }
+.copy.is-done { background: var(--ink); color: var(--accent); }
+.copy.is-done .i { --i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/bold/check-bold.svg); }
+.profiles {
+  display: flex; gap: 28px; margin: clamp(32px, 6vh, 56px) 0 0; padding-top: 24px;
+  border-top: 1.5px solid color-mix(in oklab, var(--ink) 25%, transparent);
+}
+.profiles a { display: inline-flex; align-items: center; gap: .3em; color: var(--ink); font-weight: 500; }
+.profiles a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.reach :focus-visible { outline-color: var(--ink); }
+
+/* patička */
+.foot { border-top: 0; padding-block: 24px 40px; }
+.foot__top { display: inline-flex; align-items: center; gap: .4em; color: var(--dim); transition: color .2s; }
+.foot__top:hover { color: var(--accent); }
+
+/* postupné objevování: pořadí čtení (zpoždění --d doplňuje mix.js) */
+.rv { transition-delay: var(--d, 0s); }
+
+/* ───────── tablet / mobil: vysoké layouty se skládají do jednoho sloupce ───────── */
+@media (max-width: 900px) {
+  .hero--mix { min-height: calc(100svh - 96px); padding-top: 96px; }
+  .mx__title { font-size: 9.4vw; }
+  .mx__foot { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+  .sec { padding-block: 72px; }
+  .sec__h { position: static; }
+  .about__cols { margin-left: 0; columns: 1; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; }
+  .stats div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .job { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 32px 0; }
+  .job__body { grid-column: 1; grid-row: auto; }
+  .case__info { grid-template-columns: minmax(0, 1fr); }
+  .case__desk { width: 100%; }
+  .case__phone { width: 26%; right: 16px; }
+  .work--sub { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+}
+@media (max-width: 640px) {
+  .band { padding: 20px 0; }
+  .sec--end { padding-block: 80px; }
+  .stats dd { font-size: 14px; }
+  .about__big { font-size: 8vw; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mx__l > span, .mx__kicker, .mx__foot, .mx__title { animation: none; }  .band__track { animation: none; }
+}

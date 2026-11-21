@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jaroslav Lufinka, fullstack &amp; AI engineer</title>
+  <meta name="description" content="Fullstack engineer. Stavím webové aplikace od databáze po rozhraní a umím do nich postavit AI systémy, které fungují v produkci." />
+  <meta name="theme-color" content="#09090b" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,800;125,900&family=Geist:wght@400;500;600;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/portrait.webp" />
+  <link rel="stylesheet" href="styles.css?v=10" />
+  <link rel="stylesheet" href="mix.css?v=42" />
+  <link rel="stylesheet" href="bento.css?v=17" />
+</head>
+<body>
+  <a class="skip" href="#main">Přeskočit na obsah</a>
+
+  <!-- fotka vpravo: společná maska pro fotku i světlo pod kurzorem => okraje mizí do černé -->
+  <div class="photo" aria-hidden="true">
+    <div class="photo__fade">
+      <div class="photo__img"></div>
+      <div class="photo__img photo__lamp"></div>
+    </div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+
+
+  <header class="bar">
+    <a href="#top" class="bar__id">JL<span class="acc">.</span></a>
+    <nav class="bar__nav" aria-label="Hlavní navigace">
+      <span class="bar__pill" aria-hidden="true"></span>
+      <a href="#o-mne">O mně</a>
+      <a href="#praxe">Praxe</a>
+      <a href="#projekty">Projekty</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero hero--mix" id="top">
+      <h1 class="sr">Jaroslav Lufinka, fullstack &amp; AI engineer</h1>
+      <div class="mx">
+        <div class="mx__type">
+          <p class="mx__kicker" aria-hidden="true">Jaroslav Lufinka</p>
+          <!-- nadpis: obrys, který se po načtení zdola nahoru vyplní barvou (bento.css) -->
+          <div class="mx__title glowt" aria-hidden="true">
+            <div class="glowt__dim">
+              <span class="mx__l mx__l--line"><span>Fullstack <span class="mx__amp">&amp;</span></span></span>
+              <span class="mx__l mx__l--line mx__l--acc"><span>AI Engineer</span></span>
+            </div>
+            <div class="glowt__lit">
+              <span class="mx__l mx__l--line"><span>Fullstack <span class="mx__amp">&amp;</span></span></span>
+              <span class="mx__l mx__l--line mx__l--acc"><span>AI Engineer</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="mx__foot">
+          <div>
+            <p class="hero__lede">Stavím webové aplikace od databáze po rozhraní a&nbsp;umím do nich postavit <span class="acc">AI systémy</span>, které fungují v&nbsp;produkci.</p>
+            <div class="cta">
+              <a class="btn btn--primary" href="mailto:jardalufi@gmail.com">Napsat e-mail</a>
+              <a class="btn" href="https://github.com/Jaffator" target="_blank" rel="noopener">GitHub <span class="i i--ne" aria-hidden="true"></span></a>
+            </div>
+          </div>
+          <dl class="mx__meta mono">
+            <div><dt>Role</dt><dd>Fullstack &amp; AI engineer</dd></div>
+            <div><dt>Stack</dt><dd>Node.js, NestJS, React, PostgreSQL</dd></div>
+            <div><dt>AI</dt><dd>RAG, function calling, agenti</dd></div>
+            <div><dt>Praxe</dt><dd>Od roku 2015</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- jediný marquee na stránce: stack, ať je vidět hned pod úvodem -->
+    <div class="band" aria-hidden="true">
+      <div class="band__track"><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nodedotjs.svg)"></b>Node.js</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nestjs.svg)"></b>NestJS</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/postgresql.svg)"></b>PostgreSQL</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/react.svg)"></b>React</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/typescript.svg)"></b>TypeScript</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/files-fill.svg)"></b>RAG</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/function-fill.svg)"></b>Function calling</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/robot-fill.svg)"></b>Build AI agents</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/clipboard-text-fill.svg)"></b>AI spec-driven dev</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/githubactions.svg)"></b>GitHub Actions</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/docker.svg)"></b>Docker</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nodedotjs.svg)"></b>Node.js</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nestjs.svg)"></b>NestJS</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/postgresql.svg)"></b>PostgreSQL</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/react.svg)"></b>React</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/typescript.svg)"></b>TypeScript</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/files-fill.svg)"></b>RAG</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/function-fill.svg)"></b>Function calling</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/robot-fill.svg)"></b>Build AI agents</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/clipboard-text-fill.svg)"></b>AI spec-driven dev</span><i>/</i><span class="o"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/githubactions.svg)"></b>GitHub Actions</span><i>/</i><span><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/docker.svg)"></b>Docker</span><i>/</i></div>
+    </div>
+
+    <!-- O mně jako bento mřížka (inspirace: produktové stránky Apple). Jen fakta z Praxe a Projektů. -->
+    <section id="o-mne" class="sec sec--stack sec--bento" aria-labelledby="h-o-mne">
+      <h2 id="h-o-mne" class="sec__h"><span class="sec__n mono">01</span>O mně</h2>
+      <div class="bento">
+
+        <!-- A: hlavní dlaždice, editor vykukuje zespodu -->
+        <article class="tile tile--full tile--a">
+          <h3>Fullstack a&nbsp;AI.<br>Od databáze po&nbsp;produkci.</h3>
+          <div class="ide" aria-hidden="true">
+            <div class="ide__bar"><i></i><i></i><i></i><span>assistant.service.ts</span></div>
+            <div class="ide__body">
+              <ul class="ide__tree">
+                <li class="is-dir">src</li>
+                <li>assistant</li>
+                <li class="is-on">assistant.service.ts</li>
+                <li>rag</li>
+                <li>strava</li>
+                <li>queues</li>
+                <li class="is-dir">web</li>
+                <li>mobile</li>
+              </ul>
+<pre class="ide__code"><span class="c-k">@Injectable</span>()
+<span class="c-k">export class</span> <span class="c-t">AssistantService</span> {
+  <span class="c-k">async</span> <span class="c-f">answer</span>(riderId: <span class="c-t">string</span>, q: <span class="c-t">string</span>) {
+    <span class="c-k">const</span> ctx = <span class="c-k">await</span> <span class="c-v">this</span>.rag.<span class="c-f">search</span>(riderId, q);
+    <span class="c-k">return</span> <span class="c-v">this</span>.llm.<span class="c-f">run</span>({ tools, ctx, q });
+  }
+}</pre>
+              <div class="ide__run">
+                <p><b>~ $</b> agent run</p>
+                <p>plan <em>ok</em></p>
+                <p>build <em>ok</em></p>
+                <p>deploy <em>ok</em></p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- B: číslo jako „výdrž baterie“ -->
+        <article class="tile tile--s tile--b">
+          <span class="i tile__icon" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/calendar-check-fill.svg)" aria-hidden="true"></span>
+          <h3>Praxe<br>od roku 2015.</h3>
+          <p>R&amp;D, automotive, vlastní produkt.</p>
+        </article>
+
+        <!-- I: AI asistent nad daty -->
+        <article class="tile tile--l tile--ai">
+          <h3>AI, která pracuje s&nbsp;vašimi daty.</h3>
+          <div class="chat" aria-hidden="true">
+            <p class="chat__q">Kdy mám měnit řetěz?</p>
+            <p class="chat__step mono"><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/bold/magnifying-glass-bold.svg)"></span>rag.search · <span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/bold/function-bold.svg)"></span>getComponentWear()</p>
+            <p class="chat__a">Podle najetých kilometrů ze Stravy je řetěz těsně před limitem. Výměnu doporučuji v&nbsp;dalších týdnech.</p>
+          </div>
+          <p class="tile__note">Ukázka z&nbsp;BikeCheck: RAG, function calling a&nbsp;úlohy na pozadí.</p>
+        </article>
+
+        <!-- D: integrace -->
+        <article class="tile tile--h tile--d">
+          <h3>Napojím, co je potřeba.</h3>
+          <div class="ports" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <ul class="chips mono">
+            <li>Strava OAuth</li>
+            <li>Webhooky</li>
+            <li>BullMQ fronty</li>
+            <li>Redis</li>
+            <li>REST API</li>
+          </ul>
+          <p class="tile__note">Integrace, fronty a&nbsp;úlohy na pozadí. NestJS s&nbsp;mikroslužbami.</p>
+        </article>
+
+        <!-- E: web + mobil -->
+        <article class="tile tile--h tile--e">
+          <h3>Web i&nbsp;mobil.<br>Jeden kód.</h3>
+          <div class="devices" aria-hidden="true">
+            <figure class="dev dev--web"><img src="https://raw.githubusercontent.com/Jaffator/bikecheck-app/main/docs/screenshots/desktop-home.png" alt="" loading="lazy" /></figure>
+            <figure class="dev dev--phone"><img src="https://raw.githubusercontent.com/Jaffator/bikecheck-app/main/docs/screenshots/phone-home.png" alt="" loading="lazy" /></figure>
+          </div>
+          <p class="tile__note">BikeCheck v&nbsp;prohlížeči i&nbsp;v&nbsp;telefonu. React a&nbsp;Capacitor, jedna kódová základna.</p>
+        </article>
+
+        <!-- G: stack jako ikony aplikací -->
+        <article class="tile tile--h tile--g">
+          <h3>Celý stack.<br>Jedna hlava.</h3>
+          <ul class="apps" aria-label="Technologie">
+            <li style="--c:#5fa04e"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nodedotjs.svg)"></b><span class="sr">Node.js</span></li>
+            <li style="--c:#e0234e"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nestjs.svg)"></b><span class="sr">NestJS</span></li>
+            <li style="--c:#4169e1"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/postgresql.svg)"></b><span class="sr">PostgreSQL</span></li>
+            <li style="--c:#149eca"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/react.svg)"></b><span class="sr">React</span></li>
+            <li style="--c:#3178c6"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/typescript.svg)"></b><span class="sr">TypeScript</span></li>
+            <li style="--c:#dc382d"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/redis.svg)"></b><span class="sr">Redis</span></li>
+            <li style="--c:#3776ab"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/python.svg)"></b><span class="sr">Python</span></li>
+            <li style="--c:#2496ed"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/docker.svg)"></b><span class="sr">Docker</span></li>
+            <li style="--c:#2088ff"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/githubactions.svg)"></b><span class="sr">GitHub Actions</span></li>
+            <li style="--c:#a22846"><b class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/raspberrypi.svg)"></b><span class="sr">Raspberry Pi</span></li>
+          </ul>
+        </article>
+
+        <!-- H: spolehlivost -->
+        <article class="tile tile--h tile--rel">
+          <h3>Spolehlivost nade vše.</h3>
+          <ul class="feats">
+            <li><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/shield-check.svg)" aria-hidden="true"></span><p><b>Automotive R&amp;D.</b> Osm let softwaru pro testování brzdových komponent.</p></li>
+            <li><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/stack.svg)" aria-hidden="true"></span><p><b>100+ stanic.</b> Fronty, paralelní zpracování a&nbsp;determinismus.</p></li>
+            <li><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/timer.svg)" aria-hidden="true"></span><p><b>Z&nbsp;dnů na hodiny.</b> Kalibrační systém pro 30+ inženýrů.</p></li>
+            <li><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/rocket-launch.svg)" aria-hidden="true"></span><p><b>V&nbsp;provozu.</b> BikeCheck od září 2026 s&nbsp;15+ beta uživateli.</p></li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="praxe" class="sec sec--stack" aria-labelledby="h-praxe">
+      <h2 id="h-praxe" class="sec__h"><span class="sec__n mono">02</span>Praxe</h2>
+      <!-- každá role jako široký řádek: roky | role a firma | co jsem dělal; čísla zvýrazněná, ať se dají přečíst letmo -->
+      <ol class="jobs">
+        <li class="item job">
+          <p class="job__yr mono">2025 – dnes</p>
+          <div class="job__head">
+            <h3>Independent Software Developer</h3>
+            <p class="job__co">BikeCheck</p>
+          </div>
+          <div class="job__body">
+            <p>Celá platforma sólo, od architektury po nasazení. NestJS s&nbsp;mikroslužbami, Strava OAuth a&nbsp;webhooky, RAG v&nbsp;Pythonu, AI asistent s&nbsp;function callingem, React a&nbsp;Capacitor. V&nbsp;provozu od září 2026 s&nbsp;<b>15+ beta uživateli</b>.</p>
+            <ul class="tags mono"><li>NestJS</li><li>PostgreSQL</li><li>BullMQ</li><li>RAG</li><li>React</li><li>Capacitor</li></ul>
+          </div>
+        </li>
+        <li class="item job">
+          <p class="job__yr mono">2017 – 2025</p>
+          <div class="job__head">
+            <h3>Software Development Engineer</h3>
+            <p class="job__co">ZF Group</p>
+          </div>
+          <div class="job__body">
+            <p>Řídicí a&nbsp;testovací systémy pro brzdové komponenty na <b>100+ stanicích</b>: fronty, paralelní zpracování, determinismus. Kalibrační systém pro <b>30+ inženýrů</b> zkrátil kalibraci <b>z&nbsp;dnů na hodiny</b>.</p>
+            <ul class="tags mono"><li>Python</li><li>LabVIEW</li><li>MySQL</li><li>FPGA</li></ul>
+          </div>
+        </li>
+        <li class="item job">
+          <p class="job__yr mono">2015 – 2017</p>
+          <div class="job__head">
+            <h3>R&amp;D Development Engineer</h3>
+            <p class="job__co">Preciosa</p>
+          </div>
+          <div class="job__body">
+            <p>Vývoj v&nbsp;R&amp;D. Vzdělání: ČZU Praha, Technická fakulta.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="projekty" class="sec sec--stack" aria-labelledby="h-projekty">
+      <h2 id="h-projekty" class="sec__h"><span class="sec__n mono">03</span>Projekty</h2>
+      <!-- BikeCheck jako případová studie: desktop i telefon v jedné kompozici, pod tím tři funkce -->
+      <article class="case">
+        <div class="case__stage" aria-hidden="true">
+          <img class="case__desk" src="https://raw.githubusercontent.com/Jaffator/bikecheck-app/main/docs/screenshots/desktop-home.png" alt="" width="1440" height="900" loading="lazy" />
+          <img class="case__phone" src="https://raw.githubusercontent.com/Jaffator/bikecheck-app/main/docs/screenshots/phone-home.png" alt="" width="780" height="1688" loading="lazy" />
+        </div>
+        <div class="case__info">
+          <div class="case__head">
+            <span class="work__meta mono"><i class="case__live" aria-hidden="true"></i>2026, v provozu</span>
+            <h3><a href="https://bikecheck.cloud" target="_blank" rel="noopener" class="stretch">BikeCheck <span class="i i--ne" aria-hidden="true"></span></a></h3>
+            <p>Evidence kol, komponent a&nbsp;servisu. Jízdy ze Stravy opotřebovávají díly a&nbsp;AI asistent odpovídá nad daty jezdce.</p>
+            <ul class="tags mono"><li>React 19</li><li>NestJS</li><li>Postgres</li><li>Redis</li></ul>
+          </div>
+          <ul class="case__feats">
+            <li><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/arrows-clockwise.svg)" aria-hidden="true"></span><b>Strava sync</b><span>OAuth a&nbsp;webhooky, jízdy se propíšou do opotřebení dílů.</span></li>
+            <li><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/sparkle.svg)" aria-hidden="true"></span><b>AI asistent</b><span>RAG a&nbsp;function calling nad daty konkrétního jezdce.</span></li>
+            <li><span class="i" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/device-mobile.svg)" aria-hidden="true"></span><b>Web i&nbsp;mobil</b><span>React a&nbsp;Capacitor, jedna kódová základna.</span></li>
+          </ul>
+        </div>
+      </article>
+      <article class="work work--sub">
+        <span class="i work__ic" style="--i:url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/house-line.svg)" aria-hidden="true"></span>
+        <div class="work__head">
+          <span class="work__meta mono">2024, Raspberry Pi</span>
+          <h3><a href="https://github.com/Jaffator/Lufihome" target="_blank" rel="noopener" class="stretch">Lufihome <span class="i i--ne" aria-hidden="true"></span></a></h3>
+        </div>
+        <div class="work__body">
+          <p>Domácí automatizace na Raspberry Pi. Teplotní čidla, ovládání ventilů topení, alarm a&nbsp;webové rozhraní.</p>
+          <ul class="tags mono"><li>Python</li><li>Flask</li><li>SQLAlchemy</li></ul>
+        </div>
+      </article>
+    </section>
+
+    <section id="kontakt" class="sec sec--stack sec--end" aria-labelledby="h-kontakt">
+      <!-- závěr jako limetková karta: jediná plná plocha akcentu na stránce, ať je jasné, co dál -->
+      <div class="reach">
+        <p class="reach__n mono">04 · Kontakt</p>
+        <h2 id="h-kontakt" class="shout">Napište <span>mi.</span></h2>
+        <p class="ask">Máte projekt nebo pozici?</p>
+        <div class="mailrow">
+          <a class="mail" href="mailto:jardalufi@gmail.com">jardalufi@gmail.com <span class="i i--right" aria-hidden="true"></span></a>
+          <button class="copy" type="button" data-copy="jardalufi@gmail.com"><span class="i i--copy" aria-hidden="true"></span><span class="copy__t">Kopírovat</span></button>
+        </div>
+        <p class="profiles"><a href="https://github.com/Jaffator" target="_blank" rel="noopener">GitHub <span class="i i--ne" aria-hidden="true"></span></a><a href="https://www.linkedin.com/in/jaroslav-lufinka" target="_blank" rel="noopener">LinkedIn <span class="i i--ne" aria-hidden="true"></span></a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot mono">
+    <span>© <span id="y">2026</span> Jaroslav Lufinka</span>
+    <a href="#top" class="foot__top">Nahoru <span class="i i--up" aria-hidden="true"></span></a>
+  </footer>
+
+  <script src="main.js?v=10" defer></script>
+  <script src="mix.js?v=13" defer></script>
+  <script src="bento.js?v=1" defer></script>
+</body>
+</html>

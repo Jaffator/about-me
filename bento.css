@@ -1,0 +1,180 @@
+/* Varianta „bento“: mix + sekce O mně jako bento mřížka (inspirace produktovými stránkami Apple).
+   Načítá se až po mix.css a mění jen O mně.
+
+   Pravidla navíc:
+   - dlaždice jsou černé (#000) na o stupeň světlejší ploše, zaoblení 22px; uvnitř média 14px
+   - nadpis dlaždice nahoře na střed, obrázek/ukázka dole (často „vykukuje“ z okraje)
+   - jeden akcent (limetka); barevné jsou jen ikony technologií, protože jsou to jejich loga */
+
+.sec--bento {
+  --tile: #000; --tile-2: #1c1c1e; --tile-line: #2c2c2e; --t-fg: #f5f5f7; --t-dim: #86868b;
+  background: #141416;
+  box-shadow: 0 0 0 100vmax #141416; clip-path: inset(0 -100vmax);
+}
+/* přes celou šířku obsahu jako Praxe: bez volného levého sloupce, nadpis nad mřížkou */
+.sec--bento { display: block; }
+.sec--bento .sec__h { color: var(--t-fg); }          /* na tmavé ploše světlý, jinak by zanikl */
+.bento { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
+
+.tile {
+  position: relative; overflow: hidden; margin: 0;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  min-height: 380px; padding: clamp(26px, 2.8vw, 40px) clamp(20px, 2.4vw, 34px);
+  border-radius: 22px; background: var(--tile); color: var(--t-fg);
+}
+.tile--full { grid-column: span 6; }
+.tile--l    { grid-column: span 4; }
+.tile--h    { grid-column: span 3; }
+.tile--s    { grid-column: span 2; }
+
+.tile h3 {
+  margin: 0; color: var(--t-fg); text-wrap: balance;
+  font: 600 clamp(20px, 1.8vw, 27px)/1.14 "Geist", sans-serif; letter-spacing: -.02em;
+}
+.tile p { margin: 0; color: var(--t-dim); font-size: 14px; line-height: 1.45; }
+.tile__note { margin-top: auto !important; padding-top: 20px; max-width: 34ch; font-size: 13px !important; }
+
+/* ───────── nadpis v úvodu: obrys se zdola nahoru vyplní barvou ─────────
+   Dvě kopie nadpisu přes sebe: .glowt__dim (jen obrys) a .glowt__lit (vyplněná písmena).
+   Vyplněná kopie je vidět jen pod hranicí v --y; hrana je ostrá, bez viditelné čáry.
+   @property umožní --y animovat: po příjezdu řádků se nadpis jednou vyplní. */
+@property --y { syntax: "<percentage>"; inherits: true; initial-value: -4%; }
+
+.glowt {
+  --y: -4%; --ey: .12em;                                  /* --ey: rezerva na diakritiku nad a pod řádky */
+  --lime: var(--accent); --white: #f4f4f1;
+  position: relative; width: fit-content;
+  animation: glowtSweep 1.6s cubic-bezier(.65, 0, .35, 1) 1s both;
+}
+@keyframes glowtSweep { from { --y: 100%; } }
+.glowt__lit { position: absolute; inset: calc(var(--ey) * -1) 0; }
+.glowt__lit { padding: var(--ey) 0; clip-path: polygon(0 var(--y), 100% var(--y), 100% 100%, 0 100%); }
+
+/* před linkou: jen obrys */
+.glowt__dim .mx__l > span { color: transparent; -webkit-text-stroke: 1.5px var(--white); }
+.glowt__dim .mx__l--acc > span { -webkit-text-stroke-color: var(--lime); }
+
+/* za linkou: vyplněno barvou (bílá a limetka jako v mix) */
+.glowt__lit .mx__l > span { color: var(--white); }
+.glowt__lit .mx__l--acc > span { color: var(--lime); }
+
+@media (prefers-reduced-motion: reduce) { .glowt { animation: none; } }
+
+/* ───────── hierarchie úvodu ─────────
+   Dvě úrovně, ne tři podobné: nadpis je jediný velký prvek a zabírá ~85 % šířky obsahu,
+   jméno je malý štítek v mono písmu (jiný font, jiná velikost = jasně podřízené, nesoupeří).
+   Mezery na 8px mřížce: štítek → nadpis 32px. Řádky nadpisu těsně (.86), ať drží jako jeden blok. */
+.hero--mix .mx__kicker {
+  margin: 0 0 clamp(24px, 3vh, 32px);              /* ne flex: ten by spolkl mezeru mezi jménem a příjmením */
+  font: 500 clamp(12px, .95vw, 14px)/1 "Geist Mono", ui-monospace, monospace;
+  font-stretch: normal; font-variation-settings: normal;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: #f4f4f1; -webkit-text-stroke: 0;
+}
+.hero--mix .mx__kicker .dc.is-x { color: var(--accent); }
+.hero--mix .mx__title { font-size: clamp(44px, 7.4vw, 128px); line-height: .86; letter-spacing: -.045em; }
+.hero--mix .mx__l { padding-bottom: .02em; }
+@media (max-width: 760px) {
+  .hero--mix .mx__title { font-size: 10.2vw; }
+}
+
+/* A: editor vykukuje zespodu */
+.tile--a { min-height: 540px; padding-bottom: 0; }
+.ide {
+  margin-top: auto; width: min(100%, 860px); height: 330px;
+  border: 1px solid var(--tile-line); border-bottom: 0; border-radius: 14px 14px 0 0;
+  background: #0d0e10; text-align: left; overflow: hidden;
+  font: 400 13px/1.7 "Geist Mono", ui-monospace, monospace; color: #c7c7cc;
+  transform: translateY(var(--peek, 0px)); transition: transform 1.1s var(--ease);
+}
+.bento.js .tile--a:not(.in) .ide { --peek: 48px; }   /* editor dojede nahoru až s dlaždicí */
+.ide__bar {
+  display: flex; align-items: center; gap: 7px; height: 36px; padding: 0 14px;
+  border-bottom: 1px solid var(--tile-line); background: #151618;
+}
+.ide__bar i { width: 11px; height: 11px; border-radius: 50%; background: #3a3a3c; }
+.ide__bar span { margin: 0 auto; transform: translateX(-24px); color: var(--t-dim); font-size: 12px; }
+.ide__body { display: grid; grid-template-columns: 170px minmax(0, 1fr) 170px; height: calc(100% - 36px); }
+.ide__tree { margin: 0; padding: 14px 0; list-style: none; border-right: 1px solid var(--tile-line); color: var(--t-dim); font-size: 12px; }
+.ide__tree li { padding: 1px 16px 1px 30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ide__tree .is-dir { padding-left: 16px; color: #c7c7cc; }
+.ide__tree .is-on { background: #1f2a12; color: var(--t-fg); }
+.ide__code { margin: 0; padding: 14px 18px; white-space: pre; overflow: hidden; font: inherit; }
+.c-k { color: #8e8e93; } .c-t { color: var(--t-fg); } .c-f { color: var(--accent); } .c-v { color: #c7c7cc; font-style: italic; }
+.ide__run { padding: 14px 16px; border-left: 1px solid var(--tile-line); font-size: 12px; }
+.ide__run p { margin: 0; color: var(--t-dim); font-size: 12px; }
+.ide__run b { font-weight: 500; color: var(--accent); }
+.ide__run em { font-style: normal; color: var(--accent); }
+
+/* B: číslo jako „výdrž baterie“ */
+.tile--b { justify-content: center; gap: 14px; }
+.tile__icon { width: 46px; height: 46px; color: var(--accent); }
+.tile--b h3 { font-size: clamp(22px, 2vw, 30px); }
+
+/* AI: chat */
+.chat { display: grid; gap: 12px; width: min(100%, 440px); margin-top: 30px; text-align: left; }
+.chat p { font-size: 15px; line-height: 1.45; }
+.chat__q { justify-self: end; max-width: 80%; padding: 10px 16px; border-radius: 18px 18px 4px 18px; background: var(--accent); color: var(--accent-ink) !important; }
+.chat__step { display: flex; align-items: center; gap: 6px; justify-self: center; color: var(--t-dim) !important; font-size: 12px !important; }
+.chat__step .i { width: 13px; height: 13px; }
+.chat__a { max-width: 88%; padding: 12px 16px; border-radius: 18px 18px 18px 4px; background: var(--tile-2); color: var(--t-fg) !important; }
+
+/* D: porty a specifikace */
+/* bok notebooku z profilu: hliníková hrana s porty, přetéká přes levý okraj dlaždice */
+.ports {
+  display: flex; gap: 14px; align-items: center; justify-content: flex-end;
+  width: 115%; height: 30px; margin: auto 0 auto -15%; padding: 0 22% 0 0;
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(180deg, #4a4b50 0%, #2a2b2f 45%, #1b1c1f 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18);
+}
+.ports i { width: 30px; height: 10px; border-radius: 5px; background: #08080a; box-shadow: inset 0 1px 2px rgba(0, 0, 0, .9), 0 1px 0 rgba(255, 255, 255, .08); }
+.ports i:nth-child(1) { width: 40px; }
+.ports i:nth-child(3) { width: 12px; height: 12px; border-radius: 50%; }
+/* integrace jako štítky: čitelné na první pohled místo hustého seznamu s odstavcem */
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 420px; margin: 0; padding: 0; list-style: none; }
+.chips li { padding: 7px 12px; border: 1px solid var(--tile-line); border-radius: 999px; background: var(--tile-2); color: var(--t-fg); font-size: 12px; line-height: 1; }
+
+/* E: web + mobil, jako „dvě velikosti“ */
+.devices { display: flex; align-items: flex-end; justify-content: center; gap: 18px; width: 100%; margin: 34px 0 0; padding-bottom: 14px; border-bottom: 1px solid var(--tile-line); }
+/* rámečky se skutečnými screenshoty BikeCheck; tenký rámeček jako bezel, obraz zarovnaný nahoru */
+.dev { margin: 0; overflow: hidden; border: 3px solid #2c2c2e; background: #0d0e10; box-shadow: 0 0 0 1px #48484a; }
+.dev img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.dev--web { width: 66%; aspect-ratio: 16 / 10; border-radius: 10px; }
+.dev--phone { width: 21%; aspect-ratio: 9 / 19.5; border-radius: 18px; border-width: 4px; }
+
+/* G: stack jako ikony aplikací */
+.apps { display: grid; grid-template-columns: repeat(5, minmax(0, 54px)); gap: clamp(8px, 1.2vw, 16px); justify-content: center; width: 100%; margin: auto 0; padding: 30px 0 10px; list-style: none; }
+.apps li { display: grid; place-items: center; width: 100%; aspect-ratio: 1; border-radius: 24%; background: linear-gradient(160deg, color-mix(in oklab, var(--c) 82%, #fff), var(--c)); }
+.apps .ic { width: 52%; height: 52%; background: #fff; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+
+/* spolehlivost: seznam s ikonami */
+.feats { display: grid; gap: 18px; margin: 28px 0 0; padding: 0; list-style: none; text-align: left; max-width: 380px; }
+.feats li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; align-items: start; }
+.feats .i { width: 26px; height: 26px; color: var(--t-fg); }
+.feats p { font-size: 13px; }
+.feats b { color: var(--t-fg); font-weight: 600; }
+
+/* příjezd dlaždic po řadě (bento.js); bez JS nebo s omezeným pohybem je vše rovnou vidět */
+.bento.js .tile { opacity: 0; transform: translateY(24px) scale(.985); transition: opacity .7s var(--ease) var(--d, 0s), transform .9s var(--ease) var(--d, 0s); }
+.bento.js .tile.in { opacity: 1; transform: none; }
+
+@media (max-width: 1200px) {
+  .ide__body { grid-template-columns: 140px minmax(0, 1fr) 130px; }
+}
+@media (max-width: 900px) {
+  .tile--l, .tile--h, .tile--s { grid-column: span 6; }
+  .tile { min-height: 0; }
+  .tile--a { min-height: 460px; }
+  .ide { height: 280px; }
+  .ide__body { grid-template-columns: minmax(0, 1fr) 130px; }
+  .ide__tree { display: none; }
+}
+@media (max-width: 560px) {
+  .ide__run { display: none; }
+  .ide__body { grid-template-columns: minmax(0, 1fr); }
+  .ide__code { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ide { transform: none; transition: none; }
+}
