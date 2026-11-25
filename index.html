@@ -1,138 +1,1448 @@
 <!doctype html>
 <html lang="cs">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jaroslav Lufinka, fullstack engineer</title>
-  <meta name="description" content="Fullstack engineer. Stavím webové aplikace od databáze po rozhraní a umím do nich postavit AI systémy, které fungují v produkci." />
-  <meta name="theme-color" content="#09090b" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="preload" as="image" href="assets/portrait.webp" />
-  <link rel="stylesheet" href="styles.css?v=10" />
-</head>
-<body>
-  <a class="skip" href="#main">Přeskočit na obsah</a>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jaroslav Lufinka, fullstack &amp; AI engineer</title>
+    <meta
+      name="description"
+      content="Fullstack engineer. Stavím webové aplikace od databáze po rozhraní a umím do nich postavit AI systémy, které fungují v produkci."
+    />
+    <meta name="theme-color" content="#09090b" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,800;125,900&family=Geist:wght@400;500;600;800&family=Geist+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" as="image" href="assets/portrait.webp" />
+    <link rel="stylesheet" href="styles.css?v=10" />
+    <link rel="stylesheet" href="mix.css?v=78" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Přeskočit na obsah</a>
 
-  <!-- fotka vpravo: společná maska pro fotku i světlo pod kurzorem => okraje mizí do černé -->
-  <div class="photo" aria-hidden="true">
-    <div class="photo__fade">
-      <div class="photo__img"></div>
-      <div class="photo__img photo__lamp"></div>
-    </div>
-  </div>
-
-  <!-- agentní runtime na pozadí vlevo: graf volání + log stejného běhu (kreslí main.js) -->
-  <div class="rt" aria-hidden="true">
-    <div class="rt__head mono">
-      <span class="rt__live">agent runtime</span>
-      <span class="rt__run" id="rtRun"></span>
-    </div>
-    <div class="rt__body">
-      <svg class="agents" id="agents" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid meet" focusable="false"></svg>
-      <ol class="rt__log mono" id="rtLog"></ol>
-    </div>
-  </div>
-
-  <header class="bar">
-    <a href="#top" class="bar__id">JL<span class="acc">.</span></a>
-    <nav class="bar__nav" aria-label="Hlavní navigace">
-      <a href="#o-mne">O mně</a>
-      <a href="#praxe">Praxe</a>
-      <a href="#projekty">Projekty</a>
-      <a href="#kontakt">Kontakt</a>
-    </nav>
-  </header>
-
-  <main id="main">
-    <section class="hero" id="top">
-      <p class="hero__kicker mono">Fullstack engineer</p>
-      <h1 class="hero__name">Jaroslav<br />Lufinka</h1>
-      <p class="hero__lede">Stavím webové aplikace od databáze po rozhraní a&nbsp;umím do nich postavit <span class="acc">AI systémy</span>, které fungují v&nbsp;produkci.</p>
-
-      <div class="cta">
-        <a class="btn btn--primary" href="mailto:jardalufi@gmail.com">Napsat e-mail</a>
-        <a class="btn" href="https://github.com/Jaffator" target="_blank" rel="noopener">GitHub ↗</a>
+    <!-- fotka vpravo: společná maska pro fotku i světlo pod kurzorem => okraje mizí do černé -->
+    <div class="photo" aria-hidden="true">
+      <div class="photo__fade">
+        <div class="photo__img"></div>
+        <div class="photo__img photo__lamp"></div>
       </div>
-    </section>
+    </div>
+    <div class="grain" aria-hidden="true"></div>
 
-    <section id="o-mne" class="sec" aria-labelledby="h-o-mne">
-      <h2 id="h-o-mne" class="sec__h">O mně</h2>
-      <div class="sec__body prose">
-        <p class="big">Osm let produkčního softwaru v&nbsp;automotive R&amp;D, kde spolehlivost nebyla volitelná. Dnes fullstack a&nbsp;AI tam, kde dává smysl.</p>
-        <p>Na backendu pracuji hlavně s&nbsp;<strong>Node.js, NestJS a&nbsp;PostgreSQL</strong>, na frontendu s&nbsp;<strong>Reactem</strong> a&nbsp;mobil řeším přes Capacitor. Umím postavit i&nbsp;<strong>AI systémy</strong>: asistenty s&nbsp;function callingem nad vlastními daty, RAG a&nbsp;zpracování úloh na pozadí.</p>
-        <p>Baví mě navrhovat systémy a&nbsp;chápat do hloubky, proč fungují tak, jak fungují.</p>
+    <header class="bar">
+      <a href="#top" class="bar__id">JL<span class="acc">.</span></a>
+      <nav class="bar__nav" aria-label="Hlavní navigace">
+        <span class="bar__pill" aria-hidden="true"></span>
+        <a href="#o-mne">O mně</a>
+        <a href="#projekty">Projekty</a>
+        <a href="#praxe">Praxe</a>
+        <a href="#stack">Stack</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero hero--mix" id="top">
+        <h1 class="sr">Jaroslav Lufinka, fullstack &amp; AI engineer</h1>
+        <div class="mx">
+          <div class="mx__type">
+            <div class="mx__title" aria-hidden="true">
+              <span class="mx__l mx__l--line"><span>Jaroslav</span></span>
+              <span class="mx__l mx__l--line"><span>Lufinka</span></span>
+              <span class="mx__l mx__l--line mx__l--o"
+                ><span>Fullstack <span class="mx__amp">&amp;</span></span></span
+              >
+              <span class="mx__l mx__l--line mx__l--acc"><span>AI Engineer</span></span>
+            </div>
+          </div>
+          <div class="mx__foot">
+            <div>
+              <p class="hero__lede">
+                Full-stack vývojář se zaměřením na <span class="acc">produkční&nbsp;AI</span>. Stavím aplikace od návrhu
+                databáze po UI a&nbsp;integruji do nich&nbsp;otestované agenty.
+              </p>
+              <div class="cta">
+                <a class="btn btn--primary" href="mailto:jardalufi@gmail.com">Napsat e-mail</a>
+                <a class="btn" href="https://github.com/Jaffator" target="_blank" rel="noopener"
+                  >GitHub <span class="i i--ne" aria-hidden="true"></span
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- jediný marquee na stránce: stack, ať je vidět hned pod úvodem -->
+      <div class="band" aria-hidden="true">
+        <div class="band__track">
+          <span
+            ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nodedotjs.svg)"></b
+            >Node.js</span
+          ><i>/</i
+          ><span class="o"
+            ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nestjs.svg)"></b
+            >NestJS</span
+          ><i>/</i
+          ><span
+            ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/postgresql.svg)"></b
+            >PostgreSQL</span
+          ><i>/</i
+          ><span class="o"
+            ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/react.svg)"></b
+            >React</span
+          ><i>/</i
+          ><span
+            ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/typescript.svg)"></b
+            >TypeScript</span
+          ><i>/</i
+          ><span class="o"
+            ><b
+              class="ic"
+              style="--i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/files-fill.svg)"
+            ></b
+            >RAG</span
+          ><i>/</i
+          ><span
+            ><b
+              class="ic"
+              style="--i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/function-fill.svg)"
+            ></b
+            >Function calling</span
+          ><i>/</i
+          ><span class="o"
+            ><b
+              class="ic"
+              style="--i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/robot-fill.svg)"
+            ></b
+            >Build AI agents</span
+          ><i>/</i
+          ><span
+            ><b
+              class="ic"
+              style="--i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/clipboard-text-fill.svg)"
+            ></b
+            >AI spec-driven dev</span
+          ><i>/</i
+          ><span class="o"
+            ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/githubactions.svg)"></b
+            >GitHub Actions</span
+          ><i>/</i
+          ><span
+            ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/docker.svg)"></b
+            >Docker</span
+          ><i>/</i
+          ><span
+            ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nodedotjs.svg)"></b
+            >Node.js</span
+          ><i>/</i
+          ><span class="o"
+            ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nestjs.svg)"></b
+            >NestJS</span
+          ><i>/</i
+          ><span
+            ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/postgresql.svg)"></b
+            >PostgreSQL</span
+          ><i>/</i
+          ><span class="o"
+            ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/react.svg)"></b
+            >React</span
+          ><i>/</i
+          ><span
+            ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/typescript.svg)"></b
+            >TypeScript</span
+          ><i>/</i
+          ><span class="o"
+            ><b
+              class="ic"
+              style="--i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/files-fill.svg)"
+            ></b
+            >RAG</span
+          ><i>/</i
+          ><span
+            ><b
+              class="ic"
+              style="--i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/function-fill.svg)"
+            ></b
+            >Function calling</span
+          ><i>/</i
+          ><span class="o"
+            ><b
+              class="ic"
+              style="--i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/robot-fill.svg)"
+            ></b
+            >Build AI agents</span
+          ><i>/</i
+          ><span
+            ><b
+              class="ic"
+              style="--i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/fill/clipboard-text-fill.svg)"
+            ></b
+            >AI spec-driven dev</span
+          ><i>/</i
+          ><span class="o"
+            ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/githubactions.svg)"></b
+            >GitHub Actions</span
+          ><i>/</i
+          ><span
+            ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/docker.svg)"></b
+            >Docker</span
+          ><i>/</i>
+        </div>
       </div>
-    </section>
 
-    <section id="praxe" class="sec" aria-labelledby="h-praxe">
-      <h2 id="h-praxe" class="sec__h">Praxe</h2>
-      <ol class="sec__body list">
-        <li class="item">
-          <span class="item__date mono">2025 - dnes</span>
-          <div>
-            <h3>Independent Software Developer · BikeCheck</h3>
-            <p>Celá platforma sólo, od architektury po nasazení. NestJS s&nbsp;mikroslužbami, Strava OAuth a&nbsp;webhooky, RAG v&nbsp;Pythonu, AI asistent s&nbsp;function callingem, React a&nbsp;Capacitor. V&nbsp;provozu od září 2026 s&nbsp;15+ beta uživateli.</p>
-            <ul class="tags mono"><li>NestJS</li><li>PostgreSQL</li><li>BullMQ</li><li>RAG</li><li>React</li><li>Capacitor</li></ul>
+      <!-- 01 · O mně: jediný světlý blok; krátké odstavce a druhá fotka.
+         Texty jsou zatím návrh, doplní se. -->
+      <section id="o-mne" class="sec sec--stack sec--paper" aria-labelledby="h-o-mne">
+        <h2 id="h-o-mne" class="sec__h"><span class="sec__n mono">01</span>O mně</h2>
+        <div class="me">
+          <div class="me__txt">
+            <p>
+              Mám víc než 9&nbsp;let praxe vývoje produkčního softwaru v&nbsp;automotive R&amp;D, který běžel na
+              <strong>100+ stanicích</strong> a&nbsp;kde spolehlivost byla na prvním místě. Vyvíjel jsem řídící
+              a&nbsp;testovací software s&nbsp;dashboardy pro desítky dalších uživatelů. Orientuji se v&nbsp;celé
+              infrastruktuře – od návrhu databáze, backendu až po uživatelské rozhraní.
+            </p>
+            <p>
+              Svůj záběr rozšiřuji o&nbsp;<strong>produkční AI agenty a&nbsp;RAG systémy</strong>, které dokážu důkladně
+              otestovat, nastavit evaluace a&nbsp;ohlídat okrajové stavy, aby se na ně dalo spolehnout i&nbsp;v&nbsp;reálném
+              provozu.
+            </p>
+            <p>
+              S čím mohu týmu nebo projektu pomoci: Postavím spolehlivý backend a frontend aplikaci od návrhu databáze až po
+              UI. Do existujících i nových produktů dokážu bezpečně integrovat produkční AI agenty včetně evaluací, které
+              ohlídají kvalitu výstupů.
+            </p>
+            <p>
+              Svět IT je o&nbsp;neustálém vývoji, učení se a&nbsp;hledání správných cest – a&nbsp;přesně to mě na něm baví.
+              Vývoj s AI je dnes novým standardem a já na něm aktivně stavím svou každodenní práci. Jsem pozitivní člověk
+              a&nbsp;nejlépe se mi pracuje s&nbsp;lidmi, které baví to, co dělají, a&nbsp;nebojí se sdílet know-how. Rád věci
+              posouvám dopředu, učím se od ostatních a&nbsp;předávám dál to, co jsem sám nasbíral v&nbsp;praxi.
+            </p>
           </div>
-        </li>
-        <li class="item">
-          <span class="item__date mono">2017 - 2025</span>
-          <div>
-            <h3>Software Development Engineer · ZF Group</h3>
-            <p>Řídicí a&nbsp;testovací systémy pro brzdové komponenty na 100+ stanicích: fronty, paralelní zpracování, determinismus. Kalibrační systém pro 30+ inženýrů zkrátil kalibraci z&nbsp;dnů na hodiny.</p>
-            <ul class="tags mono"><li>Python</li><li>LabVIEW</li><li>MySQL</li><li>FPGA</li></ul>
-          </div>
-        </li>
-        <li class="item">
-          <span class="item__date mono">2015 - 2017</span>
-          <div>
-            <h3>R&amp;D Development Engineer · Preciosa</h3>
-            <p>Vývoj v&nbsp;R&amp;D. Vzdělání: ČZU Praha, Technická fakulta.</p>
-          </div>
-        </li>
-      </ol>
-    </section>
+        </div>
+      </section>
 
-    <section id="projekty" class="sec" aria-labelledby="h-projekty">
-      <h2 id="h-projekty" class="sec__h">Projekty</h2>
-      <div class="sec__body projects">
-        <article class="proj proj--main">
-          <figure class="proj__shot">
-            <img src="https://raw.githubusercontent.com/Jaffator/bikecheck-app/main/docs/screenshots/desktop-home.png" alt="BikeCheck, přehled kol a komponent na desktopu" loading="lazy" />
+      <!-- 02 · Projekty: text + nakloněná 3D scéna se skutečnými obrazovkami (z návrhu E3, E4, E5b) -->
+      <section id="projekty" class="sec sec--stack" aria-labelledby="h-projekty">
+        <h2 id="h-projekty" class="sec__h"><span class="sec__n mono">02</span>Projekty</h2>
+
+        <article class="pr">
+          <div class="pr__txt">
+            <p class="pr__meta mono">
+              <span>Současný projekt</span><i aria-hidden="true"></i><span>od 2026</span
+              ><span class="pr__live"><b aria-hidden="true"></b>Online</span>
+            </p>
+            <h3 class="pr__h">BikeCheck</h3>
+            <p class="pr__lede">
+              Vše o Vašem kole na jednom míste. Aplikace pro cyklistky: kola, komponenty a&nbsp;servisní historie, nastavení
+              kola, možnost generování servisních reportů, sdílení celého profilu veřejně nebo v rámci aplikace. Jízdy ze
+              Stravy se samy počítají do opotřebení dílů se započítáním profilu trasy ne jen najetých kilometrů, a aplikace
+              hlídá opotřebení hlídá za Vás. 84 servisních úkonů v základu, tzn zadání nového servisu je otázkou několika
+              kliknutí. &nbsp;<strong>AI asistent</strong>, který zná uživatelova kola, jejich komponenty i servisní historii
+              – díky tomu dokáže poradit přesně na míru konkrétnímu vybavení.
+            </p>
+            <ul class="pr__list">
+              <li>Backend v&nbsp;NestJS (TypeScript), Prisma a&nbsp;PostgreSQL – REST API</li>
+              <li>Strava OAuth a&nbsp;webhooky: opotřebení dílů a&nbsp;servis podle reálně najetých kilometrů</li>
+              <li>AI asistent s&nbsp;function callingem nad daty uživatele a&nbsp;RAG nad servisními manuály</li>
+              <li>Web aplikace v&nbsp;Reactu, Android přes Capacitor, CI/CD v&nbsp;GitHub Actions, provoz v cloudu</li>
+              <li>V&nbsp;produkci s&nbsp;prvními uživateli</li>
+            </ul>
+            <p class="pr__stack mono">
+              NestJS · PostgreSQL · Prisma · Redis · BullMQ · React · Capacitor · Agents AI SDK · RAG
+            </p>
+            <div class="pr__btns">
+              <a class="pr__btn pr__btn--acc" href="https://bikecheck.cloud" target="_blank" rel="noopener"
+                >bikecheck.cloud <span class="i i--ne" aria-hidden="true"></span
+              ></a>
+              <a class="pr__btn" href="https://github.com/Jaffator/bikecheck-app" target="_blank" rel="noopener"
+                >GitHub <span class="i i--ne" aria-hidden="true"></span
+              ></a>
+            </div>
+          </div>
+          <figure class="pr__stage">
+            <div class="pr__fit" style="--w: 720; --hh: 640">
+              <div class="pr__scene pr__scene--bike">
+                <div class="pr__win" style="left: 0; top: 0; width: 620px; transform: translateZ(-100px)">
+                  <div class="pr__chrome" aria-hidden="true">
+                    <span></span><span></span><span></span><em class="mono">bikecheck.cloud</em>
+                  </div>
+                  <img
+                    src="assets/projects/bikecheck-landing.jpg"
+                    alt="Landing page bikecheck.cloud: Všechno o tvém kole na jednom místě"
+                    width="800"
+                    height="506"
+                    loading="lazy"
+                    style="aspect-ratio: 800/506"
+                  />
+                </div>
+                <div class="pr__dev" style="left: 290px; top: 170px; width: 200px; transform: translateZ(30px)">
+                  <span class="pr__btn-p" aria-hidden="true"></span><span class="pr__btn-v" aria-hidden="true"></span>
+                  <div class="pr__bezel">
+                    <div class="pr__scr">
+                      <img
+                        src="assets/projects/bikecheck-bike.jpg"
+                        alt="BikeCheck v telefonu: detail kola s nájezdem, servisem a sledováním opotřebení"
+                        width="390"
+                        height="845"
+                        loading="lazy"
+                        style="aspect-ratio: 390/845"
+                      /><span class="pr__hole" aria-hidden="true"></span><span class="pr__glare" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="pr__dev pr__dev--front"
+                  style="left: 500px; top: 230px; width: 210px; transform: translateZ(100px)"
+                >
+                  <span class="pr__btn-p" aria-hidden="true"></span><span class="pr__btn-v" aria-hidden="true"></span>
+                  <div class="pr__bezel">
+                    <div class="pr__scr">
+                      <img
+                        src="assets/projects/bikecheck-home.jpg"
+                        alt="BikeCheck v telefonu: domovský dashboard s nájezdem a poslední jízdou"
+                        width="390"
+                        height="845"
+                        loading="lazy"
+                        style="aspect-ratio: 390/845"
+                      /><span class="pr__hole" aria-hidden="true"></span><span class="pr__glare" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </figure>
-          <div class="proj__text">
-            <span class="proj__meta mono">2026, v provozu</span>
-            <h3><a href="https://bikecheck.cloud" target="_blank" rel="noopener" class="stretch">BikeCheck <span class="arr">↗</span></a></h3>
-            <p>Evidence kol, komponent a&nbsp;servisu. Jízdy ze Stravy opotřebovávají díly a&nbsp;AI asistent odpovídá nad daty jezdce.</p>
-            <ul class="tags mono"><li>React 19</li><li>NestJS</li><li>Postgres</li><li>Redis</li></ul>
+        </article>
+
+        <article class="pr pr--flip">
+          <div class="pr__txt">
+            <p class="pr__meta mono"><span>ZF Group</span><i aria-hidden="true"></i><span>2017 – 2025</span></p>
+            <h3 class="pr__h">Dashboardy a&nbsp;řídicí software</h3>
+            <p class="pr__lede">
+              Řídicí a testovací software pro brzdové komponenty, který běžel na 100+ stanicích. Součástí byly i dashboardy
+              pro řízení zkoušek, vizualizaci měřených dat a interní kalibrační či analytické nástroje využívané denně
+              desítkami inženýrů – mimo jiné zkrátily čas kalibrace ze dnů na hodiny a spolehlivě zpracovávaly gigabajty
+              naměřených dat denně.
+            </p>
+            <ul class="pr__list">
+              <li>Fronty, paralelní zpracování a&nbsp;deterministický běh měření</li>
+              <li>Realtime řídící software&nbsp;</li>
+              <li>UI a backend pro analýzu dat&nbsp;</li>
+              <li>Databáze měření a aplikace pro zobrazování průběhu testů&nbsp;</li>
+            </ul>
+            <p class="pr__stack mono">LabVIEW · Python · Express.js · React · SQL · FPGA</p>
           </div>
+          <figure
+            class="pr__stage"
+            role="img"
+            aria-label="Ilustrace: tři nakloněná okna s fiktivními dashboardy – přehled stanic linky, průběh zkoušky brzdného momentu a kalibrace snímače"
+          >
+            <div class="pr__fit" style="--w: 700; --hh: 660" aria-hidden="true">
+              <div class="pr__scene pr__scene--dash">
+                <div class="dw dw--1">
+                  <div class="dw__side">
+                    <span style="width: 18px; height: 18px; border-radius: 4px; background: #c3eb68"></span><span></span
+                    ><span style="background: #4a4a52"></span><span></span><span></span>
+                  </div>
+                  <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column">
+                    <div class="dw__bar">
+                      <span style="font-size: 10px; color: #8a8a84"
+                        >Linka B2 <span style="color: #4a4a52">/</span> <span style="color: #d6d6d0">Stanice</span></span
+                      ><span style="display: flex; align-items: center; gap: 8px"
+                        ><span
+                          style="
+                            width: 90px;
+                            height: 16px;
+                            border-radius: 4px;
+                            background: #1b1b20;
+                            border: 1px solid #26262b;
+                          "
+                        ></span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #8a8a84">14:32:07</span
+                        ><span
+                          style="
+                            width: 16px;
+                            height: 16px;
+                            border-radius: 50%;
+                            background: #2e2e35;
+                            font-size: 7px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: #b9b9b2;
+                          "
+                          >JL</span
+                        ></span
+                      >
+                    </div>
+                    <div
+                      style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; padding: 10px 12px 0"
+                    >
+                      <div class="dw__card" style="padding: 6px 8px">
+                        <div style="font-size: 8px; color: #8a8a84; text-transform: uppercase; letter-spacing: 0.04em">
+                          Aktivní
+                        </div>
+                        <div style="display: flex; align-items: baseline; gap: 4px">
+                          <span style="font-size: 15px; font-weight: 600; color: #edede8">38/42</span
+                          ><span style="font-size: 8px; color: #8e8e96"></span>
+                        </div>
+                      </div>
+                      <div class="dw__card" style="padding: 6px 8px">
+                        <div style="font-size: 8px; color: #8a8a84; text-transform: uppercase; letter-spacing: 0.04em">
+                          OEE
+                        </div>
+                        <div style="display: flex; align-items: baseline; gap: 4px">
+                          <span style="font-size: 15px; font-weight: 600; color: #edede8">87.4 %</span
+                          ><span style="font-size: 8px; color: #c3eb68">▲ 1.2</span>
+                        </div>
+                      </div>
+                      <div class="dw__card" style="padding: 6px 8px">
+                        <div style="font-size: 8px; color: #8a8a84; text-transform: uppercase; letter-spacing: 0.04em">
+                          Kusy / h
+                        </div>
+                        <div style="display: flex; align-items: baseline; gap: 4px">
+                          <span style="font-size: 15px; font-weight: 600; color: #edede8">312</span
+                          ><span style="font-size: 8px; color: #c3eb68">▲ 4</span>
+                        </div>
+                      </div>
+                      <div class="dw__card" style="padding: 6px 8px">
+                        <div style="font-size: 8px; color: #8a8a84; text-transform: uppercase; letter-spacing: 0.04em">
+                          Alarmy
+                        </div>
+                        <div style="display: flex; align-items: baseline; gap: 4px">
+                          <span style="font-size: 15px; font-weight: 600; color: #edede8">3</span
+                          ><span style="font-size: 8px; color: #f0a35e">▼ 2</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      style="
+                        flex: 1 1 auto;
+                        padding: 10px 12px 12px;
+                        display: grid;
+                        grid-template-columns: repeat(6, minmax(0, 1fr));
+                        gap: 5px;
+                        align-content: start;
+                      "
+                    >
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #c3eb68;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-01</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">41.2 s</span
+                        ><span style="font-size: 7px; color: #c3eb68; text-transform: uppercase; letter-spacing: 0.04em"
+                          >běží</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #c3eb68;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-02</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">39.8 s</span
+                        ><span style="font-size: 7px; color: #c3eb68; text-transform: uppercase; letter-spacing: 0.04em"
+                          >běží</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #8e8e96;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-03</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">—</span
+                        ><span style="font-size: 7px; color: #8e8e96; text-transform: uppercase; letter-spacing: 0.04em"
+                          >hotovo</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #c3eb68;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-04</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">42.0 s</span
+                        ><span style="font-size: 7px; color: #c3eb68; text-transform: uppercase; letter-spacing: 0.04em"
+                          >běží</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #4a4a52;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-05</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">—</span
+                        ><span style="font-size: 7px; color: #4a4a52; text-transform: uppercase; letter-spacing: 0.04em"
+                          >stojí</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #c3eb68;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-06</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">40.6 s</span
+                        ><span style="font-size: 7px; color: #c3eb68; text-transform: uppercase; letter-spacing: 0.04em"
+                          >běží</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #c3eb68;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-07</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">41.9 s</span
+                        ><span style="font-size: 7px; color: #c3eb68; text-transform: uppercase; letter-spacing: 0.04em"
+                          >běží</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #f0a35e;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-08</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">47.3 s</span
+                        ><span style="font-size: 7px; color: #f0a35e; text-transform: uppercase; letter-spacing: 0.04em"
+                          >varování</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #c3eb68;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-09</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">40.1 s</span
+                        ><span style="font-size: 7px; color: #c3eb68; text-transform: uppercase; letter-spacing: 0.04em"
+                          >běží</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #8e8e96;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-10</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">—</span
+                        ><span style="font-size: 7px; color: #8e8e96; text-transform: uppercase; letter-spacing: 0.04em"
+                          >hotovo</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #c3eb68;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-11</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">41.4 s</span
+                        ><span style="font-size: 7px; color: #c3eb68; text-transform: uppercase; letter-spacing: 0.04em"
+                          >běží</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #c3eb68;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-12</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">40.9 s</span
+                        ><span style="font-size: 7px; color: #c3eb68; text-transform: uppercase; letter-spacing: 0.04em"
+                          >běží</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #4a4a52;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-13</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">—</span
+                        ><span style="font-size: 7px; color: #4a4a52; text-transform: uppercase; letter-spacing: 0.04em"
+                          >stojí</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #c3eb68;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-14</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">42.2 s</span
+                        ><span style="font-size: 7px; color: #c3eb68; text-transform: uppercase; letter-spacing: 0.04em"
+                          >běží</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #f07a6e;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-15</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">—</span
+                        ><span style="font-size: 7px; color: #f07a6e; text-transform: uppercase; letter-spacing: 0.04em"
+                          >chyba</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #c3eb68;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-16</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">39.5 s</span
+                        ><span style="font-size: 7px; color: #c3eb68; text-transform: uppercase; letter-spacing: 0.04em"
+                          >běží</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #8e8e96;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-17</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">—</span
+                        ><span style="font-size: 7px; color: #8e8e96; text-transform: uppercase; letter-spacing: 0.04em"
+                          >hotovo</span
+                        >
+                      </div>
+                      <div
+                        class="dw__card"
+                        style="
+                          border-top: 2px solid #c3eb68;
+                          border-radius: 4px;
+                          padding: 5px 6px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 3px;
+                        "
+                      >
+                        <span style="font-family: var(--mono); font-size: 8px; color: #b9b9b2">ST-18</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">41.0 s</span
+                        ><span style="font-size: 7px; color: #c3eb68; text-transform: uppercase; letter-spacing: 0.04em"
+                          >běží</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dw dw--2">
+                  <div class="dw__bar" style="background: #17171b">
+                    <span style="display: flex; align-items: center; gap: 10px"
+                      ><span style="font-size: 10px; font-weight: 600; color: #edede8">Zkouška #48213</span
+                      ><span style="font-size: 9px; color: #8a8a84">Brzdný moment · ST-07</span></span
+                    ><span style="display: flex; gap: 2px; background: #0f0f12; border-radius: 5px; padding: 2px"
+                      ><span
+                        style="font-size: 9px; padding: 2px 8px; border-radius: 3px; background: #26262c; color: #edede8"
+                        >Živě</span
+                      ><span style="font-size: 9px; padding: 2px 8px; color: #8a8a84">Historie</span
+                      ><span style="font-size: 9px; padding: 2px 8px; color: #8a8a84">Export</span></span
+                    >
+                  </div>
+                  <div style="flex: 1 1 auto; min-height: 0; display: flex">
+                    <div
+                      style="
+                        flex: 1 1 auto;
+                        min-width: 0;
+                        padding: 10px 6px 0 10px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 6px;
+                      "
+                    >
+                      <div style="display: flex; gap: 12px; font-size: 9px; color: #a3a39c">
+                        <span style="display: flex; align-items: center; gap: 5px"
+                          ><span style="width: 10px; height: 2px; background: #c3eb68"></span>Tlak [bar]</span
+                        ><span style="display: flex; align-items: center; gap: 5px"
+                          ><span style="width: 10px; height: 2px; background: #8fa8ff"></span>Moment [Nm]</span
+                        ><span style="display: flex; align-items: center; gap: 5px"
+                          ><span
+                            style="
+                              width: 10px;
+                              height: 6px;
+                              background: rgba(195, 235, 104, 0.12);
+                              border: 1px dashed #5e7036;
+                            "
+                          ></span
+                          >Tolerance</span
+                        >
+                      </div>
+                      <svg
+                        viewBox="0 0 360 190"
+                        width="100%"
+                        height="190"
+                        preserveAspectRatio="none"
+                        style="display: block; overflow: visible"
+                      >
+                        <g stroke="#222228" stroke-width="1">
+                          <line x1="26" y1="10" x2="360" y2="10" />
+                          <line x1="26" y1="50" x2="360" y2="50" />
+                          <line x1="26" y1="90" x2="360" y2="90" />
+                          <line x1="26" y1="130" x2="360" y2="130" />
+                          <line x1="26" y1="170" x2="360" y2="170" />
+                        </g>
+                        <g font-family="Geist Mono, monospace" font-size="7" fill="#6E6E68">
+                          <text x="0" y="13">100</text>
+                          <text x="4" y="53">75</text>
+                          <text x="4" y="93">50</text>
+                          <text x="4" y="133">25</text>
+                          <text x="8" y="173">0</text>
+                          <text x="26" y="184">0 s</text>
+                          <text x="106" y="184">1</text>
+                          <text x="186" y="184">2</text>
+                          <text x="266" y="184">3</text>
+                          <text x="346" y="184">4</text>
+                        </g>
+                        <polygon
+                          points="162,24.400000000000006 290,24.400000000000006 290,43.599999999999994 162,43.599999999999994"
+                          fill="rgba(195,235,104,.08)"
+                          stroke="#5E7036"
+                          stroke-width=".8"
+                          stroke-dasharray="3 3"
+                        />
+                        <polyline
+                          points="26.0,170.0 30.8,170.0 35.6,170.0 40.4,170.0 45.2,170.0 50.0,170.0 54.8,170.0 59.6,170.0 64.4,170.0 69.2,170.0 74.0,170.0 78.8,170.0 83.6,170.0 88.4,169.0 93.2,166.7 98.0,163.6 102.8,159.8 107.6,155.0 112.4,149.1 117.2,142.3 122.0,134.4 126.8,125.8 131.6,116.7 136.4,107.6 141.2,98.8 146.0,90.7 150.8,83.4 155.6,75.5 160.4,68.8 165.2,64.3 170.0,61.6 174.8,60.4 179.6,60.0 184.4,59.7 189.2,59.3 194.0,58.5 198.8,57.4 203.6,56.1 208.4,55.0 213.2,54.1 218.0,53.6 222.8,53.4 227.6,53.6 232.4,53.9 237.2,54.3 242.0,54.5 246.8,54.7 251.6,54.6 256.4,54.4 261.2,54.2 266.0,53.9 270.8,53.8 275.6,53.7 280.4,53.7 285.2,53.8 290.0,54.0 294.8,54.1 299.6,54.1 304.4,54.2 309.2,54.1 314.0,67.8 318.8,100.7 323.6,123.6 328.4,139.5 333.2,150.7 338.0,158.5 342.8,163.9 347.6,167.7 352.4,170.0 357.2,170.0"
+                          fill="none"
+                          stroke="#8FA8FF"
+                          stroke-width="1.4"
+                        />
+                        <polyline
+                          points="26.0,166.8 30.8,165.8 35.6,164.9 40.4,163.9 45.2,163.0 50.0,168.1 54.8,167.4 59.6,166.6 64.4,165.4 69.2,163.9 74.0,161.8 78.8,159.2 83.6,155.8 88.4,151.5 93.2,146.2 98.0,139.7 102.8,132.1 107.6,123.4 112.4,113.8 117.2,103.7 122.0,93.5 126.8,83.8 131.6,74.7 136.4,66.7 141.2,57.9 146.0,50.4 150.8,45.4 155.6,42.5 160.4,41.1 165.2,40.6 170.0,40.3 174.8,39.9 179.6,39.0 184.4,37.8 189.2,36.4 194.0,35.1 198.8,34.1 203.6,33.5 208.4,33.4 213.2,33.5 218.0,33.9 222.8,34.3 227.6,34.6 232.4,34.7 237.2,34.7 242.0,34.5 246.8,34.2 251.6,33.9 256.4,33.8 261.2,33.7 266.0,33.7 270.8,33.8 275.6,34.0 280.4,34.1 285.2,34.2 290.0,34.2 294.8,34.2 299.6,49.4 304.4,85.8 309.2,111.3 314.0,129.0 318.8,141.4 323.6,150.1 328.4,156.1 333.2,160.3 338.0,163.2 342.8,165.3 347.6,166.7 352.4,166.8 357.2,166.8"
+                          fill="none"
+                          stroke="#c3eb68"
+                          stroke-width="1.8"
+                        />
+                        <line x1="253" y1="10" x2="253" y2="170" stroke="#5A5A62" stroke-width=".8" stroke-dasharray="2 2" />
+                        <circle cx="253" cy="33.9" r="3" fill="#c3eb68" stroke="#141417" stroke-width="1.5" />
+                        <rect x="260" y="20" width="92" height="40" rx="4" fill="#0F0F12" stroke="#2E2E34" />
+                        <g font-family="Geist Mono, monospace" font-size="7">
+                          <text x="267" y="32" fill="#8A8A84">t = 2.84 s</text>
+                          <text x="267" y="43" fill="#EDEDE8">p = 84.2 bar</text>
+                          <text x="267" y="54" fill="#EDEDE8">M = 1 912 Nm</text>
+                        </g>
+                      </svg>
+                      <div
+                        style="
+                          border-top: 1px solid #222227;
+                          padding: 6px 0;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 2px;
+                          font-family: var(--mono);
+                          font-size: 8px;
+                          color: #8a8a84;
+                        "
+                      >
+                        <div style="display: flex; gap: 8px">
+                          <span style="color: #5e5e66">14:31:58.204</span><span style="color: #8e8e96">INFO</span
+                          ><span>START cyklus 1240</span>
+                        </div>
+                        <div style="display: flex; gap: 8px">
+                          <span style="color: #5e5e66">14:31:59.611</span><span style="color: #8e8e96">INFO</span
+                          ><span>Tlak dosažen 85 bar</span>
+                        </div>
+                        <div style="display: flex; gap: 8px">
+                          <span style="color: #5e5e66">14:32:01.032</span><span style="color: #f0a35e">WARN</span
+                          ><span>Teplota kanálu T3 61 °C</span>
+                        </div>
+                        <div style="display: flex; gap: 8px">
+                          <span style="color: #5e5e66">14:32:02.480</span><span style="color: #c3eb68">OK</span
+                          ><span>Moment v toleranci</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      style="
+                        flex: 0 0 128px;
+                        border-left: 1px solid #222227;
+                        padding: 10px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 6px;
+                      "
+                    >
+                      <span style="font-size: 8px; color: #8a8a84; text-transform: uppercase; letter-spacing: 0.04em"
+                        >Statistika cyklu</span
+                      >
+                      <div
+                        style="
+                          display: flex;
+                          justify-content: space-between;
+                          align-items: baseline;
+                          padding: 3px 0;
+                          border-bottom: 1px solid #1f1f24;
+                        "
+                      >
+                        <span style="font-size: 9px; color: #a3a39c">Max tlak</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">85.6 bar</span>
+                      </div>
+                      <div
+                        style="
+                          display: flex;
+                          justify-content: space-between;
+                          align-items: baseline;
+                          padding: 3px 0;
+                          border-bottom: 1px solid #1f1f24;
+                        "
+                      >
+                        <span style="font-size: 9px; color: #a3a39c">Max moment</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">1 928 Nm</span>
+                      </div>
+                      <div
+                        style="
+                          display: flex;
+                          justify-content: space-between;
+                          align-items: baseline;
+                          padding: 3px 0;
+                          border-bottom: 1px solid #1f1f24;
+                        "
+                      >
+                        <span style="font-size: 9px; color: #a3a39c">Náběh</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">0.92 s</span>
+                      </div>
+                      <div
+                        style="
+                          display: flex;
+                          justify-content: space-between;
+                          align-items: baseline;
+                          padding: 3px 0;
+                          border-bottom: 1px solid #1f1f24;
+                        "
+                      >
+                        <span style="font-size: 9px; color: #a3a39c">Cpk</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">1.67</span>
+                      </div>
+                      <div
+                        style="
+                          display: flex;
+                          justify-content: space-between;
+                          align-items: baseline;
+                          padding: 3px 0;
+                          border-bottom: 1px solid #1f1f24;
+                        "
+                      >
+                        <span style="font-size: 9px; color: #a3a39c">Cyklus</span
+                        ><span style="font-family: var(--mono); font-size: 9px; color: #edede8">41.2 s</span>
+                      </div>
+                      <div
+                        style="
+                          margin-top: auto;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          padding: 6px;
+                          border-radius: 5px;
+                          background: rgba(195, 235, 104, 0.12);
+                          color: #c3eb68;
+                          font-size: 10px;
+                          font-weight: 700;
+                          letter-spacing: 0.06em;
+                        "
+                      >
+                        PASS
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dw dw--3">
+                  <div class="dw__bar" style="background: #1a1a1f; border-color: #24242a">
+                    <span style="font-size: 10px; font-weight: 600; color: #edede8">Kalibrace · snímač tlaku PT-07</span
+                    ><span style="font-family: var(--mono); font-size: 8px; color: #8a8a84">ref. etalon DPI-620</span>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 6px;
+                      padding: 10px 12px;
+                      border-bottom: 1px solid #222227;
+                    "
+                  >
+                    <div style="display: flex; align-items: center; gap: 5px; flex: 1 1 0">
+                      <span
+                        style="
+                          width: 14px;
+                          height: 14px;
+                          border-radius: 50%;
+                          flex: 0 0 auto;
+                          background: #c3eb68;
+                          color: #0c0c0d;
+                          font-size: 7px;
+                          font-weight: 700;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                        "
+                        >✓</span
+                      ><span style="font-size: 9px; color: #d6d6d0; white-space: nowrap">Připojení</span
+                      ><span style="flex: 1 1 auto; height: 1px; background: #2a2a30"></span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 5px; flex: 1 1 0">
+                      <span
+                        style="
+                          width: 14px;
+                          height: 14px;
+                          border-radius: 50%;
+                          flex: 0 0 auto;
+                          background: #c3eb68;
+                          color: #0c0c0d;
+                          font-size: 7px;
+                          font-weight: 700;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                        "
+                        >✓</span
+                      ><span style="font-size: 9px; color: #d6d6d0; white-space: nowrap">Nulování</span
+                      ><span style="flex: 1 1 auto; height: 1px; background: #2a2a30"></span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 5px; flex: 1 1 0">
+                      <span
+                        style="
+                          width: 14px;
+                          height: 14px;
+                          border-radius: 50%;
+                          flex: 0 0 auto;
+                          background: #edede8;
+                          color: #0c0c0d;
+                          font-size: 7px;
+                          font-weight: 700;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                        "
+                        >3</span
+                      ><span style="font-size: 9px; color: #d6d6d0; white-space: nowrap">Body</span
+                      ><span style="flex: 1 1 auto; height: 1px; background: #2a2a30"></span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 5px; flex: 1 1 0">
+                      <span
+                        style="
+                          width: 14px;
+                          height: 14px;
+                          border-radius: 50%;
+                          flex: 0 0 auto;
+                          background: #2a2a30;
+                          color: #8a8a84;
+                          font-size: 7px;
+                          font-weight: 700;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                        "
+                        >4</span
+                      ><span style="font-size: 9px; color: #6e6e68; white-space: nowrap">Protokol</span
+                      ><span style="flex: 1 1 auto; height: 1px; background: #2a2a30"></span>
+                    </div>
+                  </div>
+                  <div style="flex: 1 1 auto; min-height: 0; display: flex; gap: 10px; padding: 8px 12px 0">
+                    <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column">
+                      <div
+                        class="dw__row"
+                        style="
+                          border-bottom-color: #2a2a30;
+                          font-size: 7px;
+                          color: #8a8a84;
+                          text-transform: uppercase;
+                          letter-spacing: 0.04em;
+                        "
+                      >
+                        <span>Bod</span><span>Reference</span><span>Naměřeno</span><span>Odchylka</span><span>Stav</span>
+                      </div>
+                      <div
+                        class="dw__row"
+                        style="font-family: var(--mono); font-size: 8px; color: #d6d6d0; background: transparent"
+                      >
+                        <span>1</span><span>0.0 bar</span><span>0.002</span><span>+0.01 %</span
+                        ><span style="color: #c3eb68">OK</span>
+                      </div>
+                      <div
+                        class="dw__row"
+                        style="font-family: var(--mono); font-size: 8px; color: #d6d6d0; background: transparent"
+                      >
+                        <span>2</span><span>25.0 bar</span><span>25.008</span><span>+0.03 %</span
+                        ><span style="color: #c3eb68">OK</span>
+                      </div>
+                      <div
+                        class="dw__row"
+                        style="font-family: var(--mono); font-size: 8px; color: #d6d6d0; background: transparent"
+                      >
+                        <span>3</span><span>50.0 bar</span><span>49.991</span><span>−0.02 %</span
+                        ><span style="color: #c3eb68">OK</span>
+                      </div>
+                      <div
+                        class="dw__row"
+                        style="
+                          font-family: var(--mono);
+                          font-size: 8px;
+                          color: #edede8;
+                          background: rgba(255, 255, 255, 0.04);
+                        "
+                      >
+                        <span>4</span><span>75.0 bar</span><span>75.012</span><span>měří…</span
+                        ><span style="color: #edede8">···</span>
+                      </div>
+                      <div
+                        class="dw__row"
+                        style="font-family: var(--mono); font-size: 8px; color: #5e5e66; background: transparent"
+                      >
+                        <span>5</span><span>100.0 bar</span><span>—</span><span>—</span><span style="color: #edede8"></span>
+                      </div>
+                      <div
+                        class="dw__row"
+                        style="font-family: var(--mono); font-size: 8px; color: #5e5e66; background: transparent"
+                      >
+                        <span>6</span><span>125.0 bar</span><span>—</span><span>—</span><span style="color: #edede8"></span>
+                      </div>
+                      <div
+                        class="dw__row"
+                        style="font-family: var(--mono); font-size: 8px; color: #5e5e66; background: transparent"
+                      >
+                        <span>7</span><span>150.0 bar</span><span>—</span><span>—</span><span style="color: #edede8"></span>
+                      </div>
+                    </div>
+                    <div style="flex: 0 0 120px; display: flex; flex-direction: column; gap: 5px">
+                      <div style="background: #121215; border: 1px solid #24242a; border-radius: 4px; padding: 4px 0 2px">
+                        <svg viewBox="0 0 120 70" width="120" height="70" style="display: block">
+                          <path d="M18.0 52.0 A42 42 0 0 1 102.0 52.0" fill="none" stroke="#2A2A30" stroke-width="7" />
+                          <path d="M18.0 52.0 A42 42 0 0 1 60.0 10.0" fill="none" stroke="#c3eb68" stroke-width="7" />
+                          <path
+                            d="M24.0 52.0 L28.0 52.0 M28.8 34.0 L32.3 36.0 M42.0 20.8 L44.0 24.3 M60.0 16.0 L60.0 20.0 M78.0 20.8 L76.0 24.3 M91.2 34.0 L87.7 36.0 M96.0 52.0 L92.0 52.0"
+                            stroke="#5A5A62"
+                            stroke-width="1"
+                          />
+                          <line
+                            x1="60"
+                            y1="52"
+                            x2="60.0"
+                            y2="18.0"
+                            stroke="#EDEDE8"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                          />
+                          <circle cx="60" cy="52" r="3.5" fill="#16161A" stroke="#EDEDE8" stroke-width="1.4" />
+                          <g font-family="Geist Mono, monospace" text-anchor="middle">
+                            <text x="60" y="67" font-size="9" font-weight="500" fill="#EDEDE8">75.012 bar</text>
+                            <text x="12" y="62" font-size="6" fill="#6E6E68">0</text>
+                            <text x="108" y="62" font-size="6" fill="#6E6E68">150</text>
+                          </g>
+                        </svg>
+                      </div>
+                      <span style="font-size: 8px; color: #8a8a84; text-transform: uppercase; letter-spacing: 0.04em"
+                        >Linearita</span
+                      >
+                      <svg
+                        viewBox="0 0 120 100"
+                        width="120"
+                        height="64"
+                        preserveAspectRatio="none"
+                        style="display: block; background: #121215; border: 1px solid #24242a; border-radius: 4px"
+                      >
+                        <line x1="8" y1="92" x2="112" y2="8" stroke="#3A3A42" stroke-width="1" stroke-dasharray="2 2" />
+                        <g fill="#c3eb68">
+                          <circle cx="8" cy="92" r="2.4" />
+                          <circle cx="25" cy="78.5" r="2.4" />
+                          <circle cx="42" cy="64.6" r="2.4" />
+                        </g>
+                        <g fill="#4A4A52">
+                          <circle cx="60" cy="50" r="2.2" />
+                          <circle cx="77" cy="36" r="2.2" />
+                          <circle cx="94" cy="22" r="2.2" />
+                          <circle cx="112" cy="8" r="2.2" />
+                        </g>
+                      </svg>
+                      <span style="font-family: var(--mono); font-size: 8px; color: #a3a39c">max odch. 0.04 %</span>
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                      padding: 8px 12px;
+                      border-top: 1px solid #222227;
+                    "
+                  >
+                    <div style="display: flex; align-items: center; gap: 6px; flex: 1 1 auto; max-width: 180px">
+                      <div style="flex: 1 1 auto; height: 4px; border-radius: 2px; background: #2a2a30; overflow: hidden">
+                        <div style="width: 43%; height: 100%; background: #c3eb68"></div>
+                      </div>
+                      <span style="font-family: var(--mono); font-size: 8px; color: #a3a39c">3 / 7</span>
+                    </div>
+                    <div style="display: flex; gap: 6px">
+                      <span
+                        style="
+                          font-size: 9px;
+                          padding: 4px 10px;
+                          border-radius: 4px;
+                          border: 1px solid #36363c;
+                          color: #b9b9b2;
+                        "
+                        >Přerušit</span
+                      ><span
+                        style="
+                          font-size: 9px;
+                          padding: 4px 10px;
+                          border-radius: 4px;
+                          background: #c3eb68;
+                          color: #0c0c0d;
+                          font-weight: 600;
+                        "
+                        >Další bod →</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </figure>
         </article>
-        <article class="proj">
-          <span class="proj__meta mono">2024, Raspberry Pi</span>
-          <h3><a href="https://github.com/Jaffator/Lufihome" target="_blank" rel="noopener" class="stretch">Lufihome <span class="arr">↗</span></a></h3>
-          <p>Domácí automatizace na Raspberry Pi. Teplotní čidla, ovládání ventilů topení, alarm a&nbsp;webové rozhraní.</p>
-          <ul class="tags mono"><li>Python</li><li>Flask</li><li>SQLAlchemy</li></ul>
+
+        <article class="pr">
+          <div class="pr__txt">
+            <p class="pr__meta mono">
+              <span>Vlastní projekt</span><i aria-hidden="true"></i><span>od 2023 · v provozu</span>
+            </p>
+            <h3 class="pr__h">Security system<span class="pr__sub">Lufihome</span></h3>
+            <p class="pr__lede">
+              Zabezpečení a&nbsp;chytrá domácnost pro můj dům. Běží na <strong>Raspberry Pi</strong> a&nbsp;ovládám ho
+              z&nbsp;telefonu: alarm, garážová vrata, teploty i&nbsp;stav všech čidel.
+            </p>
+            <ul class="pr__list">
+              <li>Alarm po zónách s&nbsp;nočním režimem a&nbsp;odpočtem zajištění</li>
+              <li>PIR čidla, magnetické kontakty a&nbsp;Tuya teploměry, stav v&nbsp;reálném čase přes WebSockets</li>
+              <li>Ovládání garážových vrat, historie teplot a&nbsp;log alarmu</li>
+            </ul>
+            <p class="pr__stack mono">Python · Flask · MariaDB · Vue.js · WebSockets</p>
+            <div class="pr__btns">
+              <a class="pr__btn" href="https://github.com/Jaffator/Lufihome" target="_blank" rel="noopener"
+                >GitHub <span class="i i--ne" aria-hidden="true"></span
+              ></a>
+            </div>
+          </div>
+          <figure class="pr__stage">
+            <div class="pr__fit" style="--w: 660; --hh: 640">
+              <div class="pr__scene pr__scene--home">
+                <div
+                  class="pr__dev pr__dev--front pr__dev--web"
+                  style="left: 10px; top: 110px; width: 230px; transform: translateZ(90px)"
+                >
+                  <span class="pr__btn-p" aria-hidden="true"></span><span class="pr__btn-v" aria-hidden="true"></span>
+                  <div class="pr__bezel">
+                    <div class="pr__scr">
+                      <span class="pr__sb" aria-hidden="true"
+                        ><b>17:41</b><i class="pr__sb-sig"></i><i class="pr__sb-bat"></i></span
+                      ><img
+                        src="assets/projects/lufihome-sensors.jpg"
+                        alt="Lufihome: teploty místností a seznam čidel se stavem"
+                        width="375"
+                        height="812"
+                        loading="lazy"
+                        style="aspect-ratio: 375/812"
+                      /><span class="pr__hole" aria-hidden="true"></span><span class="pr__glare" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="pr__dev pr__dev--web" style="left: 210px; top: 20px; width: 240px">
+                  <span class="pr__btn-p" aria-hidden="true"></span><span class="pr__btn-v" aria-hidden="true"></span>
+                  <div class="pr__bezel">
+                    <div class="pr__scr">
+                      <span class="pr__sb" aria-hidden="true"
+                        ><b>17:41</b><i class="pr__sb-sig"></i><i class="pr__sb-bat"></i></span
+                      ><img
+                        src="assets/projects/lufihome-arming.jpg"
+                        alt="Lufihome: zajišťování alarmu s odpočtem"
+                        width="375"
+                        height="812"
+                        loading="lazy"
+                        style="aspect-ratio: 375/812"
+                      /><span class="pr__hole" aria-hidden="true"></span><span class="pr__glare" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="pr__dev pr__dev--web" style="left: 430px; top: 70px; width: 230px; transform: translateZ(-90px)">
+                  <span class="pr__btn-p" aria-hidden="true"></span><span class="pr__btn-v" aria-hidden="true"></span>
+                  <div class="pr__bezel">
+                    <div class="pr__scr">
+                      <span class="pr__sb" aria-hidden="true"
+                        ><b>17:41</b><i class="pr__sb-sig"></i><i class="pr__sb-bat"></i></span
+                      ><img
+                        src="assets/projects/lufihome-secured.jpg"
+                        alt="Lufihome: alarm zajištěn, všechny zóny secured"
+                        width="375"
+                        height="812"
+                        loading="lazy"
+                        style="aspect-ratio: 375/812"
+                      /><span class="pr__hole" aria-hidden="true"></span><span class="pr__glare" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </figure>
         </article>
-      </div>
-    </section>
+      </section>
 
-    <section id="kontakt" class="sec" aria-labelledby="h-kontakt">
-      <h2 id="h-kontakt" class="sec__h">Kontakt</h2>
-      <div class="sec__body">
-        <p class="big">Máte projekt nebo pozici? Napište mi.</p>
-        <a class="mail" href="mailto:jardalufi@gmail.com">jardalufi@gmail.com <span aria-hidden="true">→</span></a>
-        <p class="profiles"><a href="https://github.com/Jaffator" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.linkedin.com/in/jaroslav-lufinka" target="_blank" rel="noopener">LinkedIn ↗</a></p>
-      </div>
-    </section>
-  </main>
+      <!-- 03 · Praxe: časová osa, role + roky + jedna věta výsledku -->
+      <section id="praxe" class="sec sec--stack" aria-labelledby="h-praxe">
+        <h2 id="h-praxe" class="sec__h"><span class="sec__n mono">03</span>Praxe</h2>
+        <ol class="tl">
+          <li>
+            <p class="tl__yr mono">2013 – 2015</p>
+            <h3>DKL Tech</h3>
+            <p class="tl__role">Vývoj</p>
+            <p>První praxe: tvorba scriptů do CAD Catia.</p>
+          </li>
+          <li>
+            <p class="tl__yr mono">2015 – 2017</p>
+            <h3>Preciosa</h3>
+            <p class="tl__role">R&amp;D Development Engineer</p>
+            <p>Automatizace měření, první vlastní nástroje v&nbsp;Labview.</p>
+          </li>
+          <li>
+            <p class="tl__yr mono">2017 – 2025</p>
+            <h3>ZF Group</h3>
+            <p class="tl__role">Software Development Engineer</p>
+            <p>Backend a frontend nástroje pro řízení a měření zkoušek, analýzu a vizualizaci naměřených dat.</p>
+          </li>
+          <li class="tl__now">
+            <p class="tl__yr mono">2025 – dnes</p>
+            <h3>BikeCheck</h3>
+            <p class="tl__role">Independent Software Developer</p>
+            <p>Full-stack & mobilní vývoj: Návrh a vývoj webové a mobilní aplikace v ostrém provozu s živými uživateli.</b>.</p>
+          </li>
+        </ol>
+      </section>
 
-  <footer class="foot mono">
-    <span>© <span id="y">2026</span> Jaroslav Lufinka</span>
-    <span>Ručně psané HTML, CSS a JS</span>
-  </footer>
+      <!-- 04 · Stack: co používám denně (plně) a co se učím (obrysem, jako v pásu pod úvodem) -->
+      <section id="stack" class="sec sec--stack" aria-labelledby="h-stack">
+        <h2 id="h-stack" class="sec__h"><span class="sec__n mono">04</span>Stack</h2>
+        <div class="st">
+          <div class="st__col">
+            <ul class="st__list">
+              <li>
+                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/typescript.svg)"></b
+                >TypeScript
+              </li>
+              <li>
+                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nodedotjs.svg)"></b
+                >Node.js
+              </li>
+              <li>
+                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/nestjs.svg)"></b>NestJS
+              </li>
+              <li>
+                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/react.svg)"></b>React
+              </li>
+              <li>
+                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/postgresql.svg)"></b
+                >PostgreSQL
+              </li>
+              <li>
+                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/redis.svg)"></b>Redis
+              </li>
+              <li>
+                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/docker.svg)"></b>Docker
+              </li>
+              <li>
+                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/prisma.svg)"></b
+                >Prisma
+              </li>
+              <li>
+                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/langchain.svg)"></b
+                >LangChain
+              </li>
+              <li>
+                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/vercel.svg)"></b
+                >AI SDK
+              </li>
+              <li>
+                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/capacitor.svg)"></b
+                >Capacitor
+              </li>
+              <li>
+                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/git.svg)"></b
+                >GitHub Actions CI/CD
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-  <script src="main.js?v=9" defer></script>
-</body>
+      <!-- 05 · Mimo práci: kolo, hory, svařování -->
+      <section id="mimo" class="sec sec--stack" aria-labelledby="h-mimo">
+        <h2 id="h-mimo" class="sec__h"><span class="sec__n mono">05</span>Mimo práci</h2>
+        <ul class="hob">
+          <li>
+            <span
+              class="i"
+              style="--i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/bicycle.svg)"
+              aria-hidden="true"
+            ></span>
+            <h3>Cyklistika</h3>
+          </li>
+          <li>
+            <span
+              class="i"
+              style="--i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/mountains.svg)"
+              aria-hidden="true"
+            ></span>
+            <h3>Alpinismus</h3>
+          </li>
+          <li>
+            <span
+              class="i"
+              style="--i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/gear.svg)"
+              aria-hidden="true"
+            ></span>
+            <h3>Dílna</h3>
+          </li>
+        </ul>
+      </section>
+
+      <section id="kontakt" class="sec sec--stack sec--end" aria-labelledby="h-kontakt">
+        <!-- závěr jako limetková plocha: zopakované CTA z úvodu, profily a CV -->
+        <div class="reach">
+          <p class="reach__n mono">06 · Kontakt</p>
+          <h2 id="h-kontakt" class="shout">Napište <span>mi.</span></h2>
+          <p class="ask">Máte projekt nebo pozici?</p>
+          <div class="mailrow">
+            <a class="mail" href="mailto:jardalufi@gmail.com"
+              >jardalufi@gmail.com <span class="i i--right" aria-hidden="true"></span
+            ></a>
+            <button class="copy" type="button" data-copy="jardalufi@gmail.com">
+              <span class="i i--copy" aria-hidden="true"></span><span class="copy__t">Kopírovat</span>
+            </button>
+          </div>
+          <p class="profiles">
+            <a href="https://github.com/Jaffator" target="_blank" rel="noopener"
+              ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/github.svg)"></b>GitHub</a
+            ><a href="https://www.linkedin.com/in/jaroslav-lufinka" target="_blank" rel="noopener"
+              ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/linkedin.svg)"></b>LinkedIn</a
+            ><a href="https://www.instagram.com/jardalufi/" target="_blank" rel="noopener"
+              ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/instagram.svg)"></b>Instagram</a
+            >
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot mono">
+      <span>© <span id="y">2026</span> Jaroslav Lufinka</span>
+      <a href="#top" class="foot__top">Nahoru <span class="i i--up" aria-hidden="true"></span></a>
+    </footer>
+
+    <script src="main.js?v=10" defer></script>
+    <script src="mix.js?v=23" defer></script>
+  </body>
 </html>

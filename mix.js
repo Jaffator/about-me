@@ -1,4 +1,4 @@
-// Skripty pro mix.html. Žádný listener na scroll: stav se odvozuje z IntersectionObserveru.
+// Skripty pro index.html (varianta mix). Žádný listener na scroll: stav se odvozuje z IntersectionObserveru.
 
 // Pilulka v menu: plynule přejede pod položku, nad kterou je kurzor.
 (() => {
@@ -28,9 +28,8 @@
   });
 })();
 
-// Jméno a nadpis v úvodu se „dekódují“ zleva doprava (nejdřív jméno, pak nadpis).
-// Nadpis po dekódování zůstane jako obrys a zespodu se vyplní barvou (mix.css).
-// Po najetí myší na úvod se znovu dekóduje jméno.
+// Nadpis v úvodu se „dekóduje“ zleva doprava, pak zůstane jako obrys a zespodu se vyplní barvou
+// (mix.css; řádek FULLSTACK & zůstane obrysem). Potom se každé 4–6 s znovu dekóduje jeden náhodný řádek.
 (() => {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const G = "ABCDEFGHJKLMNPRSTUVXYZ0123456789#/_<>";
@@ -64,7 +63,7 @@
       s.textContent = c; s.style.width = "";
       s.style.width = s.getBoundingClientRect().width + "px";
     });
-    const run = (delay, done) => {
+    const run = (delay, done, list = chars) => {
       if (busy) return;
       busy = true;
       const t0 = performance.now() + delay;
@@ -73,7 +72,7 @@
         const p = t - t0;
         if (t - last >= TICK) {
           last = t;
-          chars.forEach(({ s, c }, i) => {
+          list.forEach(({ s, c }, i) => {
             const from = i * STEP, to = from + HOLD;
             if (p < from) return;
             if (p >= to) { s.textContent = c; s.classList.remove("is-x", "is-wait"); return; }
@@ -81,17 +80,23 @@
             s.classList.remove("is-wait"); s.classList.add("is-x");
           });
         }
-        if (p < chars.length * STEP + HOLD) requestAnimationFrame(step);
-        else { busy = false; done?.(); }
+        if (p < list.length * STEP + HOLD) requestAnimationFrame(step);
+        else {
+          // poslední tik mohl přijít dřív, než se usadil poslední znak: na konci usadit všechny
+          list.forEach(({ s, c }) => { s.textContent = c; s.classList.remove("is-x", "is-wait"); });
+          busy = false; done?.();
+        }
       };
       requestAnimationFrame(step);
     };
-    return { lock, run, len: chars.length };
+    // znaky po řádcích nadpisu (.mx__l), pro opakované dekódování jednoho řádku
+    const lines = [...el.querySelectorAll(".mx__l")]
+      .map((l) => chars.filter(({ s }) => l.contains(s)))
+      .filter((l) => l.length);
+    return { lock, run, lines, len: chars.length };
   };
 
-  const nameEl = document.querySelector(".mx__kicker");
   const titleEl = document.querySelector(".mx__title:not(.glowt)");   // bento má vlastní nadpis
-  const name = nameEl && decoder(nameEl);
   const title = titleEl && decoder(titleEl);
 
   // výplň nadpisu jde přes oba řádky jedním tahem: každý znak zná výšku nadpisu a svou polohu v něm
@@ -105,21 +110,30 @@
     });
   };
 
+  // opakování: náhodný řádek (ne dvakrát po sobě) každé 4–6 s, jen když je úvod vidět a karta je aktivní
+  let seen = true, prev = -1;
+  if (titleEl) new IntersectionObserver(([e]) => { seen = e.isIntersecting; }).observe(titleEl);
+  const again = () => setTimeout(() => {
+    if (seen && !document.hidden && title.lines.length) {
+      let i;
+      do i = (Math.random() * title.lines.length) | 0; while (i === prev && title.lines.length > 1);
+      prev = i;
+      title.run(0, null, title.lines[i]);
+    }
+    again();
+  }, 4000 + Math.random() * 2000);
+
   document.fonts.ready.then(() => {
-    name?.lock(); title?.lock(); geo();
-    name?.run(350);
-    // nadpis začne, když je jméno zhruba v půlce; po dokončení se zespodu vyplní
-    title?.run(350 + (name ? name.len * STEP * .5 : 0), () => titleEl.classList.add("is-fill"));
+    title?.lock(); geo();
+    title?.run(350, () => { titleEl.classList.add("is-fill"); again(); });   // po dokončení se zespodu vyplní
   });
-  addEventListener("resize", () => { name?.lock(); title?.lock(); geo(); });
-  if (name && matchMedia("(hover: hover)").matches)
-    document.querySelector(".mx__type")?.addEventListener("pointerenter", () => name.run(0));
+  addEventListener("resize", () => { title?.lock(); geo(); });
 })();
 
 // Reveal: prvky kontaktu najíždějí v pořadí čtení (zbytek stránky objevuje main.js).
 (() => {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const els = [...document.querySelectorAll("#kontakt .shout, #kontakt .ask, #kontakt .copy, #kontakt .profiles, .about__big, .me__txt, .me__ph, .pj, .tl > li, .st__col, .hob > li")];
+  const els = [...document.querySelectorAll("#kontakt .shout, #kontakt .ask, #kontakt .copy, #kontakt .profiles, .me__txt, .pr, .tl > li, .st__col, .hob > li")];
   els.forEach((el, i) => { el.classList.add("rv"); el.style.setProperty("--d", ((i % 3) * 0.1).toFixed(2) + "s"); });
   const io = new IntersectionObserver((entries) => entries.forEach((e) => {
     if (!e.isIntersecting) return;
@@ -146,4 +160,18 @@
     clearTimeout(t);
     t = setTimeout(() => { btn.classList.remove("is-done"); label.textContent = "Kopírovat"; live.textContent = ""; }, 2200);
   });
+})();
+
+// Projekty: 3D scény mají pevnou velikost, zoom je zmenší na dostupnou šířku.
+(() => {
+  const fits = document.querySelectorAll(".pr__fit");
+  if (!fits.length) return;
+  const ro = new ResizeObserver(entries => {
+    for (const e of entries) {
+      const fit = e.target.querySelector(".pr__fit");
+      const w = parseFloat(getComputedStyle(fit).getPropertyValue("--w")) || 1;
+      fit.style.setProperty("--k", Math.min(0.86, e.contentRect.width / w).toFixed(4));
+    }
+  });
+  fits.forEach(f => ro.observe(f.parentElement));
 })();
