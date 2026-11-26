@@ -1,12 +1,12 @@
 // Galerie obrazovek BikeCheck: celoobrazovkový <dialog>, sady Mobil / Desktop, šipky, swipe, náhledy.
-// Obrázky: assets/projects/bikecheck/full/NN.webp (mobil 780 px, desktop 1920 px) a thumb/NN.webp.
+// Obrázky: assets/projects/bikecheck/full/NN.webp (mobil 1170 px, desktop 1920 px, WebP q90) a thumb/NN.webp.
 (() => {
   const dlg = document.querySelector(".gal");
   const openers = document.querySelectorAll("[data-gal-open]");
   if (!dlg || !openers.length) return;
 
   const SETS = {
-    m: { w: 780, h: 1688, items: [
+    m: { w: 1170, h: 2532, items: [
       "Přihlášení",
       "Úvod: jízdy ze Stravy opotřebovávají díly",
       "Úvod: aplikace hlídá servisní intervaly",
