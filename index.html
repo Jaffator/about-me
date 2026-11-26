@@ -17,7 +17,7 @@
     />
     <link rel="preload" as="image" href="assets/portrait.webp" />
     <link rel="stylesheet" href="styles.css?v=10" />
-    <link rel="stylesheet" href="mix.css?v=78" />
+    <link rel="stylesheet" href="mix.css?v=79" />
   </head>
   <body>
     <a class="skip" href="#main">Přeskočit na obsah</a>
@@ -33,7 +33,8 @@
 
     <header class="bar">
       <a href="#top" class="bar__id">JL<span class="acc">.</span></a>
-      <nav class="bar__nav" aria-label="Hlavní navigace">
+      <button class="bar__menu" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="bar__nav" id="nav" aria-label="Hlavní navigace">
         <span class="bar__pill" aria-hidden="true"></span>
         <a href="#o-mne">O mně</a>
         <a href="#projekty">Projekty</a>
@@ -216,9 +217,9 @@
             </p>
             <p>
               Svět IT je o&nbsp;neustálém vývoji, učení se a&nbsp;hledání správných cest – a&nbsp;přesně to mě na něm baví.
-              Vývoj s&nbsp;AI je dnes novým standardem a&nbsp;já na něm aktivně stavím svou každodenní práci. Jsem pozitivní člověk
-              a&nbsp;nejlépe se mi pracuje s&nbsp;lidmi, které baví to, co dělají, a&nbsp;nebojí se sdílet know-how. Rád věci
-              posouvám dopředu, učím se od ostatních a&nbsp;předávám dál to, co jsem sám nasbíral v&nbsp;praxi.
+              Vývoj s&nbsp;AI je dnes novým standardem a&nbsp;já na něm aktivně stavím svou každodenní práci. Jsem pozitivní
+              člověk a&nbsp;nejlépe se mi pracuje s&nbsp;lidmi, které baví to, co dělají, a&nbsp;nebojí se sdílet know-how.
+              Rád věci posouvám dopředu, učím se od ostatních a&nbsp;předávám dál to, co jsem sám nasbíral v&nbsp;praxi.
             </p>
           </div>
         </div>
@@ -240,8 +241,8 @@
               kola, možnost generování servisních reportů, sdílení celého profilu veřejně nebo v&nbsp;rámci aplikace. Jízdy
               ze Stravy se samy započítávají do opotřebení dílů, a&nbsp;to nejen podle najetých kilometrů, ale i&nbsp;podle
               profilu trasy. Aplikace opotřebení hlídá za Vás. V&nbsp;základu je 84 servisních úkonů, takže zadání nového
-              servisu je otázkou několika kliknutí. Součástí je <strong>AI asistent</strong>, který zná uživatelova kola, jejich komponenty i servisní historii
-              – díky tomu dokáže poradit přesně na míru konkrétnímu vybavení.
+              servisu je otázkou několika kliknutí. Součástí je <strong>AI asistent</strong>, který zná uživatelova kola,
+              jejich komponenty i servisní historii – díky tomu dokáže poradit přesně na míru konkrétnímu vybavení.
             </p>
             <ul class="pr__list">
               <li>Backend v&nbsp;NestJS (TypeScript), Prisma a&nbsp;PostgreSQL – REST API</li>
@@ -1355,24 +1356,22 @@
                 <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/docker.svg)"></b>Docker
               </li>
               <li>
-                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/prisma.svg)"></b
-                >Prisma
+                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/prisma.svg)"></b>Prisma
               </li>
               <li>
                 <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/langchain.svg)"></b
                 >LangChain
               </li>
               <li>
-                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/vercel.svg)"></b
-                >AI SDK
+                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/vercel.svg)"></b>AI SDK
               </li>
               <li>
                 <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/capacitor.svg)"></b
                 >Capacitor
               </li>
               <li>
-                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/git.svg)"></b
-                >GitHub Actions CI/CD
+                <b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/git.svg)"></b>GitHub
+                Actions CI/CD
               </li>
             </ul>
           </div>
@@ -1390,6 +1389,7 @@
               aria-hidden="true"
             ></span>
             <h3>Cyklistika</h3>
+            <p>Enduro i gravel. Kolo si servisuji sám, odtud nápad na BikeCheck.</p>
           </li>
           <li>
             <span
@@ -1398,6 +1398,7 @@
               aria-hidden="true"
             ></span>
             <h3>Alpinismus</h3>
+            <p>Hory v létě i v zimě.</p>
           </li>
           <li>
             <span
@@ -1406,6 +1407,7 @@
               aria-hidden="true"
             ></span>
             <h3>Dílna</h3>
+            <p>Baví mě tvořit věci rukama.</p>
           </li>
         </ul>
       </section>
@@ -1426,11 +1428,14 @@
           </div>
           <p class="profiles">
             <a href="https://github.com/Jaffator" target="_blank" rel="noopener"
-              ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/github.svg)"></b>GitHub</a
+              ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/github.svg)"></b
+              >GitHub</a
             ><a href="https://www.linkedin.com/in/jaroslav-lufinka" target="_blank" rel="noopener"
-              ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/linkedin.svg)"></b>LinkedIn</a
+              ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/linkedin.svg)"></b
+              >LinkedIn</a
             ><a href="https://www.instagram.com/jardalufi/" target="_blank" rel="noopener"
-              ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/instagram.svg)"></b>Instagram</a
+              ><b class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/instagram.svg)"></b
+              >Instagram</a
             >
           </p>
         </div>
@@ -1442,7 +1447,7 @@
       <a href="#top" class="foot__top">Nahoru <span class="i i--up" aria-hidden="true"></span></a>
     </footer>
 
-    <script src="main.js?v=10" defer></script>
+    <script src="main.js?v=11" defer></script>
     <script src="mix.js?v=23" defer></script>
   </body>
 </html>

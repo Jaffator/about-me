@@ -67,7 +67,20 @@ body.is-scrolled .bar {
 .bar__nav:not(.js) a:hover, .bar__nav a:focus-visible { background: var(--accent); color: var(--accent-ink); }
 
 /* mobil: místo grafu pět teček v liště (skutečný stav: která sekce se čte) */
-@media (max-width: 900px) {
+.bar__menu { display: none; }
+@media (max-width: 640px) {
+  .bar { flex-wrap: wrap; }
+  .bar.is-open { background: rgba(9, 9, 11, .96); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+  .bar__menu {
+    display: inline-flex; align-items: center; min-height: 40px; padding: 0 18px; border-radius: 999px;
+    border: 1px solid var(--n-a20); background: transparent; color: var(--fg); font: 500 14px var(--sans, inherit); cursor: pointer;
+  }
+  .bar.is-open .bar__menu { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .bar .bar__nav { display: none; order: 3; flex: 0 0 100%; flex-direction: column; gap: 0; padding: 8px 0 16px; }
+  .bar.is-open .bar__nav { display: flex; }
+  .bar .bar__nav a, .bar .bar__nav a:not(:last-child) { display: block; margin: 0; padding: 14px 0; border-radius: 0; font-size: 20px; border-bottom: 1px solid var(--line); }
+  .bar .bar__nav a:last-child { border-bottom: 0; }
+  .bar .bar__nav a::after, .bar__pill { display: none; }
 }
 
 /* bez posuvníku prohlížeče: na tmavé stránce působil jako šedá načítací lišta; posouvání funguje dál */
@@ -349,7 +362,6 @@ html::-webkit-scrollbar { display: none; }
 }
 
 /* ───────── Projekty (návrh E3/E4/E5b): text vedle nakloněné 3D scény ───────── */
-#projekty { max-width: 1400px; }   /* projekty jsou o něco širší než zbytek stránky (1200 px) */
 .pr { display: flex; flex-wrap: wrap; align-items: center; gap: 56px clamp(64px, 7vw, 120px); justify-content: space-between; }
 .pr + .pr { margin-top: clamp(96px, 16vh, 168px); }
 .pr--flip { flex-direction: row-reverse; }
@@ -363,7 +375,7 @@ html::-webkit-scrollbar { display: none; }
 .pr__h {
   margin: 0; color: var(--fg);
   font-family: "Archivo", "Geist", sans-serif; font-stretch: 125%; font-variation-settings: "wdth" 125;
-  font-weight: 900; font-size: clamp(34px, 3.6vw, 52px); line-height: 1; text-transform: uppercase; text-wrap: balance;
+  font-weight: 900; font-size: clamp(32px, 3.2vw, 46px); line-height: 1; text-transform: uppercase; text-wrap: balance;
 }
 .pr__sub { display: block; margin-top: 12px; font-family: "Geist", sans-serif; font-stretch: 100%; font-variation-settings: normal; font-weight: 500; font-size: 20px; text-transform: none; color: var(--muted); }
 .pr__lede { margin: 0; font-size: 18px; line-height: 1.6; color: #c9c9c4; }

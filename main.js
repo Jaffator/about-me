@@ -51,6 +51,20 @@
     els.forEach((el) => { el.classList.add("rv"); io.observe(el); });
   }
 
+  /* ── mobilní menu ── */
+  const bar = document.querySelector(".bar");
+  const menuBtn = document.querySelector(".bar__menu");
+  if (bar && menuBtn) {
+    const setMenu = (open) => {
+      bar.classList.toggle("is-open", open);
+      menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.textContent = open ? "Zavřít" : "Menu";
+    };
+    menuBtn.addEventListener("click", () => setMenu(!bar.classList.contains("is-open")));
+    links.forEach((a) => a.addEventListener("click", () => setMenu(false)));
+    addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
+  }
+
   if (!document.getElementById("agents")) return;   // stránka bez agentního grafu
 
   /* ════════════════ AGENTNÍ SMYČKA NA POZADÍ ════════════════
