@@ -17,7 +17,7 @@
     />
     <link rel="preload" as="image" href="assets/portrait.webp" />
     <link rel="stylesheet" href="styles.css?v=10" />
-    <link rel="stylesheet" href="mix.css?v=79" />
+    <link rel="stylesheet" href="mix.css?v=84" />
   </head>
   <body>
     <a class="skip" href="#main">Přeskočit na obsah</a>
@@ -246,9 +246,11 @@
             </p>
             <ul class="pr__list">
               <li>Backend v&nbsp;NestJS (TypeScript), Prisma a&nbsp;PostgreSQL – REST API</li>
-              <li>Strava OAuth a&nbsp;webhooky: opotřebení dílů a&nbsp;servis podle reálně najetých kilometrů</li>
+              <li>
+                Frontend desktop i mobile v&nbsp;Reactu, Android přes Capacitor na Google Play, CI/CD v&nbsp;GitHub Actions
+              </li>
+              <li>Microservice Strava OAuth a&nbsp;webhooky</li>
               <li>AI asistent s&nbsp;function callingem nad daty uživatele a&nbsp;RAG nad servisními manuály</li>
-              <li>Web aplikace v&nbsp;Reactu, Android přes Capacitor, CI/CD v&nbsp;GitHub Actions, provoz v cloudu</li>
               <li>V&nbsp;produkci s&nbsp;prvními uživateli</li>
             </ul>
             <p class="pr__stack mono">
@@ -264,7 +266,8 @@
             </div>
           </div>
           <figure class="pr__stage">
-            <div class="pr__fit" style="--w: 720; --hh: 640">
+            <!-- klik na scénu otevře galerii (pro myš; klávesnice má tlačítko pod scénou) -->
+            <div class="pr__fit pr__fit--open" style="--w: 720; --hh: 640" data-gal-open>
               <div class="pr__scene pr__scene--bike">
                 <div class="pr__win" style="left: 0; top: 0; width: 620px; transform: translateZ(-100px)">
                   <div class="pr__chrome" aria-hidden="true">
@@ -314,6 +317,9 @@
                 </div>
               </div>
             </div>
+            <button class="pr__btn pr__prev" type="button" data-gal-open aria-haspopup="dialog">
+              <span class="i i--imgs" aria-hidden="true"></span>Náhled aplikace
+            </button>
           </figure>
         </article>
 
@@ -1447,7 +1453,41 @@
       <a href="#top" class="foot__top">Nahoru <span class="i i--up" aria-hidden="true"></span></a>
     </footer>
 
+    <!-- galerie obrazovek BikeCheck: obsah doplní gallery.js -->
+    <dialog class="gal" aria-labelledby="gal-h" tabindex="-1">
+      <div class="gal__top">
+        <p class="gal__id">
+          <span id="gal-h">BikeCheck</span>
+          <span class="gal__n mono" aria-live="polite"><b data-gal-i>01</b> / <span data-gal-len>29</span></span>
+        </p>
+        <div class="gal__tabs" role="group" aria-label="Verze aplikace">
+          <button type="button" data-gal-set="m" aria-pressed="true">Mobil</button>
+          <button type="button" data-gal-set="d" aria-pressed="false">Desktop</button>
+        </div>
+        <button class="gal__x" type="button" data-gal-close aria-label="Zavřít galerii">
+          <span class="i i--x" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="gal__stage">
+        <div class="gal__fig">
+          <img class="gal__img" alt="" decoding="async" />
+          <!-- desktop: šipky po stranách plochy (display: contents), mobil: řádek pod snímkem -->
+          <div class="gal__bar">
+            <button class="gal__nav gal__nav--prev" type="button" data-gal-step="-1" aria-label="Předchozí obrazovka">
+              <span class="i i--left" aria-hidden="true"></span>
+            </button>
+            <p class="gal__cap"></p>
+            <button class="gal__nav gal__nav--next" type="button" data-gal-step="1" aria-label="Další obrazovka">
+              <span class="i i--right" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="gal__strip" role="list" aria-label="Náhledy obrazovek"></div>
+    </dialog>
+
     <script src="main.js?v=11" defer></script>
+    <script src="gallery.js?v=1" defer></script>
     <script src="mix.js?v=23" defer></script>
   </body>
 </html>
