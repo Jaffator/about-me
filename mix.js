@@ -156,9 +156,12 @@
       const r = document.createRange(); r.selectNodeContents(document.querySelector(".mail"));
       getSelection().removeAllRanges(); getSelection().addRange(r); document.execCommand("copy");
     }
-    btn.classList.add("is-done"); label.textContent = "Zkopírováno"; live.textContent = "E-mail zkopírován";
+    const en = document.documentElement.lang === "en";
+    btn.classList.add("is-done"); label.textContent = en ? "Copied" : "Zkopírováno"; live.textContent = en ? "Email copied" : "E-mail zkopírován";
     clearTimeout(t);
-    t = setTimeout(() => { btn.classList.remove("is-done"); label.textContent = "Kopírovat"; live.textContent = ""; }, 2200);
+    t = setTimeout(() => {
+      btn.classList.remove("is-done"); label.textContent = document.documentElement.lang === "en" ? "Copy" : "Kopírovat"; live.textContent = "";
+    }, 2200);
   });
 })();
 

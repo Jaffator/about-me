@@ -58,10 +58,11 @@
     const setMenu = (open) => {
       bar.classList.toggle("is-open", open);
       menuBtn.setAttribute("aria-expanded", String(open));
-      menuBtn.textContent = open ? "Zavřít" : "Menu";
+      menuBtn.textContent = open ? (document.documentElement.lang === "en" ? "Close" : "Zavřít") : "Menu";
     };
     menuBtn.addEventListener("click", () => setMenu(!bar.classList.contains("is-open")));
     links.forEach((a) => a.addEventListener("click", () => setMenu(false)));
+    addEventListener("langchange", () => setMenu(bar.classList.contains("is-open")));
     addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
   }
 

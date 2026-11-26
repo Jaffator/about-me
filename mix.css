@@ -69,6 +69,16 @@ body.is-scrolled .bar {
 .bar__nav.has-pill .bar__pill { opacity: 1; transform: translateX(var(--px, 0px)) scale(1); }
 .bar__nav:not(.js) a:hover, .bar__nav a:focus-visible { background: var(--accent); color: var(--accent-ink); }
 
+/* přepínač jazyka CZ / EN (i18n.js): malá pilulka vpravo v liště, stejný jazyk jako přepínač v galerii */
+.bar__nav { margin-left: auto; }
+.lang { display: flex; margin-left: 28px; padding: 3px; border: 1px solid var(--n-a20); border-radius: 999px; }
+.lang button {
+  min-width: 36px; min-height: 30px; padding: 0 10px; border: 0; border-radius: 999px; background: none; cursor: pointer;
+  color: var(--muted); font: 500 12px/1 var(--mono); letter-spacing: .04em; transition: background-color .2s, color .2s;
+}
+.lang button:hover { color: var(--fg); }
+.lang button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+
 /* mobil: místo grafu pět teček v liště (skutečný stav: která sekce se čte) */
 .bar__menu { display: none; }
 @media (max-width: 640px) {
@@ -79,6 +89,9 @@ body.is-scrolled .bar {
     border: 1px solid var(--n-a20); background: transparent; color: var(--fg); font: 500 14px var(--sans, inherit); cursor: pointer;
   }
   .bar.is-open .bar__menu { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .lang { order: 1; margin-left: auto; margin-right: 8px; }
+  .bar__menu { order: 2; }
+  .lang button { min-height: 32px; }
   .bar .bar__nav { display: none; order: 3; flex: 0 0 100%; flex-direction: column; gap: 0; padding: 8px 0 16px; }
   .bar.is-open .bar__nav { display: flex; }
   .bar .bar__nav a, .bar .bar__nav a:not(:last-child) { display: block; margin: 0; padding: 14px 0; border-radius: 0; font-size: 20px; border-bottom: 1px solid var(--line); }

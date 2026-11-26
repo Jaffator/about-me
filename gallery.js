@@ -6,59 +6,61 @@
   if (!dlg || !openers.length) return;
 
   const SETS = {
+    // popisky [čeština, angličtina]
     m: { w: 1170, h: 2532, items: [
-      "Přihlášení",
-      "Úvod: jízdy ze Stravy opotřebovávají díly",
-      "Úvod: aplikace hlídá servisní intervaly",
-      "Úvod: garáž a setup na jednom místě",
-      "Úvod: sdílení profilu a servisní report",
-      "Nové kolo: vyhledání modelu",
-      "Nové kolo: výběr přesného modelu",
-      "Nové kolo: specifikace",
-      "Nové kolo: kontrola komponent",
-      "Domů: nájezd, poslední jízda a stav kol",
-      "Garáž",
-      "Detail kola",
-      "Setup: tlaky, sag a nastavení odpružení",
-      "Servis",
-      "Servis: komponenty, které vyžadují pozornost",
-      "Naplánovaný servis",
-      "Detail servisního úkonu",
-      "Historie servisu a náklady",
-      "Jízdy ze Stravy",
-      "Detail jízdy",
-      "AI asistent nad daty uživatele",
-      "Jezdci a sledující",
-      "Nastavení",
-      "Sdílení profilu",
-      "BikeCheck Pro: nabídka",
-      "BikeCheck Pro: souhrn předplatného",
-      "BikeCheck Pro: potvrzování platby",
-      "BikeCheck Pro: neúspěšná platba",
-      "BikeCheck Pro: zaplaceno",
+      ["Přihlášení", "Sign in"],
+      ["Úvod: jízdy ze Stravy opotřebovávají díly", "Intro: Strava rides wear out components"],
+      ["Úvod: aplikace hlídá servisní intervaly", "Intro: the app tracks service intervals"],
+      ["Úvod: garáž a setup na jednom místě", "Intro: garage and setup in one place"],
+      ["Úvod: sdílení profilu a servisní report", "Intro: profile sharing and service report"],
+      ["Nové kolo: vyhledání modelu", "New bike: model search"],
+      ["Nové kolo: výběr přesného modelu", "New bike: picking the exact model"],
+      ["Nové kolo: specifikace", "New bike: specification"],
+      ["Nové kolo: kontrola komponent", "New bike: component check"],
+      ["Domů: nájezd, poslední jízda a stav kol", "Home: mileage, latest ride and bike status"],
+      ["Garáž", "Garage"],
+      ["Detail kola", "Bike detail"],
+      ["Setup: tlaky, sag a nastavení odpružení", "Setup: pressures, sag and suspension settings"],
+      ["Servis", "Service"],
+      ["Servis: komponenty, které vyžadují pozornost", "Service: components that need attention"],
+      ["Naplánovaný servis", "Scheduled service"],
+      ["Detail servisního úkonu", "Service task detail"],
+      ["Historie servisu a náklady", "Service history and costs"],
+      ["Jízdy ze Stravy", "Rides from Strava"],
+      ["Detail jízdy", "Ride detail"],
+      ["AI asistent nad daty uživatele", "AI assistant over the user's data"],
+      ["Jezdci a sledující", "Riders and followers"],
+      ["Nastavení", "Settings"],
+      ["Sdílení profilu", "Profile sharing"],
+      ["BikeCheck Pro: nabídka", "BikeCheck Pro: offer"],
+      ["BikeCheck Pro: souhrn předplatného", "BikeCheck Pro: subscription summary"],
+      ["BikeCheck Pro: potvrzování platby", "BikeCheck Pro: confirming payment"],
+      ["BikeCheck Pro: neúspěšná platba", "BikeCheck Pro: payment failed"],
+      ["BikeCheck Pro: zaplaceno", "BikeCheck Pro: paid"],
     ] },
     d: { w: 1920, h: 1200, items: [
-      "Přihlášení",
-      "Nové kolo: výsledky hledání",
-      "Nové kolo: výběr modelu",
-      "Nové kolo: specifikace",
-      "Nové kolo: komponenty",
-      "Nové kolo: souhrn",
-      "Domů: dashboard",
-      "Garáž",
-      "Detail kola",
-      "Setup odpružení",
-      "Jízdy",
-      "AI asistent",
+      ["Přihlášení", "Sign in"],
+      ["Nové kolo: výsledky hledání", "New bike: search results"],
+      ["Nové kolo: výběr modelu", "New bike: model selection"],
+      ["Nové kolo: specifikace", "New bike: specification"],
+      ["Nové kolo: komponenty", "New bike: components"],
+      ["Nové kolo: souhrn", "New bike: summary"],
+      ["Domů: dashboard", "Home: dashboard"],
+      ["Garáž", "Garage"],
+      ["Detail kola", "Bike detail"],
+      ["Setup odpružení", "Suspension setup"],
+      ["Jízdy", "Rides"],
+      ["AI asistent", "AI assistant"],
     ] },
   };
+  const en = () => document.documentElement.lang === "en";
 
   // jedna souvislá řada: mobil 01–29, desktop 30–41
   const all = [];
   for (const [set, s] of Object.entries(SETS)) {
-    s.items.forEach((cap, i) => {
+    s.items.forEach(([cs, enCap], i) => {
       const n = String(all.length + 1).padStart(2, "0");
-      all.push({ set, i, cap, w: s.w, h: s.h,
+      all.push({ set, i, get cap() { return en() ? enCap : cs; }, w: s.w, h: s.h,
         full: `assets/projects/bikecheck/full/${n}.webp`, thumb: `assets/projects/bikecheck/thumb/${n}.webp` });
     });
   }
@@ -129,7 +131,8 @@
   const open = (k = 0) => {
     dlg.classList.remove("is-out");
     dlg.showModal();
-    cur = -1; show(k);
+    cur = -1; shownSet = null;             // náhledy znovu, ať mají popisky v aktuálním jazyce
+    show(k);
     dlg.focus();                           // fokus na dialog: šipky fungují hned, bez kroužku na tlačítku
   };
   const close = () => {

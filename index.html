@@ -6,6 +6,7 @@
     <title>Jaroslav Lufinka, fullstack &amp; AI engineer</title>
     <meta
       name="description"
+      data-i18n-a="content:meta"
       content="Fullstack engineer. Stavím webové aplikace od databáze po rozhraní a umím do nich postavit AI systémy, které fungují v produkci."
     />
     <meta name="theme-color" content="#09090b" />
@@ -17,10 +18,29 @@
     />
     <link rel="preload" as="image" href="assets/portrait.webp" />
     <link rel="stylesheet" href="styles.css?v=11" />
-    <link rel="stylesheet" href="mix.css?v=84" />
+    <link rel="stylesheet" href="mix.css?v=85" />
+    <!-- jazyk ještě před vykreslením: ?lang= > uložená volba > jazyk prohlížeče (cs/sk => čeština, jinak angličtina).
+         Anglickou verzi skryje, dokud i18n.js nepřepíše texty (pojistka: nejpozději po 1,5 s se ukáže i tak). -->
+    <script>
+      (function () {
+        var d = document.documentElement, l;
+        try {
+          l = new URLSearchParams(location.search).get("lang") || localStorage.getItem("lang");
+        } catch (e) {}
+        if (l !== "cs" && l !== "en") l = /^(cs|sk)/i.test(navigator.language || "") ? "cs" : "en";
+        d.lang = l;
+        if (l === "en") {
+          d.classList.add("i18n-wait");
+          setTimeout(function () { d.classList.remove("i18n-wait"); }, 1500);
+        }
+      })();
+    </script>
+    <style>
+      .i18n-wait body { visibility: hidden; }
+    </style>
   </head>
   <body>
-    <a class="skip" href="#main">Přeskočit na obsah</a>
+    <a class="skip" href="#main" data-i18n="skip">Přeskočit na obsah</a>
 
     <!-- fotka vpravo: společná maska pro fotku i světlo pod kurzorem => okraje mizí do černé -->
     <div class="photo" aria-hidden="true">
@@ -34,14 +54,18 @@
     <header class="bar">
       <a href="#top" class="bar__id">JL<span class="acc">.</span></a>
       <button class="bar__menu" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
-      <nav class="bar__nav" id="nav" aria-label="Hlavní navigace">
+      <nav class="bar__nav" id="nav" aria-label="Hlavní navigace" data-i18n-a="aria-label:nav">
         <span class="bar__pill" aria-hidden="true"></span>
-        <a href="#o-mne">O mně</a>
-        <a href="#projekty">Projekty</a>
-        <a href="#praxe">Praxe</a>
+        <a href="#o-mne" data-i18n="nav.about">O mně</a>
+        <a href="#projekty" data-i18n="nav.projects">Projekty</a>
+        <a href="#praxe" data-i18n="nav.exp">Praxe</a>
         <a href="#stack">Stack</a>
-        <a href="#kontakt">Kontakt</a>
+        <a href="#kontakt" data-i18n="nav.contact">Kontakt</a>
       </nav>
+      <div class="lang" role="group" aria-label="Jazyk / Language">
+        <button type="button" data-lang="cs" lang="cs" aria-label="Čeština" aria-pressed="true">CZ</button>
+        <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+      </div>
     </header>
 
     <main id="main">
@@ -60,12 +84,12 @@
           </div>
           <div class="mx__foot">
             <div>
-              <p class="hero__lede">
-                Full-stack vývojář se zaměřením na <span class="acc">produkční&nbsp;AI</span>. Stavím aplikace od návrhu
+              <p class="hero__lede" data-i18n="hero.lede">
+                Fullstack vývojář se zaměřením na <span class="acc">produkční&nbsp;AI</span>. Stavím aplikace od návrhu
                 databáze po UI a&nbsp;integruji do nich&nbsp;otestované agenty.
               </p>
               <div class="cta">
-                <a class="btn btn--primary" href="mailto:jardalufi@gmail.com">Napsat e-mail</a>
+                <a class="btn btn--primary" href="mailto:jardalufi@gmail.com" data-i18n="hero.mail">Napsat e-mail</a>
                 <a class="btn" href="https://github.com/Jaffator" target="_blank" rel="noopener"
                   >GitHub <span class="i i--ne" aria-hidden="true"></span
                 ></a>
@@ -196,12 +220,12 @@
       <!-- 01 · O mně: jediný světlý blok; krátké odstavce a druhá fotka.
          Texty jsou zatím návrh, doplní se. -->
       <section id="o-mne" class="sec sec--stack sec--paper" aria-labelledby="h-o-mne">
-        <h2 id="h-o-mne" class="sec__h"><span class="sec__n mono">01</span>O mně</h2>
+        <h2 id="h-o-mne" class="sec__h" data-i18n="about.h"><span class="sec__n mono">01</span>O mně</h2>
         <div class="me">
-          <div class="me__txt">
+          <div class="me__txt" data-i18n="about.txt">
             <p>
-              Mám víc než 9&nbsp;let praxe vývoje produkčního softwaru v&nbsp;automotive R&amp;D, který běžel na
-              <strong>100+ stanicích</strong> a&nbsp;kde spolehlivost byla na prvním místě. Vyvíjel jsem řídící
+              Mám víc než 9&nbsp;let praxe ve vývoji produkčního softwaru v&nbsp;automotive R&amp;D, který běžel na
+              <strong>100+ stanicích</strong> a&nbsp;kde spolehlivost byla na prvním místě. Vyvíjel jsem řídicí
               a&nbsp;testovací software s&nbsp;dashboardy pro desítky dalších uživatelů. Orientuji se v&nbsp;celé
               infrastruktuře – od návrhu databáze přes backend až po uživatelské rozhraní.
             </p>
@@ -227,16 +251,17 @@
 
       <!-- 02 · Projekty: text + nakloněná 3D scéna se skutečnými obrazovkami (z návrhu E3, E4, E5b) -->
       <section id="projekty" class="sec sec--stack" aria-labelledby="h-projekty">
-        <h2 id="h-projekty" class="sec__h"><span class="sec__n mono">02</span>Projekty</h2>
+        <h2 id="h-projekty" class="sec__h" data-i18n="proj.h"><span class="sec__n mono">02</span>Projekty</h2>
 
         <article class="pr">
           <div class="pr__txt">
             <p class="pr__meta mono">
-              <span>Současný projekt</span><i aria-hidden="true"></i><span>od 2026</span
+              <span data-i18n="bc.kind">Současný projekt</span><i aria-hidden="true"></i><span data-i18n="bc.since"
+                >od 2026</span
               ><span class="pr__live"><b aria-hidden="true"></b>Online</span>
             </p>
             <h3 class="pr__h">BikeCheck</h3>
-            <p class="pr__lede">
+            <p class="pr__lede" data-i18n="bc.lede">
               Vše o Vašem kole na jednom místě. Aplikace pro cyklisty: kola, komponenty a&nbsp;servisní historie, nastavení
               kola, možnost generování servisních reportů, sdílení celého profilu veřejně nebo v&nbsp;rámci aplikace. Jízdy
               ze Stravy se samy započítávají do opotřebení dílů, a&nbsp;to nejen podle najetých kilometrů, ale i&nbsp;podle
@@ -244,12 +269,13 @@
               servisu je otázkou několika kliknutí. Součástí je <strong>AI asistent</strong>, který zná uživatelova kola,
               jejich komponenty i servisní historii – díky tomu dokáže poradit přesně na míru konkrétnímu vybavení.
             </p>
-            <ul class="pr__list">
+            <ul class="pr__list" data-i18n="bc.list">
               <li>Backend v&nbsp;NestJS (TypeScript), Prisma a&nbsp;PostgreSQL – REST API</li>
               <li>
-                Frontend desktop i mobile v&nbsp;Reactu, Android přes Capacitor na Google Play, CI/CD v&nbsp;GitHub Actions
+                Frontend pro desktop i mobil v&nbsp;Reactu, Android přes Capacitor na Google Play, CI/CD v&nbsp;GitHub
+                Actions
               </li>
-              <li>Microservice Strava OAuth a&nbsp;webhooky</li>
+              <li>Mikroslužba pro Strava OAuth a&nbsp;webhooky</li>
               <li>AI asistent s&nbsp;function callingem nad daty uživatele a&nbsp;RAG nad servisními manuály</li>
               <li>V&nbsp;produkci s&nbsp;prvními uživateli</li>
             </ul>
@@ -276,6 +302,7 @@
                   <img
                     src="assets/projects/bikecheck-landing.jpg"
                     alt="Landing page bikecheck.cloud: Všechno o tvém kole na jednom místě"
+                    data-i18n-a="alt:bc.alt1"
                     width="800"
                     height="506"
                     loading="lazy"
@@ -289,6 +316,7 @@
                       <img
                         src="assets/projects/bikecheck-bike.jpg"
                         alt="BikeCheck v telefonu: detail kola s nájezdem, servisem a sledováním opotřebení"
+                        data-i18n-a="alt:bc.alt2"
                         width="390"
                         height="845"
                         loading="lazy"
@@ -307,6 +335,7 @@
                       <img
                         src="assets/projects/bikecheck-home.jpg"
                         alt="BikeCheck v telefonu: domovský dashboard s nájezdem a poslední jízdou"
+                        data-i18n-a="alt:bc.alt3"
                         width="390"
                         height="845"
                         loading="lazy"
@@ -317,7 +346,7 @@
                 </div>
               </div>
             </div>
-            <button class="pr__btn pr__prev" type="button" data-gal-open aria-haspopup="dialog">
+            <button class="pr__btn pr__prev" type="button" data-gal-open aria-haspopup="dialog" data-i18n="bc.prev">
               <span class="i i--imgs" aria-hidden="true"></span>Náhled aplikace
             </button>
           </figure>
@@ -326,14 +355,14 @@
         <article class="pr pr--flip">
           <div class="pr__txt">
             <p class="pr__meta mono"><span>ZF Group</span><i aria-hidden="true"></i><span>2017 – 2025</span></p>
-            <h3 class="pr__h">Dashboardy a&nbsp;řídicí software</h3>
-            <p class="pr__lede">
+            <h3 class="pr__h" data-i18n="zf.h">Dashboardy a&nbsp;řídicí software</h3>
+            <p class="pr__lede" data-i18n="zf.lede">
               Řídicí a testovací software pro brzdové komponenty, který běžel na 100+ stanicích. Součástí byly i dashboardy
               pro řízení zkoušek, vizualizaci měřených dat a interní kalibrační či analytické nástroje využívané denně
               desítkami inženýrů – mimo jiné zkrátily čas kalibrace ze dnů na hodiny a spolehlivě zpracovávaly gigabajty
               naměřených dat denně.
             </p>
-            <ul class="pr__list">
+            <ul class="pr__list" data-i18n="zf.list">
               <li>Fronty, paralelní zpracování a&nbsp;deterministický běh měření</li>
               <li>Realtime řídicí software</li>
               <li>UI a backend pro analýzu dat&nbsp;</li>
@@ -345,6 +374,7 @@
             class="pr__stage"
             role="img"
             aria-label="Ilustrace: tři nakloněná okna s fiktivními dashboardy – přehled stanic linky, průběh zkoušky brzdného momentu a kalibrace snímače"
+            data-i18n-a="aria-label:zf.fig"
           >
             <div class="pr__fit" style="--w: 700; --hh: 660" aria-hidden="true">
               <div class="pr__scene pr__scene--dash">
@@ -1218,14 +1248,16 @@
         <article class="pr">
           <div class="pr__txt">
             <p class="pr__meta mono">
-              <span>Vlastní projekt</span><i aria-hidden="true"></i><span>od 2023 · v provozu</span>
+              <span data-i18n="lh.kind">Vlastní projekt</span><i aria-hidden="true"></i><span data-i18n="lh.since"
+                >od 2023 · v provozu</span
+              >
             </p>
-            <h3 class="pr__h">Security system<span class="pr__sub">Lufihome</span></h3>
-            <p class="pr__lede">
-              Zabezpečení a&nbsp;chytrá domácnost pro můj dům. Běží na <strong>Raspberry Pi</strong> a&nbsp;ovládám ji
-              z&nbsp;telefonu: alarm, garážová vrata, teploty i&nbsp;stav všech čidel.
+            <h3 class="pr__h" data-i18n="lh.h">Zabezpečovací systém<span class="pr__sub">Lufihome</span></h3>
+            <p class="pr__lede" data-i18n="lh.lede">
+              Zabezpečení a&nbsp;chytrá domácnost pro můj dům. Systém běží na <strong>Raspberry Pi</strong>
+              a&nbsp;ovládám ho z&nbsp;telefonu: alarm, garážová vrata, teploty i&nbsp;stav všech čidel.
             </p>
-            <ul class="pr__list">
+            <ul class="pr__list" data-i18n="lh.list">
               <li>Alarm po zónách s&nbsp;nočním režimem a&nbsp;odpočtem zajištění</li>
               <li>PIR čidla, magnetické kontakty a&nbsp;Tuya teploměry, stav v&nbsp;reálném čase přes WebSockets</li>
               <li>Ovládání garážových vrat, historie teplot a&nbsp;log alarmu</li>
@@ -1252,6 +1284,7 @@
                       ><img
                         src="assets/projects/lufihome-sensors.jpg"
                         alt="Lufihome: teploty místností a seznam čidel se stavem"
+                        data-i18n-a="alt:lh.alt1"
                         width="375"
                         height="812"
                         loading="lazy"
@@ -1269,6 +1302,7 @@
                       ><img
                         src="assets/projects/lufihome-arming.jpg"
                         alt="Lufihome: zajišťování alarmu s odpočtem"
+                        data-i18n-a="alt:lh.alt2"
                         width="375"
                         height="812"
                         loading="lazy"
@@ -1285,7 +1319,8 @@
                         ><b>17:41</b><i class="pr__sb-sig"></i><i class="pr__sb-bat"></i></span
                       ><img
                         src="assets/projects/lufihome-secured.jpg"
-                        alt="Lufihome: alarm zajištěn, všechny zóny secured"
+                        alt="Lufihome: alarm zajištěn, všechny zóny zajištěny"
+                        data-i18n-a="alt:lh.alt3"
                         width="375"
                         height="812"
                         loading="lazy"
@@ -1302,31 +1337,31 @@
 
       <!-- 03 · Praxe: časová osa, role + roky + jedna věta výsledku -->
       <section id="praxe" class="sec sec--stack" aria-labelledby="h-praxe">
-        <h2 id="h-praxe" class="sec__h"><span class="sec__n mono">03</span>Praxe</h2>
+        <h2 id="h-praxe" class="sec__h" data-i18n="exp.h"><span class="sec__n mono">03</span>Praxe</h2>
         <ol class="tl">
           <li>
             <p class="tl__yr mono">2013 – 2015</p>
             <h3>DKL Tech</h3>
-            <p class="tl__role">Vývoj</p>
-            <p>První praxe: tvorba skriptů pro CAD systém CATIA.</p>
+            <p class="tl__role" data-i18n="exp.dkl.role">Vývoj</p>
+            <p data-i18n="exp.dkl">První praxe: tvorba skriptů pro CAD systém CATIA.</p>
           </li>
           <li>
             <p class="tl__yr mono">2015 – 2017</p>
             <h3>Preciosa</h3>
             <p class="tl__role">R&amp;D Development Engineer</p>
-            <p>Automatizace měření, první vlastní nástroje v&nbsp;LabVIEW.</p>
+            <p data-i18n="exp.prec">Automatizace měření, první vlastní nástroje v&nbsp;LabVIEW.</p>
           </li>
           <li>
             <p class="tl__yr mono">2017 – 2025</p>
             <h3>ZF Group</h3>
             <p class="tl__role">Software Development Engineer</p>
-            <p>Backend a frontend nástroje pro řízení a měření zkoušek, analýzu a vizualizaci naměřených dat.</p>
+            <p data-i18n="exp.zf">Backend a frontend nástroje pro řízení a měření zkoušek, analýzu a vizualizaci naměřených dat.</p>
           </li>
           <li class="tl__now">
-            <p class="tl__yr mono">2025 – dnes</p>
+            <p class="tl__yr mono" data-i18n="exp.bc.yr">2025 – dnes</p>
             <h3>BikeCheck</h3>
             <p class="tl__role">Independent Software Developer</p>
-            <p>Full-stack a mobilní vývoj: návrh a vývoj webové a mobilní aplikace v ostrém provozu se živými uživateli.</p>
+            <p data-i18n="exp.bc">Fullstack a mobilní vývoj: návrh a vývoj webové a mobilní aplikace v ostrém provozu se živými uživateli.</p>
           </li>
         </ol>
       </section>
@@ -1386,7 +1421,7 @@
 
       <!-- 05 · Mimo práci: kolo, hory, svařování -->
       <section id="mimo" class="sec sec--stack" aria-labelledby="h-mimo">
-        <h2 id="h-mimo" class="sec__h"><span class="sec__n mono">05</span>Mimo práci</h2>
+        <h2 id="h-mimo" class="sec__h" data-i18n="hob.h"><span class="sec__n mono">05</span>Mimo práci</h2>
         <ul class="hob">
           <li>
             <span
@@ -1394,8 +1429,8 @@
               style="--i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/bicycle.svg)"
               aria-hidden="true"
             ></span>
-            <h3>Cyklistika</h3>
-            <p>Enduro i gravel. Kolo si servisuji sám, odtud nápad na BikeCheck.</p>
+            <h3 data-i18n="hob.bike.h">Cyklistika</h3>
+            <p data-i18n="hob.bike">Enduro i gravel. Kolo si servisuji sám, odtud nápad na BikeCheck.</p>
           </li>
           <li>
             <span
@@ -1403,8 +1438,8 @@
               style="--i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/mountains.svg)"
               aria-hidden="true"
             ></span>
-            <h3>Alpinismus</h3>
-            <p>Hory v létě i v zimě.</p>
+            <h3 data-i18n="hob.alp.h">Alpinismus</h3>
+            <p data-i18n="hob.alp">Hory v létě i v zimě.</p>
           </li>
           <li>
             <span
@@ -1412,8 +1447,8 @@
               style="--i: url(https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2.1.1/assets/regular/gear.svg)"
               aria-hidden="true"
             ></span>
-            <h3>Dílna</h3>
-            <p>Baví mě tvořit věci rukama.</p>
+            <h3 data-i18n="hob.shop.h">Dílna</h3>
+            <p data-i18n="hob.shop">Baví mě tvořit věci rukama.</p>
           </li>
         </ul>
       </section>
@@ -1421,15 +1456,15 @@
       <section id="kontakt" class="sec sec--stack sec--end" aria-labelledby="h-kontakt">
         <!-- závěr jako limetková plocha: zopakované CTA z úvodu, profily a CV -->
         <div class="reach">
-          <p class="reach__n mono">06 · Kontakt</p>
-          <h2 id="h-kontakt" class="shout">Napište <span>mi.</span></h2>
-          <p class="ask">Máte projekt nebo pozici?</p>
+          <p class="reach__n mono" data-i18n="ct.n">06 · Kontakt</p>
+          <h2 id="h-kontakt" class="shout" data-i18n="ct.h">Napište <span>mi.</span></h2>
+          <p class="ask" data-i18n="ct.ask">Máte projekt nebo pozici?</p>
           <div class="mailrow">
             <a class="mail" href="mailto:jardalufi@gmail.com"
               >jardalufi@gmail.com <span class="i i--right" aria-hidden="true"></span
             ></a>
             <button class="copy" type="button" data-copy="jardalufi@gmail.com">
-              <span class="i i--copy" aria-hidden="true"></span><span class="copy__t">Kopírovat</span>
+              <span class="i i--copy" aria-hidden="true"></span><span class="copy__t" data-i18n="ct.copy">Kopírovat</span>
             </button>
           </div>
           <p class="profiles">
@@ -1450,7 +1485,7 @@
 
     <footer class="foot mono">
       <span>© <span id="y">2026</span> Jaroslav Lufinka</span>
-      <a href="#top" class="foot__top">Nahoru <span class="i i--up" aria-hidden="true"></span></a>
+      <a href="#top" class="foot__top" data-i18n="foot.top">Nahoru <span class="i i--up" aria-hidden="true"></span></a>
     </footer>
 
     <!-- galerie obrazovek BikeCheck: obsah doplní gallery.js -->
@@ -1460,11 +1495,11 @@
           <span id="gal-h">BikeCheck</span>
           <span class="gal__n mono" aria-live="polite"><b data-gal-i>01</b> / <span data-gal-len>29</span></span>
         </p>
-        <div class="gal__tabs" role="group" aria-label="Verze aplikace">
-          <button type="button" data-gal-set="m" aria-pressed="true">Mobil</button>
+        <div class="gal__tabs" role="group" aria-label="Verze aplikace" data-i18n-a="aria-label:gal.tabs">
+          <button type="button" data-gal-set="m" aria-pressed="true" data-i18n="gal.m">Mobil</button>
           <button type="button" data-gal-set="d" aria-pressed="false">Desktop</button>
         </div>
-        <button class="gal__x" type="button" data-gal-close aria-label="Zavřít galerii">
+        <button class="gal__x" type="button" data-gal-close aria-label="Zavřít galerii" data-i18n-a="aria-label:gal.x">
           <span class="i i--x" aria-hidden="true"></span>
         </button>
       </div>
@@ -1473,21 +1508,22 @@
           <img class="gal__img" alt="" decoding="async" />
           <!-- desktop: šipky po stranách plochy (display: contents), mobil: řádek pod snímkem -->
           <div class="gal__bar">
-            <button class="gal__nav gal__nav--prev" type="button" data-gal-step="-1" aria-label="Předchozí obrazovka">
+            <button class="gal__nav gal__nav--prev" type="button" data-gal-step="-1" aria-label="Předchozí obrazovka" data-i18n-a="aria-label:gal.prev">
               <span class="i i--left" aria-hidden="true"></span>
             </button>
             <p class="gal__cap"></p>
-            <button class="gal__nav gal__nav--next" type="button" data-gal-step="1" aria-label="Další obrazovka">
+            <button class="gal__nav gal__nav--next" type="button" data-gal-step="1" aria-label="Další obrazovka" data-i18n-a="aria-label:gal.next">
               <span class="i i--right" aria-hidden="true"></span>
             </button>
           </div>
         </div>
       </div>
-      <div class="gal__strip" role="list" aria-label="Náhledy obrazovek"></div>
+      <div class="gal__strip" role="list" aria-label="Náhledy obrazovek" data-i18n-a="aria-label:gal.strip"></div>
     </dialog>
 
-    <script src="main.js?v=11" defer></script>
-    <script src="gallery.js?v=2" defer></script>
-    <script src="mix.js?v=23" defer></script>
+    <script src="i18n.js?v=1" defer></script>
+    <script src="main.js?v=12" defer></script>
+    <script src="gallery.js?v=3" defer></script>
+    <script src="mix.js?v=24" defer></script>
   </body>
 </html>
